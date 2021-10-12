@@ -1,0 +1,65 @@
+object frmPrincipal: TfrmPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'frmPrincipal'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object MultiView1: TMultiView
+    NavigationPaneOptions.CollapsedWidth = 169.000000000000000000
+    Size.Width = 250.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object ListBox1: TListBox
+      Align = Client
+      Size.Width = 169.000000000000000000
+      Size.Height = 480.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      DisableFocusEffect = True
+      ItemHeight = 50.000000000000000000
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 169.000000000000000000
+      Viewport.Height = 480.000000000000000000
+      object ltbCartoes: TListBoxItem
+        TextSettings.HorzAlign = Center
+        StyledSettings = [Family, Size, Style, FontColor]
+        Size.Width = 165.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Cart'#243'es'
+      end
+      object ListBoxItem2: TListBoxItem
+        Position.Y = 50.000000000000000000
+        Size.Width = 165.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'ListBoxItem2'
+      end
+      object ListBoxItem3: TListBoxItem
+        Position.Y = 100.000000000000000000
+        Size.Width = 165.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'ListBoxItem3'
+      end
+      object ListBoxItem4: TListBoxItem
+        Position.Y = 150.000000000000000000
+        Size.Width = 165.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'ListBoxItem4'
+      end
+    end
+  end
+end
