@@ -1,4 +1,4 @@
-unit ContasAPagar.Model.Categoria;
+unit ContasAPagar.Model.Entity.Categoria;
 
 interface
 

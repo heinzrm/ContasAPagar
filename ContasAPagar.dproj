@@ -5,7 +5,7 @@
         <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>33819</TargetedPlatforms>
         <AppType>Application</AppType>
         <MainSource>ContasAPagar.dpr</MainSource>
@@ -262,8 +262,8 @@
             <Form>frmPrincipal</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="Source\Model\ContasAPagar.Model.Categoria.pas"/>
-        <DCCReference Include="Source\Model\ContasAPagar.Model.Cartoes.pas"/>
+        <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.Categoria.pas"/>
+        <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.EntityCartoes.pas"/>
         <DCCReference Include="Source\View\ContasAPagar.View.ModeloPrincipal.pas">
             <Form>frmModelo</Form>
             <FormType>fmx</FormType>
