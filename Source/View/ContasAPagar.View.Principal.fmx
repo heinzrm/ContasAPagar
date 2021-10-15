@@ -8,15 +8,23 @@ object frmPrincipal: TfrmPrincipal
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
+  object LayoutMain: TLayout
+    Align = Client
+    Size.Width = 551.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+  end
   object MultiView1: TMultiView
+    Mode = Panel
     NavigationPaneOptions.CollapsedWidth = 169.000000000000000000
-    Size.Width = 250.000000000000000000
-    Size.Height = 50.000000000000000000
+    Size.Width = 89.000000000000000000
+    Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     object ListBox1: TListBox
       Align = Client
-      Size.Width = 169.000000000000000000
+      Size.Width = 89.000000000000000000
       Size.Height = 480.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
@@ -25,20 +33,21 @@ object frmPrincipal: TfrmPrincipal
       DefaultItemStyles.ItemStyle = ''
       DefaultItemStyles.GroupHeaderStyle = ''
       DefaultItemStyles.GroupFooterStyle = ''
-      Viewport.Width = 169.000000000000000000
+      Viewport.Width = 89.000000000000000000
       Viewport.Height = 480.000000000000000000
       object ltbCartoes: TListBoxItem
         TextSettings.HorzAlign = Center
         StyledSettings = [Family, Size, Style, FontColor]
-        Size.Width = 165.000000000000000000
+        Size.Width = 85.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
-        Text = 'Cart'#243'es'
+        Text = 'Cart'#245'es'
+        OnClick = ltbCartoesClick
       end
       object ListBoxItem2: TListBoxItem
         Position.Y = 50.000000000000000000
-        Size.Width = 165.000000000000000000
+        Size.Width = 85.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
@@ -46,7 +55,7 @@ object frmPrincipal: TfrmPrincipal
       end
       object ListBoxItem3: TListBoxItem
         Position.Y = 100.000000000000000000
-        Size.Width = 165.000000000000000000
+        Size.Width = 85.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
@@ -54,7 +63,7 @@ object frmPrincipal: TfrmPrincipal
       end
       object ListBoxItem4: TListBoxItem
         Position.Y = 150.000000000000000000
-        Size.Width = 165.000000000000000000
+        Size.Width = 85.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 3

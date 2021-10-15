@@ -16,7 +16,7 @@ uses
   FMX.ListBox,
   FMX.Layouts,
   FMX.Controls.Presentation,
-  FMX.MultiView;
+  FMX.MultiView, ContasAPagar.View.Cartoes;
 
 type
   TfrmPrincipal = class(TForm)
@@ -26,6 +26,8 @@ type
     ListBoxItem2: TListBoxItem;
     ListBoxItem3: TListBoxItem;
     ListBoxItem4: TListBoxItem;
+    LayoutMain: TLayout;
+    procedure ltbCartoesClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,6 +39,14 @@ var
 
 implementation
 
+uses
+  ContasAPagar.Diversos.LoadLayout;
+
 {$R *.fmx}
+
+procedure TfrmPrincipal.ltbCartoesClick(Sender: TObject);
+begin
+  TClassLoad.LoadLayout(LayoutMain,TfrmCartoes);
+end;
 
 end.

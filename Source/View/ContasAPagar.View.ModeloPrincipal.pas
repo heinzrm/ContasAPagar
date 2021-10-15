@@ -9,7 +9,7 @@ uses
 
 type
   TfrmModelo = class(TForm)
-    lytPrincipal: TLayout;
+    LayoutMain: TLayout;
     ToolBar1: TToolBar;
     ListBox1: TListBox;
     ltbIncluir: TListBoxItem;

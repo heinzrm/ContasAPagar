@@ -26,6 +26,7 @@ type
     Label2: TLabel;
     lblChaveCartoes: TLabel;
     Edit1: TEdit;
+    Layout1: TLayout;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
