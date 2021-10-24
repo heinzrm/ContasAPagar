@@ -33,8 +33,8 @@ object frmPrincipal: TfrmPrincipal
       DefaultItemStyles.ItemStyle = ''
       DefaultItemStyles.GroupHeaderStyle = ''
       DefaultItemStyles.GroupFooterStyle = ''
-      Viewport.Width = 89.000000000000000000
-      Viewport.Height = 480.000000000000000000
+      Viewport.Width = 85.000000000000000000
+      Viewport.Height = 476.000000000000000000
       object ltbCartoes: TListBoxItem
         TextSettings.HorzAlign = Center
         StyledSettings = [Family, Size, Style, FontColor]
