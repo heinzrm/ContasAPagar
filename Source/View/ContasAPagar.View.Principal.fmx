@@ -4,6 +4,7 @@ object frmPrincipal: TfrmPrincipal
   Caption = 'frmPrincipal'
   ClientHeight = 480
   ClientWidth = 640
+  WindowState = wsMaximized
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -117,7 +118,6 @@ object frmPrincipal: TfrmPrincipal
         DefaultItemStyles.ItemStyle = ''
         DefaultItemStyles.GroupHeaderStyle = ''
         DefaultItemStyles.GroupFooterStyle = ''
-        OnChange = ListBox1Change
         Viewport.Width = 85.000000000000000000
         Viewport.Height = 476.000000000000000000
         object ltbDashBoard: TListBoxItem

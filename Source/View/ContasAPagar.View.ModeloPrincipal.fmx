@@ -4,6 +4,7 @@ object frmModelo: TfrmModelo
   Caption = 'Form2'
   ClientHeight = 480
   ClientWidth = 640
+  StyleBook = StyleBook1
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -14,88 +15,119 @@ object frmModelo: TfrmModelo
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
-    object ToolBar1: TToolBar
-      Align = Left
-      Size.Width = 113.000000000000000000
+    object lytMain: TLayout
+      Align = Client
+      Size.Width = 640.000000000000000000
       Size.Height = 480.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      object ListBox1: TListBox
+      object TabControl1: TTabControl
         Align = Client
-        Size.Width = 113.000000000000000000
+        Size.Width = 640.000000000000000000
         Size.Height = 480.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 1
-        DisableFocusEffect = True
-        ItemHeight = 50.000000000000000000
-        DefaultItemStyles.ItemStyle = ''
-        DefaultItemStyles.GroupHeaderStyle = ''
-        DefaultItemStyles.GroupFooterStyle = ''
-        Viewport.Width = 109.000000000000000000
-        Viewport.Height = 476.000000000000000000
-        object ltbIncluir: TListBoxItem
-          Size.Width = 109.000000000000000000
-          Size.Height = 50.000000000000000000
+        TabHeight = 49.000000000000000000
+        TabIndex = 0
+        TabOrder = 0
+        TabPosition = None
+        Sizes = (
+          640s
+          480s
+          640s
+          480s)
+        object TabItem1: TTabItem
+          CustomIcon = <
+            item
+            end>
+          IsSelected = True
+          Size.Width = 8.000000000000000000
+          Size.Height = 8.000000000000000000
           Size.PlatformDefault = False
+          StyleLookup = ''
           TabOrder = 0
-          Text = 'Incluir'
+          Text = 'TabItem1'
+          object lytPage1Top: TLayout
+            Align = Top
+            Size.Width = 640.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Button1: TButton
+              Align = Right
+              Position.X = 592.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'additembutton'
+              TabOrder = 0
+              Text = 'Button1'
+            end
+            object Button2: TButton
+              Align = Right
+              Position.X = 544.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'composetoolbutton'
+              TabOrder = 1
+              Text = 'Button2'
+            end
+            object Button3: TButton
+              Align = Right
+              Position.X = 496.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'trashtoolbutton'
+              TabOrder = 2
+              Text = 'Button3'
+            end
+          end
         end
-        object ltbAlterar: TListBoxItem
-          Position.Y = 50.000000000000000000
-          Size.Width = 109.000000000000000000
-          Size.Height = 50.000000000000000000
+        object TabItem2: TTabItem
+          CustomIcon = <
+            item
+            end>
+          IsSelected = False
+          Size.Width = 8.000000000000000000
+          Size.Height = 8.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 1
-          Text = 'Alterar'
-        end
-        object ltbPesquisar: TListBoxItem
-          Position.Y = 100.000000000000000000
-          Size.Width = 109.000000000000000000
-          Size.Height = 50.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 2
-          Text = 'Pesquisar'
-        end
-        object ltbExcluir: TListBoxItem
-          Position.Y = 150.000000000000000000
-          Size.Width = 109.000000000000000000
-          Size.Height = 50.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 3
-          Text = 'Excluir'
-        end
-        object ltbImprimir: TListBoxItem
-          Position.Y = 200.000000000000000000
-          Size.Width = 109.000000000000000000
-          Size.Height = 50.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 4
-          Text = 'Imprimir'
-        end
-        object ltbGravar: TListBoxItem
-          Position.Y = 250.000000000000000000
-          Size.Width = 109.000000000000000000
-          Size.Height = 50.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 5
-          Text = 'Gravar'
-        end
-        object ltbFechar: TListBoxItem
-          Position.Y = 300.000000000000000000
-          Size.Width = 109.000000000000000000
-          Size.Height = 50.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 6
-          Text = 'Fechar'
+          StyleLookup = ''
+          TabOrder = 0
+          Text = 'TabItem2'
+          object Layout2: TLayout
+            Align = Top
+            Size.Width = 640.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Button5: TButton
+              Align = Right
+              Position.X = 592.000000000000000000
+              Size.Width = 48.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'pagecurltoolbutton'
+              TabOrder = 0
+              Text = 'Button1'
+            end
+            object Button7: TButton
+              Align = Left
+              Size.Width = 48.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'priortoolbutton'
+              TabOrder = 1
+              Text = 'Button3'
+            end
+          end
         end
       end
     end
-    object lytMain: TLayout
-      Align = Client
-      Size.Width = 527.000000000000000000
-      Size.Height = 480.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 1
-    end
+  end
+  object StyleBook1: TStyleBook
+    Styles = <
+      item
+      end>
   end
 end

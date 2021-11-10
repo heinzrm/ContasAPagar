@@ -35,9 +35,9 @@ type
     btnMasterbuttom: TButton;
     procedure ltbCartoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure ListBox1Change(Sender: TObject);
   private
     { Private declarations }
+    procedure AbrirFormulario(pFormulario: TComponentClass);
   public
     { Public declarations }
   end;
@@ -52,19 +52,20 @@ uses
 
 {$R *.fmx}
 
+procedure TfrmPrincipal.AbrirFormulario(pFormulario: TComponentClass);
+begin
+  TClassLoad.LoadLayout(LayoutMain,pFormulario);
+  MultiView1.HideMaster;
+end;
+
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
   MultiView1.Mode := TMultiViewMode.Drawer;
 end;
 
-procedure TfrmPrincipal.ListBox1Change(Sender: TObject);
-begin
-  MultiView1.HideMaster;
-end;
-
 procedure TfrmPrincipal.ltbCartoesClick(Sender: TObject);
 begin
-  TClassLoad.LoadLayout(LayoutMain,TfrmCartoes);
+  AbrirFormulario(TfrmCartoes)
 end;
 
 end.

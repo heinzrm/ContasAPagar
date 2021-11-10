@@ -18,15 +18,17 @@ uses
   FMX.Layouts,
   FMX.Controls.Presentation,
   FMX.Edit,
-  ContasAPagar.View.ModeloPrincipal;
+  ContasAPagar.View.ModeloPrincipal, FMX.TabControl, FMX.ListView.Types,
+  FMX.ListView.Appearances, FMX.ListView.Adapters.Base, FMX.ListView;
 
 type
   TfrmCartoes = class(TfrmModelo)
-    lblCodigo: TLabel;
+    Layout1: TLayout;
+    Edit1: TEdit;
     Label2: TLabel;
     lblChaveCartoes: TLabel;
-    Edit1: TEdit;
-    Layout1: TLayout;
+    lblCodigo: TLabel;
+    ListView1: TListView;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
