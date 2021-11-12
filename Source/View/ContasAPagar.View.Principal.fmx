@@ -128,6 +128,7 @@ object frmPrincipal: TfrmPrincipal
           Size.PlatformDefault = False
           TabOrder = 0
           Text = 'Dashboard'
+          OnClick = ltbDashBoardClick
         end
         object ltbCartoes: TListBoxItem
           TextSettings.HorzAlign = Center

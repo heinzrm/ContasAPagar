@@ -19,16 +19,17 @@ uses
   FMX.Controls.Presentation,
   FMX.Edit,
   ContasAPagar.View.ModeloPrincipal, FMX.TabControl, FMX.ListView.Types,
-  FMX.ListView.Appearances, FMX.ListView.Adapters.Base, FMX.ListView;
+  FMX.ListView.Appearances, FMX.ListView.Adapters.Base, FMX.ListView,
+  System.Actions, FMX.ActnList, System.ImageList, FMX.ImgList;
 
 type
   TfrmCartoes = class(TfrmModelo)
+    ListView1: TListView;
     Layout1: TLayout;
     Edit1: TEdit;
     Label2: TLabel;
     lblChaveCartoes: TLabel;
     lblCodigo: TLabel;
-    ListView1: TListView;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -49,6 +50,7 @@ uses
 procedure TfrmCartoes.FormCreate(Sender: TObject);
 begin
   inherited;
+  TabControl1.ActiveTab := TabItem1;
   TProcedimentos.SetarFoco(Edit1);
 end;
 

@@ -35,9 +35,11 @@ type
     btnMasterbuttom: TButton;
     procedure ltbCartoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure ltbDashBoardClick(Sender: TObject);
   private
     { Private declarations }
     procedure AbrirFormulario(pFormulario: TComponentClass);
+    procedure FecharFormulario;
   public
     { Public declarations }
   end;
@@ -58,6 +60,12 @@ begin
   MultiView1.HideMaster;
 end;
 
+procedure TfrmPrincipal.FecharFormulario;
+begin
+  TClassLoad.CloseLayout(LayoutMain);
+  MultiView1.HideMaster;
+end;
+
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
   MultiView1.Mode := TMultiViewMode.Drawer;
@@ -66,6 +74,11 @@ end;
 procedure TfrmPrincipal.ltbCartoesClick(Sender: TObject);
 begin
   AbrirFormulario(TfrmCartoes)
+end;
+
+procedure TfrmPrincipal.ltbDashBoardClick(Sender: TObject);
+begin
+  FecharFormulario;
 end;
 
 end.

@@ -67,7 +67,9 @@ object frmModelo: TfrmModelo
               TabOrder = 0
             end
             object Button2: TButton
+              Action = NextTabAction1
               Align = Right
+              Enabled = True
               Images = ImageList1
               ImageIndex = 0
               Position.X = 544.000000000000000000
@@ -76,7 +78,6 @@ object frmModelo: TfrmModelo
               Size.PlatformDefault = False
               StyleLookup = 'composetoolbutton'
               TabOrder = 1
-              Text = 'composetoolbutton'
             end
             object Button3: TButton
               Align = Right
@@ -112,7 +113,9 @@ object frmModelo: TfrmModelo
             Size.PlatformDefault = False
             TabOrder = 0
             object Button5: TButton
+              Action = PreviousTabAction1
               Align = Right
+              Enabled = True
               Images = ImageList1
               ImageIndex = 1
               Position.X = 592.000000000000000000
@@ -121,16 +124,18 @@ object frmModelo: TfrmModelo
               Size.PlatformDefault = False
               StyleLookup = 'pagecurltoolbutton'
               TabOrder = 0
-              Text = 'Button1'
             end
             object Button7: TButton
+              Action = PreviousTabAction1
               Align = Left
+              Enabled = True
+              Images = ImageList1
+              ImageIndex = 4
               Size.Width = 48.000000000000000000
               Size.Height = 50.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'priortoolbutton'
               TabOrder = 1
-              Text = 'Button3'
             end
           end
         end
@@ -236,6 +241,27 @@ object frmModelo: TfrmModelo
             FileName = 'C:\Delphi\ContasAPagar\Imagens\Icons\Delete.png'
           end>
         Name = 'Delete'
+      end
+      item
+        MultiResBitmap.LoadSize = 0
+        MultiResBitmap = <
+          item
+            Scale = 3.000000000000000000
+            Width = 48
+            Height = 48
+            PNG = {
+              89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+              87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              00B4494441546843EDD8BD0DC2301086618B9E85600246A2A2652426601F6828
+              C977108485C29F887377E87DA44F4E5244777663BB0000D0D052595F1FF35928
+              47E5AC6CED432675F1B7346962D68F63B2E277CAFCF27677EAC7D08666DEB251
+              C2A3782F14EF85E2BD50BC97BF2C7E8AFCCCB378CB4B9F6EE6DEFE283A5B8583
+              F2383B536434CF9A487558A1892868220A9A888226A2A0896FB5B899DB2B2BC5
+              76B0B5143773B57A25521C7A86A4BE5E070044574A074D57E39FD2FB85D60000
+              000049454E44AE426082}
+            FileName = 'D:\Delphi\ContasAPagar\Imagens\Icons\arrow-left.png'
+          end>
+        Name = 'arrow-left'
       end>
     Destination = <
       item
@@ -263,19 +289,26 @@ object frmModelo: TfrmModelo
           item
             Name = 'Delete'
           end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'arrow-left'
+          end>
       end>
-    Left = 280
-    Top = 136
+    Left = 576
+    Top = 232
   end
   object ActionList1: TActionList
-    Left = 416
-    Top = 152
+    Left = 576
+    Top = 288
     object NextTabAction1: TNextTabAction
       Category = 'Tab'
       TabControl = TabControl1
     end
     object PreviousTabAction1: TPreviousTabAction
       Category = 'Tab'
+      TabControl = TabControl1
     end
   end
 end

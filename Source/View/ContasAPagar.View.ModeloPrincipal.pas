@@ -38,8 +38,5 @@ var
 implementation
 
 {$R *.fmx}
-{$R *.iPhone55in.fmx IOS}
-{$R *.iPhone47in.fmx IOS}
-{$R *.LgXhdpiPh.fmx ANDROID}
 
 end.
