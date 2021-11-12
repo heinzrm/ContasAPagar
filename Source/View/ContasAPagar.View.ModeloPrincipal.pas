@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.ListBox,
   FMX.Layouts, FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl,
-  FMX.Objects;
+  FMX.Objects, System.ImageList, FMX.ImgList, System.Actions, FMX.ActnList;
 
 type
   TfrmModelo = class(TForm)
@@ -22,7 +22,10 @@ type
     Layout2: TLayout;
     Button5: TButton;
     Button7: TButton;
-    StyleBook1: TStyleBook;
+    ImageList1: TImageList;
+    ActionList1: TActionList;
+    NextTabAction1: TNextTabAction;
+    PreviousTabAction1: TPreviousTabAction;
   private
     { Private declarations }
   public

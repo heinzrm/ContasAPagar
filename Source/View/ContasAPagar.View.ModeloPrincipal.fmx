@@ -4,7 +4,6 @@ object frmModelo: TfrmModelo
   Caption = 'Form2'
   ClientHeight = 480
   ClientWidth = 640
-  StyleBook = StyleBook1
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -27,7 +26,7 @@ object frmModelo: TfrmModelo
         Size.Height = 480.000000000000000000
         Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 0
         TabPosition = None
         Sizes = (
@@ -39,13 +38,15 @@ object frmModelo: TfrmModelo
           CustomIcon = <
             item
             end>
-          IsSelected = True
+          IsSelected = False
           Size.Width = 8.000000000000000000
           Size.Height = 8.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
           Text = 'TabItem1'
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
           object lytPage1Top: TLayout
             Align = Top
             Size.Width = 640.000000000000000000
@@ -53,27 +54,34 @@ object frmModelo: TfrmModelo
             Size.PlatformDefault = False
             TabOrder = 0
             object Button1: TButton
+              Action = NextTabAction1
               Align = Right
+              Enabled = True
+              Images = ImageList1
+              ImageIndex = 2
               Position.X = 592.000000000000000000
               Size.Width = 48.000000000000000000
               Size.Height = 50.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'additembutton'
               TabOrder = 0
-              Text = 'Button1'
             end
             object Button2: TButton
               Align = Right
+              Images = ImageList1
+              ImageIndex = 0
               Position.X = 544.000000000000000000
               Size.Width = 48.000000000000000000
               Size.Height = 50.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'composetoolbutton'
               TabOrder = 1
-              Text = 'Button2'
+              Text = 'composetoolbutton'
             end
             object Button3: TButton
               Align = Right
+              Images = ImageList1
+              ImageIndex = 3
               Position.X = 496.000000000000000000
               Size.Width = 48.000000000000000000
               Size.Height = 50.000000000000000000
@@ -88,13 +96,15 @@ object frmModelo: TfrmModelo
           CustomIcon = <
             item
             end>
-          IsSelected = False
+          IsSelected = True
           Size.Width = 8.000000000000000000
           Size.Height = 8.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
           Text = 'TabItem2'
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
           object Layout2: TLayout
             Align = Top
             Size.Width = 640.000000000000000000
@@ -103,6 +113,8 @@ object frmModelo: TfrmModelo
             TabOrder = 0
             object Button5: TButton
               Align = Right
+              Images = ImageList1
+              ImageIndex = 1
               Position.X = 592.000000000000000000
               Size.Width = 48.000000000000000000
               Size.Height = 50.000000000000000000
@@ -125,9 +137,145 @@ object frmModelo: TfrmModelo
       end
     end
   end
-  object StyleBook1: TStyleBook
-    Styles = <
+  object ImageList1: TImageList
+    Source = <
       item
+        MultiResBitmap.Height = 48
+        MultiResBitmap.Width = 48
+        MultiResBitmap.LoadSize = 0
+        MultiResBitmap = <
+          item
+            Width = 48
+            Height = 48
+            PNG = {
+              89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+              87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              01AD494441546843ED99CD4AC4301485EB1FC280A00B37EA46419F43F0A97C03
+              1111572E1404178232E8CA57F001545CB9145CE9425F40CFE934D2B95EDBB44E
+              9B1BC8071FD39969C2B96932A4D32C91488CB10687F0137E199399AEE1265461
+              F877A835B62433AEC25F70E4B50616BD823953C52BE1255A181D9AE7032EF2A0
+              5C002B8B893CFB747E1831A980D054AD81F2771650F3A529149A5440685201A1
+              4905842615D023DB7017BEE6EF14DCCD82D32ABC67B91D1D8E134B0164AE788D
+              6A33A712C31AE0681F17FE8CBC86C529C4C037D065E2DC9F872AE5F0D402FB50
+              E6E27F43EA95902786840137E0327C8032DB1ECCB1B80618FE12DEC125B8031F
+              612DB2CA10C839FF02D721AFC47DF199D929C4500C27733CC315C822B826D4F0
+              4436EC93BFC23B9FE00056221BF5859C369A1CF95A64A33EF0097F00BD900DBB
+              C627FC21F44636EE129FF047B011B283AEF0097F021B6F2665275DE013FE14B6
+              DA09F3A181D6615B250C5FF553495B8DBCA3AEF3A64AEAFA3F83FFDADA6CC137
+              A875DE4689768EF31C4E645FC6A77F7C803689E924D1CEA11770069A470BCF27
+              A3B3300A6478AE092EEC44C464D93748CF89A0A4B9E3E30000000049454E44AE
+              426082}
+            FileName = 'C:\Delphi\ContasAPagar\Imagens\Icons\Edit.png'
+          end>
+        Name = 'Edit'
+      end
+      item
+        MultiResBitmap.LoadSize = 0
+        MultiResBitmap = <
+          item
+            Scale = 3.000000000000000000
+            Width = 48
+            Height = 48
+            PNG = {
+              89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+              87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              01BE494441546843ED99314EC4301045176A401C005A9068A0427016380C252D
+              700A101C8082DB5002125450C1FF59073913C7E324F6DA2BF9494F8ED6938927
+              B19D5DEDA2B266ECC347F8057F137B05A3C2C1BF43D7C55219B508DE79D74552
+              1BAD88554C9B21A3142193C646E6975EC359C884B191F95DCE2A42268B8DCC3F
+              E4E42264A2D8C8FC3EFF8BD8306D083CD166CCB921C8FC1ACDF5379BC335A616
+              901B7B1E6B737CEC1C4D4D5D0345500BC84D2D2037B580007EE02D3C835B461E
+              DF41F645832F2A5B89EC0FF1151EC3214E20635CE76AF6D00264BFE637F40DBE
+              854530D695C3670F2D40F66BDEC050389D5C397CF6D00264BFE6290C856BC295
+              C3670F2D40F66B72B186C258570E9F0DA56CA393C791B28023D3863026B643CA
+              022E4D1BC2856967E19C6316B25F935B23B7480DC6F085E6CAE1B3871620FB43
+              E44BCA5744D12FB256DE5DEEF3F6578973F3D9943BDFDA30E637F127DC591E66
+              8763D9E5C19845FC62DA1278366D07E723B238801F50C6ADDA37B8077BC84017
+              2CE209F211CAF8D4F29AF7B033F8316BA0484AF92A31995A406EEC79CE3FF1B6
+              97875998B4E6EC2750D23E3F894398739F8F02FF8D7F8039F6F9CA1AB258FC01
+              2FDC373FEFFEB40C0000000049454E44AE426082}
+            FileName = 'C:\Delphi\ContasAPagar\Imagens\Icons\Save.png'
+          end>
+        Name = 'Save'
+      end
+      item
+        MultiResBitmap.LoadSize = 0
+        MultiResBitmap = <
+          item
+            Scale = 3.000000000000000000
+            Width = 48
+            Height = 48
+            PNG = {
+              89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+              87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              005D494441546843EDD7AB0E80301000C1C2FFFF33985A1E02B221CC9893ED26
+              15D701C0AF2D733E699BF3C8A367AE737E96809A809A809A809A80DA9DBDE46A
+              B779DBE91D3DA19A809A80DAE703FC896B026A026A026A026A0200A033C60E0F
+              52033E247C67050000000049454E44AE426082}
+            FileName = 'C:\Delphi\ContasAPagar\Imagens\Icons\Add.png'
+          end>
+        Name = 'Add'
+      end
+      item
+        MultiResBitmap.LoadSize = 0
+        MultiResBitmap = <
+          item
+            Scale = 3.000000000000000000
+            Width = 48
+            Height = 48
+            PNG = {
+              89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+              87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              00B3494441546843EDD7410AC2301085E1E83974EDD9F5062E7A2311C403E804
+              665182D804277904FF0F1EB3A8B479AD29340180D4CE678497CF5A21D7DEFB9C
+              56CD5D68BDB3D1BEAE71FA274001B59637C1E8BD50B536FE426AEC8195F25CE5
+              EFB78E97D80353A0801A05D428A04601350AA851408D026AD31788FC228BC617
+              D914FEAAC0D3E7080F9F9B5A0A2C3E47B8FA0C75B2DC2DF96DD43337CBC1D2C5
+              D172B1E447FCE9E2BF249FF36CE9B678008896D21B1F0B3BF954B8B815000000
+              0049454E44AE426082}
+            FileName = 'C:\Delphi\ContasAPagar\Imagens\Icons\Delete.png'
+          end>
+        Name = 'Delete'
       end>
+    Destination = <
+      item
+        Layers = <
+          item
+            Name = 'Edit'
+            SourceRect.Right = 48.000000000000000000
+            SourceRect.Bottom = 48.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Save'
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Add'
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Delete'
+          end>
+      end>
+    Left = 280
+    Top = 136
+  end
+  object ActionList1: TActionList
+    Left = 416
+    Top = 152
+    object NextTabAction1: TNextTabAction
+      Category = 'Tab'
+      TabControl = TabControl1
+    end
+    object PreviousTabAction1: TPreviousTabAction
+      Category = 'Tab'
+    end
   end
 end
