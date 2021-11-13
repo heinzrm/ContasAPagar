@@ -31,6 +31,7 @@ var
 	LComponent : TComponent;
   FFormLayout : TForm;
 begin
+  CloseLayout(LayoutMain);
 	Application.CreateForm(AFormClass, FFormLayout);
 	LComponent := FFormLayout.FindComponent('LayoutMain');
 	if Assigned(LComponent) then

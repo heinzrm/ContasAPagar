@@ -1,6 +1,8 @@
-object frmPrincipal: TfrmPrincipal
+﻿object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
+  BorderIcons = []
+  BorderStyle = None
   Caption = 'frmPrincipal'
   ClientHeight = 480
   ClientWidth = 640
@@ -97,6 +99,19 @@ object frmPrincipal: TfrmPrincipal
             Visible = False
           end
         end
+        object Label1: TLabel
+          Align = Client
+          StyledSettings = [Style]
+          Margins.Left = 70.000000000000000000
+          Size.Width = 481.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Segoe Print'
+          TextSettings.Font.Size = 32.000000000000000000
+          TextSettings.FontColor = claWhite
+          Text = 'Controle de Despesas'
+          TabOrder = 0
+        end
       end
     end
     object MultiView1: TMultiView
@@ -141,29 +156,48 @@ object frmPrincipal: TfrmPrincipal
           Text = 'Cart'#245'es'
           OnClick = ltbCartoesClick
         end
-        object ListBoxItem3: TListBoxItem
+        object ltbEntrada: TListBoxItem
+          TextSettings.HorzAlign = Center
+          StyledSettings = [Family, Size, Style, FontColor]
           Position.Y = 100.000000000000000000
           Size.Width = 85.000000000000000000
           Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 2
-          Text = 'ListBoxItem3'
+          Text = 'Entradas'
+          OnClick = ltbEntradaClick
         end
-        object ListBoxItem4: TListBoxItem
+        object ltbSaida: TListBoxItem
+          TextSettings.HorzAlign = Center
+          StyledSettings = [Family, Size, Style, FontColor]
           Position.Y = 150.000000000000000000
           Size.Width = 85.000000000000000000
           Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 3
-          Text = 'ListBoxItem4'
+          Text = 'Despesas'
+          OnClick = ltbSaidaClick
         end
-        object ListBoxItem1: TListBoxItem
+        object ltbConfigurações: TListBoxItem
+          TextSettings.HorzAlign = Center
+          StyledSettings = [Family, Size, Style, FontColor]
           Position.Y = 200.000000000000000000
           Size.Width = 85.000000000000000000
           Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
+          TabOrder = 5
+          Text = 'Configura'#231#245'es'
+        end
+        object ListBoxItem1: TListBoxItem
+          TextSettings.HorzAlign = Center
+          StyledSettings = [Family, Size, Style, FontColor]
+          Position.Y = 250.000000000000000000
+          Size.Width = 85.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
           TabOrder = 4
-          Text = 'ListBoxItem1'
+          Text = '&Sair'
+          OnClick = ListBoxItem1Click
         end
       end
     end

@@ -16,7 +16,9 @@ uses
   FMX.ListBox,
   FMX.Layouts,
   FMX.Controls.Presentation,
-  FMX.MultiView, ContasAPagar.View.Cartoes, FMX.Objects, FMX.StdCtrls;
+  FMX.MultiView,
+  ContasAPagar.View.Cartoes,
+  FMX.Objects, FMX.StdCtrls;
 
 type
   TfrmPrincipal = class(TForm)
@@ -25,17 +27,22 @@ type
     ListBox1: TListBox;
     ltbDashBoard: TListBoxItem;
     ltbCartoes: TListBoxItem;
-    ListBoxItem3: TListBoxItem;
-    ListBoxItem4: TListBoxItem;
+    ltbEntrada: TListBoxItem;
+    ltbSaida: TListBoxItem;
     lytBase: TLayout;
     ListBoxItem1: TListBoxItem;
     lytTopo: TLayout;
     lytMestre: TLayout;
     Rectangle1: TRectangle;
     btnMasterbuttom: TButton;
+    Label1: TLabel;
+    ltbConfigurações: TListBoxItem;
     procedure ltbCartoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ltbDashBoardClick(Sender: TObject);
+    procedure ListBoxItem1Click(Sender: TObject);
+    procedure ltbEntradaClick(Sender: TObject);
+    procedure ltbSaidaClick(Sender: TObject);
   private
     { Private declarations }
     procedure AbrirFormulario(pFormulario: TComponentClass);
@@ -50,7 +57,10 @@ var
 implementation
 
 uses
-  ContasAPagar.Diversos.LoadLayout;
+  ContasAPagar.Diversos.LoadLayout,
+  ContasAPagar.View.Entradas,
+  ContasAPagar.View.DashBoard,
+  ContasAPagar.View.Saidas;
 
 {$R *.fmx}
 
@@ -71,6 +81,11 @@ begin
   MultiView1.Mode := TMultiViewMode.Drawer;
 end;
 
+procedure TfrmPrincipal.ListBoxItem1Click(Sender: TObject);
+begin
+  Close;
+end;
+
 procedure TfrmPrincipal.ltbCartoesClick(Sender: TObject);
 begin
   AbrirFormulario(TfrmCartoes)
@@ -78,7 +93,17 @@ end;
 
 procedure TfrmPrincipal.ltbDashBoardClick(Sender: TObject);
 begin
-  FecharFormulario;
+  AbrirFormulario(TfrmDashBoard);
+end;
+
+procedure TfrmPrincipal.ltbEntradaClick(Sender: TObject);
+begin
+  AbrirFormulario(TfrmEntrada)
+end;
+
+procedure TfrmPrincipal.ltbSaidaClick(Sender: TObject);
+begin
+  AbrirFormulario(TFrmSaidas);
 end;
 
 end.

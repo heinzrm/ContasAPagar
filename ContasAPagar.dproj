@@ -274,6 +274,18 @@
         </DCCReference>
         <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.Procedimentos.pas"/>
         <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.LoadLayout.pas"/>
+        <DCCReference Include="Source\View\ContasAPagar.View.Entradas.pas">
+            <Form>frmEntrada</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Source\View\ContasAPagar.View.DashBoard.pas">
+            <Form>frmDashBoard</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Source\View\ContasAPagar.View.Saidas.pas">
+            <Form>frmSaidas</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <None Include="ModelSupport_ContasAPagar\default.txaPackage"/>
         <None Include="ModelSupport_ContasAPagar\default.txvpck"/>
         <None Include="ModelSupport_ContasAPagar\ContasAPagar\default.txvpck"/>
@@ -383,9 +395,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win64\Debug\ContasAPagar.rsm" Configuration="Debug" Class="DebugSymbols">
+                <DeployFile LocalName="ModelSupport_ContasAPagar\ContasAPagar\Model\Cartoes\default.txvpck" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win64">
-                        <RemoteName>ContasAPagar.rsm</RemoteName>
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -396,12 +408,6 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="ModelSupport_ContasAPagar\default.txaPackage" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win64">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ModelSupport_ContasAPagar\ContasAPagar\Model\Cartoes\default.txvpck" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win64">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
