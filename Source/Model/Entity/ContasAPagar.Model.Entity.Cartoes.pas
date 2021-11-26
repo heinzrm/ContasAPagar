@@ -1,4 +1,4 @@
-unit ContasAPagar.Model.EntityCartoes;
+unit ContasAPagar.Model.Entity.Cartoes;
 
 interface
 
