@@ -33,7 +33,7 @@ type
       constructor Create(Path:string;Secao:string);
       procedure LeIni();
       procedure GravaIni(Usuario,Senha,Servidor,Banco:string;Porta:Integer);
-      procedure Conectar(var Conexao:TFDConnection);
+      function Conectar(var Conexao: TFDConnection): Boolean;
   end;
 
 implementation
@@ -43,7 +43,7 @@ uses
 
 { TConexao }
 
-procedure TConexao.Conectar(var Conexao: TFDConnection);
+function TConexao.Conectar(var Conexao: TFDConnection): Boolean;
 begin
   LeIni();
   try
@@ -59,9 +59,12 @@ begin
     Conexao.Params.Add(Format('Database= %s',[FDatabase]));
     Conexao.Params.Add(Format('DriverName= %s',[FDriver]));
     Conexao.Params.Add(Format('OSAuthent= %s',[FAuthSistema]));
+    Conexao.Open;
+    Result := True;
   except
     on E:Exception do
     begin
+      Result := False;
       raise Exception.Create('Erro ao carregar parâmetros de conexão!'#13#10 + E.Message);
     end;
   end;
