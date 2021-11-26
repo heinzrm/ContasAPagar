@@ -1,0 +1,35 @@
+inherited frmEntrada: TfrmEntrada
+  Caption = 'frmModelo1'
+  DesignerMasterStyle = 0
+  inherited LayoutMain: TLayout
+    inherited lytMain: TLayout
+      inherited TabControl1: TTabControl
+        Sizes = (
+          640s
+          480s
+          640s
+          480s)
+        inherited TabItem1: TTabItem
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
+          object ListView1: TListView
+            ItemAppearanceClassName = 'TListItemAppearance'
+            ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
+            HeaderAppearanceClassName = 'TListHeaderObjects'
+            FooterAppearanceClassName = 'TListHeaderObjects'
+            Align = Client
+            Size.Width = 640.000000000000000000
+            Size.Height = 430.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            SearchVisible = True
+          end
+        end
+        inherited TabItem2: TTabItem
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
+        end
+      end
+    end
+  end
+end
