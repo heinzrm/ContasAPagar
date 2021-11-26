@@ -12,7 +12,7 @@ uses
   ContasAPagar.Diversos.LoadLayout in 'Source\Diversos\ContasAPagar.Diversos.LoadLayout.pas',
   ContasAPagar.View.Entradas in 'Source\View\ContasAPagar.View.Entradas.pas' {frmEntrada},
   ContasAPagar.View.DashBoard in 'Source\View\ContasAPagar.View.DashBoard.pas' {frmDashBoard},
-  ContasAPagar.View.Saidas in 'Source\View\ContasAPagar.View.Saidas.pas' {frmSaidas};
+  ContasAPagar.View.Despesas in 'Source\View\ContasAPagar.View.Despesas.pas' {frmDespesas};
 
 {$R *.res}
 
@@ -21,6 +21,6 @@ begin
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmEntrada, frmEntrada);
   Application.CreateForm(TfrmDashBoard, frmDashBoard);
-  Application.CreateForm(TfrmSaidas, frmSaidas);
+  Application.CreateForm(TfrmDespesas, frmDespesas);
   Application.Run;
 end.

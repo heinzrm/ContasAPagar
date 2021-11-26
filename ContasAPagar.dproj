@@ -282,8 +282,8 @@
             <Form>frmDashBoard</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="Source\View\ContasAPagar.View.Saidas.pas">
-            <Form>frmSaidas</Form>
+        <DCCReference Include="Source\View\ContasAPagar.View.Despesas.pas">
+            <Form>frmDespesas</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <None Include="ModelSupport_ContasAPagar\default.txaPackage"/>

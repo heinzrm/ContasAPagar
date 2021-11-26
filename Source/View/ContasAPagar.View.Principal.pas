@@ -18,7 +18,8 @@ uses
   FMX.Controls.Presentation,
   FMX.MultiView,
   ContasAPagar.View.Cartoes,
-  FMX.Objects, FMX.StdCtrls;
+  FMX.Objects, FMX.StdCtrls, System.ImageList, FMX.ImgList, System.Actions,
+  FMX.ActnList;
 
 type
   TfrmPrincipal = class(TForm)
@@ -28,21 +29,36 @@ type
     ltbDashBoard: TListBoxItem;
     ltbCartoes: TListBoxItem;
     ltbEntrada: TListBoxItem;
-    ltbSaida: TListBoxItem;
+    ltbDespesas: TListBoxItem;
     lytBase: TLayout;
-    ListBoxItem1: TListBoxItem;
     lytTopo: TLayout;
     lytMestre: TLayout;
     Rectangle1: TRectangle;
     btnMasterbuttom: TButton;
     Label1: TLabel;
     ltbConfigurações: TListBoxItem;
+    Rectangle2: TRectangle;
+    Layout1: TLayout;
+    sbSair: TSpeedButton;
+    Layout2: TLayout;
+    Image1: TImage;
+    Image2: TImage;
+    Image3: TImage;
+    Image4: TImage;
+    Image5: TImage;
+    lblDashboard: TLabel;
+    lblCartoes: TLabel;
+    lblEntradas: TLabel;
+    lblDespesas: TLabel;
+    lblConfiguracoes: TLabel;
+    Image6: TImage;
+    lblSair: TLabel;
     procedure ltbCartoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ltbDashBoardClick(Sender: TObject);
-    procedure ListBoxItem1Click(Sender: TObject);
     procedure ltbEntradaClick(Sender: TObject);
-    procedure ltbSaidaClick(Sender: TObject);
+    procedure ltbDespesasClick(Sender: TObject);
+    procedure sbSairClick(Sender: TObject);
   private
     { Private declarations }
     procedure AbrirFormulario(pFormulario: TComponentClass);
@@ -60,7 +76,7 @@ uses
   ContasAPagar.Diversos.LoadLayout,
   ContasAPagar.View.Entradas,
   ContasAPagar.View.DashBoard,
-  ContasAPagar.View.Saidas;
+  ContasAPagar.View.Despesas;
 
 {$R *.fmx}
 
@@ -78,12 +94,7 @@ end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
-  MultiView1.Mode := TMultiViewMode.Drawer;
-end;
-
-procedure TfrmPrincipal.ListBoxItem1Click(Sender: TObject);
-begin
-  Close;
+  MultiView1.Mode := TMultiViewMode.PlatformBehaviour;
 end;
 
 procedure TfrmPrincipal.ltbCartoesClick(Sender: TObject);
@@ -101,9 +112,14 @@ begin
   AbrirFormulario(TfrmEntrada)
 end;
 
-procedure TfrmPrincipal.ltbSaidaClick(Sender: TObject);
+procedure TfrmPrincipal.ltbDespesasClick(Sender: TObject);
 begin
-  AbrirFormulario(TFrmSaidas);
+  AbrirFormulario(TFrmDespesas);
+end;
+
+procedure TfrmPrincipal.sbSairClick(Sender: TObject);
+begin
+  Close;
 end;
 
 end.
