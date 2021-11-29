@@ -7,6 +7,8 @@ object frmModelo: TfrmModelo
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   DesignerMasterStyle = 0
   object LayoutMain: TLayout
     Align = Client
@@ -53,10 +55,8 @@ object frmModelo: TfrmModelo
             Size.Height = 50.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
-            object Button1: TButton
-              Action = NextTabAction1
+            object btnInserir: TButton
               Align = Right
-              Enabled = True
               Images = ImageList1
               ImageIndex = 2
               Position.X = 592.000000000000000000
@@ -65,11 +65,11 @@ object frmModelo: TfrmModelo
               Size.PlatformDefault = False
               StyleLookup = 'additembutton'
               TabOrder = 0
+              Text = 'Next'
+              OnClick = btnInserirClick
             end
-            object Button2: TButton
-              Action = NextTabAction1
+            object btnEditar: TButton
               Align = Right
-              Enabled = True
               Images = ImageList1
               ImageIndex = 0
               Position.X = 544.000000000000000000
@@ -78,8 +78,10 @@ object frmModelo: TfrmModelo
               Size.PlatformDefault = False
               StyleLookup = 'composetoolbutton'
               TabOrder = 1
+              Text = 'Next'
+              OnClick = btnEditarClick
             end
-            object Button3: TButton
+            object btnExcluir: TButton
               Align = Right
               Images = ImageList1
               ImageIndex = 3
@@ -89,7 +91,7 @@ object frmModelo: TfrmModelo
               Size.PlatformDefault = False
               StyleLookup = 'trashtoolbutton'
               TabOrder = 2
-              Text = 'Button3'
+              Text = 'btnExcluir'
             end
           end
         end
@@ -112,10 +114,8 @@ object frmModelo: TfrmModelo
             Size.Height = 50.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
-            object Button5: TButton
-              Action = PreviousTabAction1
+            object btnSalvar: TButton
               Align = Right
-              Enabled = True
               Images = ImageList1
               ImageIndex = 1
               Position.X = 592.000000000000000000
@@ -124,11 +124,11 @@ object frmModelo: TfrmModelo
               Size.PlatformDefault = False
               StyleLookup = 'pagecurltoolbutton'
               TabOrder = 0
+              Text = 'Back'
+              OnClick = btnSalvarClick
             end
-            object Button7: TButton
-              Action = PreviousTabAction1
+            object btnVoltar: TButton
               Align = Left
-              Enabled = True
               Images = ImageList1
               ImageIndex = 4
               Size.Width = 48.000000000000000000
@@ -136,6 +136,8 @@ object frmModelo: TfrmModelo
               Size.PlatformDefault = False
               StyleLookup = 'priortoolbutton'
               TabOrder = 1
+              Text = 'Back'
+              OnClick = btnVoltarClick
             end
           end
         end

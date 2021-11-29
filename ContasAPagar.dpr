@@ -15,11 +15,17 @@ uses
   ContasAPagar.View.Despesas in 'Source\View\ContasAPagar.View.Despesas.pas' {frmDespesas},
   ContasAPagar.Conexao.Modulo.Principal in 'Source\Conexao\ContasAPagar.Conexao.Modulo.Principal.pas' {dmPrincipal: TDataModule},
   ContasAPagar.Diversos.Conexao in 'Source\Diversos\ContasAPagar.Diversos.Conexao.pas',
-  ContasAPagar.Diversos.Variaveis in 'Source\Diversos\ContasAPagar.Diversos.Variaveis.pas';
+  ContasAPagar.Diversos.Variaveis in 'Source\Diversos\ContasAPagar.Diversos.Variaveis.pas',
+  ContasAPagar.Controller.Intereface.ControllerDAO in 'Source\Controller\Interface\ContasAPagar.Controller.Intereface.ControllerDAO.pas',
+  ContasAPagar.Controller.ControllerDAO in 'Source\Controller\ContasAPagar.Controller.ControllerDAO.pas',
+  ContasAPagar.Diversos.Enumerados in 'Source\Diversos\ContasAPagar.Diversos.Enumerados.pas',
+  ContasAPagar.Diversos.RTTI in 'Source\Diversos\ContasAPagar.Diversos.RTTI.pas',
+  ContasAPagar.Diversos.CustomAttributes in 'Source\Diversos\ContasAPagar.Diversos.CustomAttributes.pas';
 
 {$R *.res}
 
 begin
+  ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
   Application.CreateForm(TdmPrincipal, dmPrincipal);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);

@@ -25,34 +25,13 @@ type
   TfrmPrincipal = class(TForm)
     LayoutMain: TLayout;
     MultiView1: TMultiView;
-    ListBox1: TListBox;
-    ltbDashBoard: TListBoxItem;
-    ltbCartoes: TListBoxItem;
-    ltbEntrada: TListBoxItem;
-    ltbDespesas: TListBoxItem;
     lytBase: TLayout;
     lytTopo: TLayout;
     lytMestre: TLayout;
     Rectangle1: TRectangle;
     btnMasterbuttom: TButton;
     Label1: TLabel;
-    ltbConfigurações: TListBoxItem;
-    Rectangle2: TRectangle;
-    Layout1: TLayout;
-    sbSair: TSpeedButton;
     Layout2: TLayout;
-    Image1: TImage;
-    Image2: TImage;
-    Image3: TImage;
-    Image4: TImage;
-    Image5: TImage;
-    lblDashboard: TLabel;
-    lblCartoes: TLabel;
-    lblEntradas: TLabel;
-    lblDespesas: TLabel;
-    lblConfiguracoes: TLabel;
-    Image6: TImage;
-    lblSair: TLabel;
     procedure ltbCartoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ltbDashBoardClick(Sender: TObject);
@@ -119,6 +98,7 @@ end;
 
 procedure TfrmPrincipal.sbSairClick(Sender: TObject);
 begin
+  FecharFormulario;
   Close;
 end;
 

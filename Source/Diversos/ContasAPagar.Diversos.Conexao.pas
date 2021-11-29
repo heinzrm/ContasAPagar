@@ -1,23 +1,21 @@
 unit ContasAPagar.Diversos.Conexao;
 
 interface
-
-uses
-  FireDAC.Comp.Client;
+  uses System.IniFiles,System.SysUtils,Vcl.Forms,FireDAC.Comp.Client, Vcl.Dialogs;
 
 type
   TConexao = class
     private
-      FServidor: string;
-      FDriver: string;
-      FPath: string;
-      FAuthSistema: string;
-      FSenha: string;
-      FDatabase: string;
+      FPath:string;
+      FServidor:string;
+      FPorta:Integer;
+      FDatabase:string;
+      FSenha:string;
+      FUsuario:string;
+      FDriver:string;
+      FSecao:string;
       FNomeConexao: string;
-      FUsuario: string;
-      FPorta: Integer;
-      FSecao: string;
+      FAuthSistema: string;
     public
       property Path:string read FPath write FPath;
       property Servidor:string read FServidor write FServidor;
@@ -31,89 +29,79 @@ type
       property AuthSistema:string read FAuthSistema write FAuthSistema;
 
       constructor Create(Path:string;Secao:string);
-      procedure LeIni();
-      procedure GravaIni(Usuario,Senha,Servidor,Banco:string;Porta:Integer);
-      function Conectar(var Conexao: TFDConnection): Boolean;
+      procedure LeIni();virtual;
+      procedure GravaIni(Usuario,Senha,Servidor,Banco:string;Porta:Integer);virtual;
+      procedure Conectar(var Conexao:TFDConnection);virtual;
   end;
-
 implementation
-
-uses
-  System.SysUtils, System.IniFiles;
 
 { TConexao }
 
-function TConexao.Conectar(var Conexao: TFDConnection): Boolean;
+procedure TConexao.Conectar(var Conexao: TFDConnection);
 begin
   LeIni();
   try
     Conexao.Connected := False;
     Conexao.LoginPrompt := False;
     Conexao.Params.Clear;
-    Conexao.ConnectionName := FNomeConexao;
-    Conexao.DriverName := FDriver;
-    Conexao.Params.Add(Format('HostName=%s',[FServidor]));
-    Conexao.Params.Add(Format('user_name= %s',[FUsuario]));
-    Conexao.Params.Add(Format('password= %s',[FSenha]));
-    Conexao.Params.Add(Format('port= %s',[FPorta.ToString]));
-    Conexao.Params.Add(Format('Database= %s',[FDatabase]));
-    Conexao.Params.Add(Format('DriverName= %s',[FDriver]));
-    Conexao.Params.Add(Format('OSAuthent= %s',[FAuthSistema]));
-    Conexao.Open;
-    Result := True;
-  except
-    on E:Exception do
-    begin
-      Result := False;
-      raise Exception.Create('Erro ao carregar parâmetros de conexão!'#13#10 + E.Message);
-    end;
-  end;
+        Conexao.Params.Add('Server='+ Servidor);
+        Conexao.Params.Add('user_name='+ Usuario);
+        Conexao.Params.Add('password='+ Senha);
+        Conexao.Params.Add('port='+ IntToStr(Porta));
+        Conexao.Params.Add('Database='+ Database);
+        Conexao.Params.Add('DriverID='+ Driver);
+        Conexao.Params.Add('ConnectionName='+NomeConexao);
+        Conexao.Params.Add('OSAuthent='+AuthSistema);
+     Except
+        on E:Exception do
+        ShowMessage('Erro ao carregar parâmetros de conexão!'#13#10 + E.Message);
+     end;
 end;
 
-constructor TConexao.Create(Path, Secao: string);
+// Método construtor recebe o caminho do INI e nome da Seção para Leitura
+constructor TConexao.Create(Path: string; Secao: string);
 begin
   if FileExists(Path) then
   begin
-     Self.FPath  := Path;
-     Self.FSecao := Secao;
+     Self.Path := Path;
+     Self.Secao := Secao;
   end
   else
-  begin
-    raise Exception.Create('Arquivo INI para configuração não encontrado.'#13#10'Aplicação será finalizada.');
-  end;
+     raise Exception.Create('Arquivo INI para configuração não encontrado.'#13#10'Aplicação será finalizada.');
 end;
 
-procedure TConexao.GravaIni(Usuario, Senha, Servidor, Banco: string;
-  Porta: Integer);
+// Grava os parâmetros recebidos no arquivo INI
+procedure TConexao.GravaINI(Usuario, Senha, Servidor, Banco: string; Porta: integer);
 var
   ArqIni : TIniFile;
 begin
   ArqIni := TIniFile.Create(Path);
   try
-    ArqIni.WriteString(Secao, 'Usuario', FUsuario);
-    ArqIni.WriteString(Secao, 'Senha', FSenha);
-    ArqIni.WriteString(Secao, 'Database', FDatabase);
-    ArqIni.WriteString(Secao, 'Servidor', FServidor);
-    ArqIni.WriteInteger(Secao, 'Porta', FPorta);
+    ArqIni.WriteString(Secao, 'Usuario', Usuario);
+    ArqIni.WriteString(Secao, 'Senha', Senha);
+    ArqIni.WriteString(Secao, 'Database', Banco);
+    ArqIni.WriteString(Secao, 'Servidor', Servidor);
+    ArqIni.WriteInteger(Secao, 'Porta', Porta);
   finally
      ArqIni.Free;
   end;
 end;
 
-procedure TConexao.LeIni;
+// Lê os parâmetros do arquivo INI e atribui para os atributos
+procedure TConexao.LeINI();
 var
   ArqIni : TIniFile;
 begin
   ArqIni := TIniFile.Create(Path);
   try
-    FServidor    := ArqIni.ReadString(Secao, 'Servidor', '');
-    FPorta       := ArqIni.ReadInteger(Secao, 'Porta', 0);
-    FDatabase    := ArqIni.ReadString(Secao, 'Database', '');
-    FSenha       := ArqIni.ReadString(Secao, 'Senha', '');
-    FUsuario     := ArqIni.ReadString(Secao, 'Usuario', '');
-    FDriver      := ArqIni.ReadString(Secao, 'Driver', '');
-    FNomeConexao := ArqIni.ReadString(Secao, 'NomeConexao', '');
-    FAuthSistema := ArqIni.ReadString(Secao, 'OSAuthent', '');
+    Servidor    := ArqIni.ReadString(Secao, 'Servidor', '');
+    Porta       := ArqIni.ReadInteger(Secao, 'Porta', 0);
+    Database    := ArqIni.ReadString(Secao, 'Database', '');
+    Senha       := ArqIni.ReadString(Secao, 'Senha', '');
+    Usuario     := ArqIni.ReadString(Secao, 'Usuario', '');
+    Driver      := ArqIni.ReadString(Secao, 'DriverID', '');
+    NomeConexao := ArqIni.ReadString(Secao, 'NomeConexao', '');
+    AuthSistema := ArqIni.ReadString(Secao, 'OSAuthent', '');
   finally
      ArqIni.Free;
   end;

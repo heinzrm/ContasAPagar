@@ -290,6 +290,11 @@
         </DCCReference>
         <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.Conexao.pas"/>
         <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.Variaveis.pas"/>
+        <DCCReference Include="Source\Controller\Interface\ContasAPagar.Controller.Intereface.ControllerDAO.pas"/>
+        <DCCReference Include="Source\Controller\ContasAPagar.Controller.ControllerDAO.pas"/>
+        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.Enumerados.pas"/>
+        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.RTTI.pas"/>
+        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.CustomAttributes.pas"/>
         <None Include="ModelSupport_ContasAPagar\default.txaPackage"/>
         <None Include="ModelSupport_ContasAPagar\default.txvpck"/>
         <None Include="ModelSupport_ContasAPagar\ContasAPagar\default.txvpck"/>
