@@ -3,23 +3,25 @@ unit ContasAPagar.View.Principal;
 interface
 
 uses
+  ContasAPagar.View.Cartoes,
+  FMX.Controls,
+  FMX.Controls.Presentation,
+  FMX.Dialogs,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.ImgList,
+  FMX.Layouts,
+  FMX.ListBox,
+  FMX.MultiView,
+  FMX.Objects,
+  FMX.StdCtrls,
+  FMX.Types,
+  System.Actions,
+  System.Classes,
   System.SysUtils,
   System.Types,
   System.UITypes,
-  System.Classes,
-  System.Variants,
-  FMX.Types,
-  FMX.Controls,
-  FMX.Forms,
-  FMX.Graphics,
-  FMX.Dialogs,
-  FMX.ListBox,
-  FMX.Layouts,
-  FMX.Controls.Presentation,
-  FMX.MultiView,
-  ContasAPagar.View.Cartoes,
-  FMX.Objects, FMX.StdCtrls, System.ImageList, FMX.ImgList, System.Actions,
-  FMX.ActnList;
+  System.Variants;
 
 type
   TfrmPrincipal = class(TForm)
@@ -99,6 +101,7 @@ end;
 procedure TfrmPrincipal.sbSairClick(Sender: TObject);
 begin
   FecharFormulario;
+  FreeAndNil(LayoutMain);
   Close;
 end;
 

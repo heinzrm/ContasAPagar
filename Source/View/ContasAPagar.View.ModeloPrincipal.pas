@@ -7,8 +7,9 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.ListBox,
   FMX.Layouts, FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl,
   FMX.Objects, System.ImageList, FMX.ImgList, System.Actions, FMX.ActnList,
-  ContasAPagar.Controller.ControllerDAO, ContasAPagar.Diversos.Variaveis,
-  ContasAPagar.Diversos.Enumerados, Data.DB;
+  ContasAPagar.Controller.Cartoes, ContasAPagar.Diversos.Variaveis,
+  ContasAPagar.Diversos.Enumerados, Data.DB,
+  ContasAPagar.Controller.Intereface.Cartoes;
 
 type
   TfrmModelo = class(TForm)
@@ -28,7 +29,6 @@ type
     ActionList1: TActionList;
     NextTabAction1: TNextTabAction;
     PreviousTabAction1: TPreviousTabAction;
-    procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -39,7 +39,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    Controller: TControllerDAO;
+    Controller: IControllerCartoes;
     FState    : TDataSetState;
     property Tela : TTelas read FTela write FTela;
   end;
@@ -66,7 +66,6 @@ end;
 procedure TfrmModelo.btnSalvarClick(Sender: TObject);
 begin
   PreviousTabAction1.ExecuteTarget(Sender);
-  Controller.Salvar(FState);
 end;
 
 procedure TfrmModelo.btnVoltarClick(Sender: TObject);
@@ -76,12 +75,7 @@ end;
 
 procedure TfrmModelo.FormCreate(Sender: TObject);
 begin
-  Controller := TControllerDao.Create(FTela);
-end;
-
-procedure TfrmModelo.FormDestroy(Sender: TObject);
-begin
-  FreeAndNil(Controller);
+  Controller := TControllerCartoes.New;
 end;
 
 end.

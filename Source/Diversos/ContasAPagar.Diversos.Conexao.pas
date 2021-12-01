@@ -44,18 +44,18 @@ begin
     Conexao.Connected := False;
     Conexao.LoginPrompt := False;
     Conexao.Params.Clear;
-        Conexao.Params.Add('Server='+ Servidor);
-        Conexao.Params.Add('user_name='+ Usuario);
-        Conexao.Params.Add('password='+ Senha);
-        Conexao.Params.Add('port='+ IntToStr(Porta));
-        Conexao.Params.Add('Database='+ Database);
-        Conexao.Params.Add('DriverID='+ Driver);
-        Conexao.Params.Add('ConnectionName='+NomeConexao);
-        Conexao.Params.Add('OSAuthent='+AuthSistema);
-     Except
-        on E:Exception do
-        ShowMessage('Erro ao carregar parâmetros de conexão!'#13#10 + E.Message);
-     end;
+    Conexao.Params.Add('Server='+ Servidor);
+    Conexao.Params.Add('user_name='+ Usuario);
+    Conexao.Params.Add('password='+ Senha);
+    Conexao.Params.Add('port='+ IntToStr(Porta));
+    Conexao.Params.Add('Database='+ Database);
+    Conexao.Params.Add('DriverID='+ Driver);
+    Conexao.Params.Add('ConnectionName='+NomeConexao);
+    Conexao.Params.Add('OSAuthent='+AuthSistema);
+  Except
+    on E:Exception do
+      ShowMessage('Erro ao carregar parâmetros de conexão!'#13#10 + E.Message);
+  end;
 end;
 
 // Método construtor recebe o caminho do INI e nome da Seção para Leitura

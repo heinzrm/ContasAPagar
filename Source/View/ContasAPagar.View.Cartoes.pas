@@ -28,7 +28,7 @@ uses
   FMX.ActnList,
   System.ImageList,
   FMX.ImgList,
-  ContasAPagar.Controller.ControllerDAO, ContasAPagar.Diversos.Enumerados,
+  ContasAPagar.Controller.Cartoes, ContasAPagar.Diversos.Enumerados,
   ContasAPagar.Diversos.RTTI;
 
 type
@@ -62,10 +62,11 @@ procedure TfrmCartoes.btnSalvarClick(Sender: TObject);
 var
   Cartoes : Tcartoes;
 begin
+  inherited;
   Cartoes := TCartoes.Create;
   try
     TClassRtti.getClassDoForm(Layout1,Cartoes);
-    inherited;
+    Controller.Tela(ttCartoes).Salvar(FState,Cartoes);
   finally
     FreeAndNil(Cartoes)
   end;
