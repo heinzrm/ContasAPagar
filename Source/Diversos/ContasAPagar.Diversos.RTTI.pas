@@ -250,7 +250,6 @@ begin
     LstSql.AppendLine('Select');
     LstSql.AppendLine(MontarColunas(pObjet));
     LstSql.AppendLine(Format('from %s',[pNomeTabela]));
-    LstSql.AppendLine(Format('ORDER BY %s',[]));
     Result := LstSql.ToString;
   finally
     FreeAndNil(LstSql);

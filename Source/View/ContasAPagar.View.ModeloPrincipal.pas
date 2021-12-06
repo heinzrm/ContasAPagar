@@ -55,6 +55,9 @@ type
     NextTabAction1: TNextTabAction;
     PreviousTabAction1: TPreviousTabAction;
     FDConsulta: TFDMemTable;
+    lytMensagem: TLayout;
+    Rectangle1: TRectangle;
+    lblMensagem: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -64,6 +67,7 @@ type
   private
     FTela : TTelas;
     { Private declarations }
+    procedure ExibirMensagem(pMensagem: String);
   public
     { Public declarations }
     Controller : IControllerCartoes;
@@ -96,7 +100,7 @@ begin
                                     begin
                                       Controller.Tela(ttCartoes).Excluir(FChave);
                                       BuscarDados;
-                                      TDialogService.ShowMessage('Registro excluido com sucesso!');
+                                      ExibirMensagem('Registro excluido com sucesso!');
                                     end;
                                   end);
 end;
@@ -123,8 +127,18 @@ begin
   PreviousTabAction1.ExecuteTarget(Sender);
 end;
 
+procedure TfrmModelo.ExibirMensagem(pMensagem: String);
+begin
+  lblMensagem.Text := pMensagem;
+  lytMensagem.Visible := True;
+  Application.ProcessMessages;
+  Sleep(3000);
+  lytMensagem.Visible := False;
+end;
+
 procedure TfrmModelo.FormCreate(Sender: TObject);
 begin
+  lytMensagem.Visible := False;
   Controller := TControllerCartoes.New;
 end;
 

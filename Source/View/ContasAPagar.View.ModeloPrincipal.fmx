@@ -24,7 +24,7 @@ object frmModelo: TfrmModelo
       object TabControl1: TTabControl
         Align = Client
         Size.Width = 640.000000000000000000
-        Size.Height = 480.000000000000000000
+        Size.Height = 430.000000000000000000
         Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
         TabIndex = 0
@@ -32,9 +32,9 @@ object frmModelo: TfrmModelo
         TabPosition = None
         Sizes = (
           640s
-          480s
+          430s
           640s
-          480s)
+          430s)
         object TabItem1: TTabItem
           CustomIcon = <
             item
@@ -140,6 +140,35 @@ object frmModelo: TfrmModelo
               OnClick = btnVoltarClick
             end
           end
+        end
+      end
+      object lytMensagem: TLayout
+        Align = Bottom
+        Position.Y = 430.000000000000000000
+        Size.Width = 640.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Rectangle1: TRectangle
+          Align = Client
+          Fill.Color = xFFE4FCE5
+          Size.Width = 640.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblMensagem: TLabel
+          Align = Client
+          StyledSettings = [Family, Style, FontColor]
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 20.000000000000000000
+          TextSettings.HorzAlign = Center
+          TabOrder = 1
         end
       end
     end

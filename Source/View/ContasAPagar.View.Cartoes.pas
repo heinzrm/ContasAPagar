@@ -48,7 +48,7 @@ uses
   Data.Bind.ObjectScope,
   FireDAC.Phys.Intf,
   FireDAC.DApt.Intf,
-  FMX.ListView.Adapters.Base;
+  FMX.ListView.Adapters.Base, FMX.Objects;
 
 type
   TfrmCartoes = class(TfrmModelo)
@@ -66,9 +66,12 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
+    procedure btnInserirClick(Sender: TObject);
+    procedure ListView1DblClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
   private
     { Private declarations }
-
+    procedure HabilitarBotoes(pHabilitar: Boolean);
   public
     { Public declarations }
     procedure BuscarDados; override;
@@ -97,6 +100,13 @@ begin
   inherited;
 end;
 
+procedure TfrmCartoes.btnInserirClick(Sender: TObject);
+begin
+  inherited;
+  edtDescricao.Text := EmptyStr;
+  edtIdCartoes.Text := EmptyStr;
+end;
+
 procedure TfrmCartoes.btnSalvarClick(Sender: TObject);
 var
   Cartoes : Tcartoes;
@@ -110,6 +120,12 @@ begin
     FreeAndNil(Cartoes)
   end;
   inherited;
+end;
+
+procedure TfrmCartoes.btnVoltarClick(Sender: TObject);
+begin
+  inherited;
+  HabilitarBotoes(True);
 end;
 
 procedure TfrmCartoes.BuscarDados;
@@ -135,6 +151,33 @@ begin
   BuscarDados;
   TabControl1.ActiveTab := TabItem1;
   TProcedimentos.SetarFoco(edtDescricao);
+end;
+
+procedure TfrmCartoes.HabilitarBotoes(pHabilitar: Boolean);
+begin
+  case pHabilitar of
+    True:
+    begin
+      edtIdCartoes.Enabled := True;
+      edtDescricao.Enabled := True;
+      btnSalvar.Visible    := True;
+    end;
+    False:
+    begin
+      edtIdCartoes.Enabled := False;
+      edtDescricao.Enabled := False;
+      btnSalvar.Visible    := False;
+    end;
+  end;
+end;
+
+procedure TfrmCartoes.ListView1DblClick(Sender: TObject);
+begin
+  inherited;
+  edtDescricao.Text := FDConsulta.FieldByName('DESCRICAO').AsString;
+  edtIdCartoes.Text := FDConsulta.FieldByName('IdCartoes').AsString;
+  HabilitarBotoes(False);
+  NextTabAction1.ExecuteTarget(Sender);
 end;
 
 end.
