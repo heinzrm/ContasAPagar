@@ -3,22 +3,27 @@ unit ContasAPagar.Model.Entity.Cartoes;
 interface
 
 uses
-  System.Generics.Collections, Data.DB,
-  ContasAPagar.Diversos.CustomAttributes;
+  System.Generics.Collections,
+  Data.DB,
+  ContasAPagar.Diversos.CustomAttributes,
+  SysUtils;
 
 type
   [ATabela('Cartoes')]
   TCartoes = class
   private
-    FID: Integer;
+    FIDCartoes: string;
     FDescricao: String;
   public
-    [ACampo('ID',True) , ANotNull, APK, AFormato(4)]
-    property ID: Integer read FID write FID;
+    [APK('IdCartoes')]
+    [ACampo('IdCartoes',False,True) , ANotNull, AFormato(4)]
+    property IdCartoes: string read FIDCartoes write FIDCartoes;
     [ACampo('DESCRICAO'), AFormato(100)]
     property Descricao: String read FDescricao write FDescricao;
   end;
 
 implementation
+
+{ TCartoes }
 
 end.

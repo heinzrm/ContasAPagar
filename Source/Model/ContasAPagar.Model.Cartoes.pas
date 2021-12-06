@@ -5,25 +5,24 @@ interface
 uses
   ContasAPagar.Dao.Cartoes,
   ContasAPagar.Model.Entity.Cartoes,
-  ContasAPagar.Model.Interfaces.Cartoes,
-  Data.DB,
-  FireDAC.Comp.Client;
+  ContasAPagar.Interfaces.Model.Cartoes,
+  ContasAPagar.Model.Conexao,
+  Data.DB, FireDAC.Comp.DataSet;
 
 type
   TModelCartoes= class(TInterfacedObject,ICartoes)
   private
     FDaoCartoes : TDaoCartoes;
-    FConexao : TFDConnection;
   public
-    Class function New(pConexao: TFDConnection):ICartoes;
-    constructor Create(pConexao: TFDConnection);
+    Class function New:ICartoes;
+    constructor Create;
     destructor Destroy; override;
+    function Pesquisar(pObject: TCartoes): IFDDataSetReference;
     procedure Alterar;
     procedure Cancelar;
     procedure Editar;
-    procedure Excluir;
-    procedure Pesquisar;
-    procedure Salvar(pState: TDataSetState; pObject: TCartoes);
+    procedure Excluir(pChave: string);
+    procedure Salvar(pState: TDataSetState; pObject: TCartoes; pChave: string);
    end;
 
 implementation
@@ -43,12 +42,11 @@ begin
 
 end;
 
-constructor TModelCartoes.Create(pConexao: TFDConnection);
+constructor TModelCartoes.Create;
 begin
   inherited Create;
-  FConexao := pConexao;
 
-  FDaoCartoes := TDaoCartoes.Create(FConexao);
+  FDaoCartoes := TDaoCartoes.Create;
 end;
 
 destructor TModelCartoes.Destroy;
@@ -62,26 +60,26 @@ begin
 
 end;
 
-procedure TModelCartoes.Excluir;
+procedure TModelCartoes.Excluir(pChave: string);
 begin
-
+  FDaoCartoes.Delete(pChave)
 end;
 
-class function TModelCartoes.New(pConexao: TFDConnection): ICartoes;
+class function TModelCartoes.New: ICartoes;
 begin
-  Result := Self.Create(pConexao);
+  Result := Self.Create;
 end;
 
-procedure TModelCartoes.Pesquisar;
+function TModelCartoes.Pesquisar(pObject: TCartoes): IFDDataSetReference;
 begin
-
+  Result:= FDaoCartoes.Select(pObject);
 end;
 
-procedure TModelCartoes.Salvar(pState: TDataSetState; pObject: TCartoes);
+procedure TModelCartoes.Salvar(pState: TDataSetState; pObject: TCartoes; pChave: string);
 begin
   case pState of
-    dsEdit: FDaoCartoes.Update;
-    dsInsert: FDaoCartoes.Insert(pObject);
+    dsEdit   : FDaoCartoes.Update(pObject, pChave);
+    dsInsert : FDaoCartoes.Insert(pObject);
   end;
 end;
 

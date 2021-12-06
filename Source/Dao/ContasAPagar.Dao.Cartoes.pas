@@ -4,19 +4,21 @@ interface
 
 uses
   ContasAPagar.Interfaces.Dao.Cartoes,
-  FireDAC.Comp.Client, ContasAPagar.Model.Entity.Cartoes, System.SysUtils,
-  FireDAC.DApt;
+  ContasAPagar.Model.Conexao,
+  ContasAPagar.Model.Entity.Cartoes,
+  System.SysUtils, FireDAC.Comp.DataSet;
 
 type
   TDaoCartoes = class(TInterfacedObject,IDaoCartoes)
   private
-    FConexao : TFDConnection;
+    FConexao : TConexao;
   public
-    constructor Create(pConexao: TFDConnection);
-    procedure Select;
-    procedure Delete;
+    constructor Create;
+    destructor Destroy; override;
+    function Select(pCartoes: TCartoes): IFDDataSetReference;
+    procedure Delete(pChave: string);
     procedure Insert(pCartoes: TCartoes);
-    procedure Update;
+    procedure Update(pCartoes: TCartoes; pChave:string);
   end;
 
 implementation
@@ -25,45 +27,64 @@ uses
   ContasAPagar.Diversos.RTTI;
 
 { TDaoCartoes }
+const
+  Tabela = 'CARTOES';
 
-constructor TDaoCartoes.Create(pConexao: TFDConnection);
+constructor TDaoCartoes.Create;
 begin
   inherited Create;
 
-  FConexao := pConexao;
+  FConexao := TConexao.Create;
 end;
 
-procedure TDaoCartoes.Delete;
+procedure TDaoCartoes.Delete(pChave: string);
 begin
-
-end;
-
-procedure TDaoCartoes.Insert(pCartoes: TCartoes);
-var
-  Qry : TFDQuery;
-begin
-  qry := TFDQuery.Create(nil);
   try
-    Qry.Connection := FConexao;
-    Qry.Open('select * from cartoes');
-
-    TClassRtti.MontarInsert(pCartoes,'CARTOES');
-//    Qry.Insert;
-//    TClassRtti.AlimentaDataSet(Qry.DataSource.DataSet,pCartoes);
-//    Qry.Post;
-  finally
-    FreeAndNil(qry);
+    FConexao.PrepareStatment(Format('DELETE %s WHERE IdCartoes = %s',[Tabela, QuotedStr(pChave)]));
+    FConexao.ExecSql;
+  except
+    on E:Exception do
+    begin
+      raise Exception.Create(E.Message);
+    end;
   end;
 end;
 
-procedure TDaoCartoes.Select;
+destructor TDaoCartoes.Destroy;
 begin
-
+  FreeAndNil(FConexao);
+  inherited;
 end;
 
-procedure TDaoCartoes.Update;
+procedure TDaoCartoes.Insert(pCartoes: TCartoes);
 begin
+  FConexao.StartTransaction;
+  try
+    FConexao.PrepareStatment(TClassRtti.MontarInsert(pCartoes,Tabela));
+    FConexao.ExecSql;
 
+    FConexao.Commit;
+  except
+    on E:Exception do
+    begin
+      FConexao.RollBack;
+
+      raise Exception.Create(E.Message);
+    end;
+  end;
+end;
+
+function TDaoCartoes.Select(pCartoes: TCartoes): IFDDataSetReference;
+begin
+  FConexao.PrepareStatment(TClassRtti.MontarSelect(pCartoes,Tabela));
+  FConexao.Open;
+  Result := FConexao.RetornaDados;
+end;
+
+procedure TDaoCartoes.Update(pCartoes: TCartoes; pChave:string);
+begin
+  FConexao.PrepareStatment(TClassRtti.MontarUpDate(pCartoes,Tabela, pChave));
+  FConexao.ExecSql;
 end;
 
 end.

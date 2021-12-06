@@ -19,16 +19,22 @@ type
 
   ACampo = class(TCustomAttribute)
   private
-    FNomeDB: String;
-    FNomeDisplay: String;
-    FSomenteLitura: Boolean;
+    FNomeDB        : String;
+    FSomenteLitura : Boolean;
+    FCondicaoWhere : Boolean;
   public
-    constructor Create(nomeDB: String;ReadOnly:Boolean = False);
-    property NomeDB: String read FNomeDB write FNomeDB;
-    property SomenteLitura: Boolean read FSomenteLitura write FSomenteLitura;
+    constructor Create(nomeDB: String;ReadOnly:Boolean = False; pCondicaoWhere: Boolean = False);
+    property NomeDB         : String  read FNomeDB        write FNomeDB;
+    property SomenteLeitura : Boolean read FSomenteLitura write FSomenteLitura;
+    property CondicaoWhere  : Boolean read FCondicaoWhere write FCondicaoWhere;
   end;
 
   APK = class(TCustomAttribute)
+  private
+    FChavePrimaria: string;
+  public
+    constructor Create(pChavePrimaria: string);
+    property ChavePrimaria : string  read FChavePrimaria write FChavePrimaria;
   end;
 
   ANotNull = class(TCustomAttribute)
@@ -36,14 +42,13 @@ type
 
   AFormato = class(TCustomAttribute)
   private
-    FTamanho: integer;
-    FPrecisao: integer;
-    FMascara: string;
-    function getTamanhoTotal: integer;
+    FTamanho  : integer;
+    FPrecisao : integer;
+    FMascara  : string;
   public
-    property Tamanho: integer read FTamanho write FTamanho;
-    property Precisao: integer read FPrecisao write FPrecisao;
-    property Mascara: string read FMascara write FMascara;
+    property Tamanho  : integer read FTamanho  write FTamanho;
+    property Precisao : integer read FPrecisao write FPrecisao;
+    property Mascara  : string  read FMascara  write FMascara;
     function getMascaraNumerica: String;
     constructor Create(tamanho: integer; precisao: integer = 0);overload;
     constructor Create(mascara: string);overload;
@@ -55,43 +60,46 @@ implementation
 
 constructor AFormato.Create(tamanho, precisao: integer);
 begin
-  FMascara:=mascara;
+  FMascara := mascara;
 end;
 
 constructor AFormato.Create(mascara: string);
 begin
-  FTamanho:=tamanho;
-  FPrecisao:=precisao;
+  FTamanho  := tamanho;
+  FPrecisao := precisao;
 end;
 
 function AFormato.getMascaraNumerica: String;
 var
   sTamanho, sPrecisao: string;
 begin
-  sTamanho  :=StringOfChar('0',FTamanho-FPrecisao);
-  sPrecisao :=StringOfChar('0',FPrecisao);
+  sTamanho  := StringOfChar('0',FTamanho-FPrecisao);
+  sPrecisao := StringOfChar('0',FPrecisao);
 
-  Result:=sTamanho+'.'+sPrecisao;
-end;
-
-function AFormato.getTamanhoTotal: integer;
-begin
-  Result:=FTamanho-FPrecisao;
+  Result := sTamanho+'.'+sPrecisao;
 end;
 
 { ACampo }
 
-constructor ACampo.Create(nomeDB: String;ReadOnly:Boolean = False);
+constructor ACampo.Create(nomeDB: String;ReadOnly:Boolean = False; pCondicaoWhere: Boolean = False);
 begin
-  FNomeDB:=nomeDB;
+  FNomeDB        := nomeDB;
   FSomenteLitura := ReadOnly;
+  FCondicaoWhere := pCondicaoWhere;
 end;
 
 { ATabela }
 
 constructor ATabela.Create(nomeTabela: string);
 begin
-  FNomeTabela:=nomeTabela;
+  FNomeTabela := nomeTabela;
+end;
+
+{ APK }
+
+constructor APK.Create(pChavePrimaria: string);
+begin
+  FChavePrimaria := pChavePrimaria;
 end;
 
 end.

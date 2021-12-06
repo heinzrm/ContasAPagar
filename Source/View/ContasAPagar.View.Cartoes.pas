@@ -22,14 +22,33 @@ uses
   FMX.TabControl,
   FMX.ListView.Types,
   FMX.ListView.Appearances,
-  FMX.ListView.Adapters.Base,
   FMX.ListView,
   System.Actions,
   FMX.ActnList,
   System.ImageList,
   FMX.ImgList,
-  ContasAPagar.Controller.Cartoes, ContasAPagar.Diversos.Enumerados,
-  ContasAPagar.Diversos.RTTI;
+  ContasAPagar.Diversos.Enumerados,
+  ContasAPagar.Diversos.RTTI,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  Data.DB,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+  System.Rtti,
+  System.Bindings.Outputs,
+  Fmx.Bind.Editors,
+  Data.Bind.EngExt,
+  Fmx.Bind.DBEngExt,
+  Data.Bind.Components,
+  Data.Bind.DBScope,
+  Data.Bind.GenData,
+  Data.Bind.ObjectScope,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FMX.ListView.Adapters.Base;
 
 type
   TfrmCartoes = class(TfrmModelo)
@@ -37,16 +56,23 @@ type
     Layout1: TLayout;
     edtDescricao: TEdit;
     lblDesc: TLabel;
-    lblCodigo: TLabel;
-    edtID: TEdit;
+    edtIdCartoes: TEdit;
+    BindingsList1: TBindingsList;
+    FDConsultaDescricao: TStringField;
+    LinkListControlToField1: TLinkListControlToField;
+    BindSourceDB1: TBindSourceDB;
+    FDConsultaIdCartoes: TStringField;
     procedure FormCreate(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
   private
     { Private declarations }
+
   public
     { Public declarations }
+    procedure BuscarDados; override;
   end;
-
 var
   frmCartoes: TfrmCartoes;
 
@@ -55,28 +81,58 @@ implementation
 {$R *.fmx}
 
 uses
-  ContasAPagar.Diversos.Procedimentos, Data.DB,
+  ContasAPagar.Diversos.Procedimentos,
   ContasAPagar.Model.Entity.Cartoes;
+
+procedure TfrmCartoes.btnEditarClick(Sender: TObject);
+begin
+  inherited;
+  edtDescricao.Text := FDConsulta.FieldByName('DESCRICAO').AsString;
+  edtIdCartoes.Text := FDConsulta.FieldByName('IdCartoes').AsString;
+end;
+
+procedure TfrmCartoes.btnExcluirClick(Sender: TObject);
+begin
+  FChave := FDConsulta.FieldByName('IdCartoes').AsString;
+  inherited;
+end;
 
 procedure TfrmCartoes.btnSalvarClick(Sender: TObject);
 var
   Cartoes : Tcartoes;
 begin
-  inherited;
   Cartoes := TCartoes.Create;
   try
     TClassRtti.getClassDoForm(Layout1,Cartoes);
-    Controller.Tela(ttCartoes).Salvar(FState,Cartoes);
+    Controller.Tela(ttCartoes).Salvar(FState,Cartoes, FChave);
+    BuscarDados;
   finally
     FreeAndNil(Cartoes)
   end;
+  inherited;
+end;
 
+procedure TfrmCartoes.BuscarDados;
+var
+  Cartoes : TCartoes;
+begin
+  Cartoes := TCartoes.Create;
+  try
+    if FDConsulta.Active then
+    begin
+      FDConsulta.EmptyDataSet;
+    end;
+    FDConsulta.AppendData(Controller.Tela(ttCartoes).Pesquisar(Cartoes),True);
+  finally
+    FreeAndNil(Cartoes);
+  end;
 end;
 
 procedure TfrmCartoes.FormCreate(Sender: TObject);
 begin
   Tela := ttCartoes;
   inherited;
+  BuscarDados;
   TabControl1.ActiveTab := TabItem1;
   TProcedimentos.SetarFoco(edtDescricao);
 end;

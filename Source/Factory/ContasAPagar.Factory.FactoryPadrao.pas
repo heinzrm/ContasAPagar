@@ -5,37 +5,34 @@ interface
 uses
   ContasAPagar.Factory.Interfaces,
   ContasAPagar.Model.Cartoes,
-  ContasAPagar.Model.Interfaces.Cartoes,
-  FireDAC.Comp.Client;
+  ContasAPagar.Interfaces.Model.Cartoes,
+  ContasAPagar.Model.Conexao;
 
 type
   TFactory= class(TInterfacedObject, IFactory)
-  private
-    FConexao: TFDConnection;
   public
-    Class function New(pConexao: TFDConnection):IFactory;
-    constructor Create(pConexao: TFDConnection);
+    Class function New:IFactory;
+    constructor Create;
     function FactoryCartoes: ICartoes;
   end;
 implementation
 
 { TFactory }
 
-constructor TFactory.Create(pConexao: TFDConnection);
+constructor TFactory.Create;
 begin
   inherited Create;
 
-  FConexao := pConexao;
 end;
 
 function TFactory.FactoryCartoes: ICartoes;
 begin
-  Result := TModelCartoes.New(FConexao);
+  Result := TModelCartoes.New;
 end;
 
-class function TFactory.New(pConexao: TFDConnection): IFactory;
+class function TFactory.New: IFactory;
 begin
-  Result := Self.Create(pConexao);
+  Result := Self.Create;
 end;
 
 end.

@@ -1,10 +1,10 @@
-unit ContasAPagar.Controller.Intereface.Cartoes;
+unit ContasAPagar.Interfaces.Controller.Cartoes;
 
 interface
 
 uses
   Data.DB, ContasAPagar.Diversos.Enumerados,
-  ContasAPagar.Model.Interfaces.Cartoes;
+  ContasAPagar.Interfaces.Model.Cartoes;
 
 type
   IControllerCartoes = interface

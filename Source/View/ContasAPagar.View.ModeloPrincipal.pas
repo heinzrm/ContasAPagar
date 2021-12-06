@@ -3,13 +3,38 @@ unit ContasAPagar.View.ModeloPrincipal;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.ListBox,
-  FMX.Layouts, FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl,
-  FMX.Objects, System.ImageList, FMX.ImgList, System.Actions, FMX.ActnList,
-  ContasAPagar.Controller.Cartoes, ContasAPagar.Diversos.Variaveis,
-  ContasAPagar.Diversos.Enumerados, Data.DB,
-  ContasAPagar.Controller.Intereface.Cartoes;
+  ContasAPagar.Controller.Cartoes,
+  ContasAPagar.Interfaces.Controller.Cartoes,
+  ContasAPagar.Diversos.Enumerados,
+  Data.DB,
+  FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet,
+  FireDAC.DApt.Intf,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Error,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FMX.ActnList,
+  FMX.Controls,
+  FMX.Controls.Presentation,
+  FMX.DialogService,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.ImgList,
+  FMX.Layouts,
+  FMX.ListBox,
+  FMX.Objects,
+  FMX.StdCtrls,
+  FMX.TabControl,
+  FMX.Types,
+  System.Actions,
+  System.Classes,
+  System.ImageList,
+  System.Types,
+  System.UITypes,
+  System.Variants;
 
 type
   TfrmModelo = class(TForm)
@@ -29,19 +54,23 @@ type
     ActionList1: TActionList;
     NextTabAction1: TNextTabAction;
     PreviousTabAction1: TPreviousTabAction;
+    FDConsulta: TFDMemTable;
     procedure FormCreate(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnVoltarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
   private
-    FTela: TTelas;
+    FTela : TTelas;
     { Private declarations }
   public
     { Public declarations }
-    Controller: IControllerCartoes;
-    FState    : TDataSetState;
+    Controller : IControllerCartoes;
+    FState     : TDataSetState;
+    FChave     : string;
     property Tela : TTelas read FTela write FTela;
+    procedure BuscarDados; virtual;abstract;
   end;
 
 var
@@ -49,7 +78,28 @@ var
 
 implementation
 
+uses
+  System.SysUtils;
+
 {$R *.fmx}
+
+procedure TfrmModelo.btnExcluirClick(Sender: TObject);
+begin
+  TDialogService.MessageDialog('Excluir do registro selecionado?',
+                                  TMsgDlgType.mtConfirmation,
+                                  [TMsgDlgBtn.mbYes,TMsgDlgBtn.mbNo],
+                                  TMsgDlgBtn.mbNo,
+                                  0,
+                                  procedure(const AResult: TModalResult)
+                                  begin
+                                    if  AResult = mrYes then
+                                    begin
+                                      Controller.Tela(ttCartoes).Excluir(FChave);
+                                      BuscarDados;
+                                      TDialogService.ShowMessage('Registro excluido com sucesso!');
+                                    end;
+                                  end);
+end;
 
 procedure TfrmModelo.btnInserirClick(Sender: TObject);
 begin

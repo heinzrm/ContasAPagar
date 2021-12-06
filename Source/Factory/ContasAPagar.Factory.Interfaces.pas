@@ -3,7 +3,7 @@ unit ContasAPagar.Factory.Interfaces;
 interface
 
 uses
-  ContasAPagar.Model.Interfaces.Cartoes;
+  ContasAPagar.Interfaces.Model.Cartoes;
 
 type
   IFactory = interface

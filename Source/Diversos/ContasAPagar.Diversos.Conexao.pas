@@ -4,7 +4,7 @@ interface
   uses System.IniFiles,System.SysUtils,Vcl.Forms,FireDAC.Comp.Client, Vcl.Dialogs;
 
 type
-  TConexao = class
+  TConexaoInicial = class
     private
       FPath:string;
       FServidor:string;
@@ -37,7 +37,7 @@ implementation
 
 { TConexao }
 
-procedure TConexao.Conectar(var Conexao: TFDConnection);
+procedure TConexaoInicial.Conectar(var Conexao: TFDConnection);
 begin
   LeIni();
   try
@@ -59,7 +59,7 @@ begin
 end;
 
 // Método construtor recebe o caminho do INI e nome da Seção para Leitura
-constructor TConexao.Create(Path: string; Secao: string);
+constructor TConexaoInicial.Create(Path: string; Secao: string);
 begin
   if FileExists(Path) then
   begin
@@ -71,7 +71,7 @@ begin
 end;
 
 // Grava os parâmetros recebidos no arquivo INI
-procedure TConexao.GravaINI(Usuario, Senha, Servidor, Banco: string; Porta: integer);
+procedure TConexaoInicial.GravaINI(Usuario, Senha, Servidor, Banco: string; Porta: integer);
 var
   ArqIni : TIniFile;
 begin
@@ -88,7 +88,7 @@ begin
 end;
 
 // Lê os parâmetros do arquivo INI e atribui para os atributos
-procedure TConexao.LeINI();
+procedure TConexaoInicial.LeINI();
 var
   ArqIni : TIniFile;
 begin

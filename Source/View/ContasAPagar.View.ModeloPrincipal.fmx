@@ -27,7 +27,7 @@ object frmModelo: TfrmModelo
         Size.Height = 480.000000000000000000
         Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
-        TabIndex = 1
+        TabIndex = 0
         TabOrder = 0
         TabPosition = None
         Sizes = (
@@ -39,7 +39,7 @@ object frmModelo: TfrmModelo
           CustomIcon = <
             item
             end>
-          IsSelected = False
+          IsSelected = True
           Size.Width = 8.000000000000000000
           Size.Height = 8.000000000000000000
           Size.PlatformDefault = False
@@ -91,6 +91,7 @@ object frmModelo: TfrmModelo
               StyleLookup = 'trashtoolbutton'
               TabOrder = 2
               Text = 'btnExcluir'
+              OnClick = btnExcluirClick
             end
           end
         end
@@ -98,7 +99,7 @@ object frmModelo: TfrmModelo
           CustomIcon = <
             item
             end>
-          IsSelected = True
+          IsSelected = False
           Size.Width = 8.000000000000000000
           Size.Height = 8.000000000000000000
           Size.PlatformDefault = False
@@ -311,5 +312,16 @@ object frmModelo: TfrmModelo
       Category = 'Tab'
       TabControl = TabControl1
     end
+  end
+  object FDConsulta: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 576
+    Top = 168
   end
 end

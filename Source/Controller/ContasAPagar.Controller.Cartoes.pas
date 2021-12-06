@@ -3,11 +3,12 @@ unit ContasAPagar.Controller.Cartoes;
 interface
 
 uses
-  ContasAPagar.Controller.Intereface.Cartoes,
+  ContasAPagar.Interfaces.Controller.Cartoes,
   ContasAPagar.Diversos.Enumerados,
   ContasAPagar.Factory.FactoryPadrao,
-  ContasAPagar.Model.Interfaces.Cartoes,
-  Data.DB, ContasAPagar.Conexao.Modulo.Principal;
+  ContasAPagar.Interfaces.Model.Cartoes,
+  Data.DB,
+  ContasAPagar.Model.Conexao;
 
 type
   TControllerCartoes=class(TInterfacedObject,IControllerCartoes)
@@ -34,7 +35,7 @@ end;
 function TControllerCartoes.Tela(pTela: TTelas): ICartoes;
 begin
   case  pTela of
-    ttCartoes : Result := TFactory.New(dmPrincipal.fdConexao).FactoryCartoes;
+    ttCartoes : Result := TFactory.New.FactoryCartoes;
   end;
 end;
 
