@@ -3,7 +3,7 @@ unit ContasAPagar.View.ModeloPrincipal;
 interface
 
 uses
-  ContasAPagar.Controller.Cartoes,
+//  ContasAPagar.Controller.Cartoes,
   ContasAPagar.Interfaces.Controller.Cartoes,
   ContasAPagar.Diversos.Enumerados,
   Data.DB,
@@ -34,7 +34,8 @@ uses
   System.ImageList,
   System.Types,
   System.UITypes,
-  System.Variants;
+  System.Variants,
+  system.Generics.Collections;
 
 type
   TfrmModelo = class(TForm)
@@ -70,7 +71,6 @@ type
     procedure ExibirMensagem(pMensagem: String);
   public
     { Public declarations }
-    Controller : IControllerCartoes;
     FState     : TDataSetState;
     FChave     : string;
     property Tela : TTelas read FTela write FTela;
@@ -89,20 +89,20 @@ uses
 
 procedure TfrmModelo.btnExcluirClick(Sender: TObject);
 begin
-  TDialogService.MessageDialog('Excluir do registro selecionado?',
-                                  TMsgDlgType.mtConfirmation,
-                                  [TMsgDlgBtn.mbYes,TMsgDlgBtn.mbNo],
-                                  TMsgDlgBtn.mbNo,
-                                  0,
-                                  procedure(const AResult: TModalResult)
-                                  begin
-                                    if  AResult = mrYes then
-                                    begin
-                                      Controller.Tela(ttCartoes).Excluir(FChave);
-                                      BuscarDados;
-                                      ExibirMensagem('Registro excluido com sucesso!');
-                                    end;
-                                  end);
+//  TDialogService.MessageDialog('Excluir do registro selecionado?',
+//                                  TMsgDlgType.mtConfirmation,
+//                                  [TMsgDlgBtn.mbYes,TMsgDlgBtn.mbNo],
+//                                  TMsgDlgBtn.mbNo,
+//                                  0,
+//                                  procedure(const AResult: TModalResult)
+//                                  begin
+//                                    if  AResult = mrYes then
+//                                    begin
+//                                      Controller.Tela(ttCartoes).Excluir(FChave);
+//                                      BuscarDados;
+//                                      ExibirMensagem('Registro excluido com sucesso!');
+//                                    end;
+//                                  end);
 end;
 
 procedure TfrmModelo.btnInserirClick(Sender: TObject);
@@ -139,7 +139,7 @@ end;
 procedure TfrmModelo.FormCreate(Sender: TObject);
 begin
   lytMensagem.Visible := False;
-  Controller := TControllerCartoes.New;
+//  Controller := TControllerCartoes.New;
 end;
 
 end.

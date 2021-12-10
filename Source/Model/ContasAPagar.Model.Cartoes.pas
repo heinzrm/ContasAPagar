@@ -3,27 +3,30 @@ unit ContasAPagar.Model.Cartoes;
 interface
 
 uses
+  System.Generics.Collections,
   ContasAPagar.Dao.Cartoes,
   ContasAPagar.Model.Entity.Cartoes,
-  ContasAPagar.Interfaces.Model.Cartoes,
+  ContasAPagar.Interfaces.Model.Crud,
   ContasAPagar.Model.Conexao,
-  Data.DB, FireDAC.Comp.DataSet;
+  Data.DB, FireDAC.Comp.DataSet,
+  ContasAPagar.Interfaces.Dao.Cartoes;
 
 type
-  TModelCartoes= class(TInterfacedObject,ICartoes)
+  TModelCartoes<T>= class(TInterfacedObject,ICrud<T>)
   private
-    FDaoCartoes : TDaoCartoes;
+    FDaoCartoes : IDaoCartoes<TCartoes>;
   public
-    Class function New:ICartoes;
+    Class function New:ICrud<T>;
     constructor Create;
     destructor Destroy; override;
-    function Pesquisar(pObject: TCartoes): IFDDataSetReference;
     procedure Alterar;
     procedure Cancelar;
     procedure Editar;
     procedure Excluir(pChave: string);
-    procedure Salvar(pState: TDataSetState; pObject: TCartoes; pChave: string);
-   end;
+    function Pesquisar(pObject: T): IFDDataSetReference;
+    procedure Salvar(pState: TDataSetState; pObject: T; pChave: string);
+
+  end;
 
 implementation
 
@@ -32,55 +35,55 @@ uses
 
 { TCartoes }
 
-procedure TModelCartoes.Alterar;
+procedure TModelCartoes<T>.Alterar;
 begin
 
 end;
 
-procedure TModelCartoes.Cancelar;
+procedure TModelCartoes<T>.Cancelar;
 begin
 
 end;
 
-constructor TModelCartoes.Create;
+constructor TModelCartoes<T>.Create;
 begin
   inherited Create;
 
-  FDaoCartoes := TDaoCartoes.Create;
+  FDaoCartoes := TDaoCartoes<TCartoes>.Create;
 end;
 
-destructor TModelCartoes.Destroy;
+destructor TModelCartoes<T>.Destroy;
 begin
-  FreeAndNil(FDaoCartoes);
+
   inherited;
 end;
 
-procedure TModelCartoes.Editar;
+procedure TModelCartoes<T>.Editar;
 begin
 
 end;
 
-procedure TModelCartoes.Excluir(pChave: string);
+procedure TModelCartoes<T>.Excluir(pChave: string);
 begin
-  FDaoCartoes.Delete(pChave)
+//  FDaoCartoes.Delete(pChave)
 end;
 
-class function TModelCartoes.New: ICartoes;
+class function TModelCartoes<T>.New: ICrud<T>;
 begin
   Result := Self.Create;
 end;
 
-function TModelCartoes.Pesquisar(pObject: TCartoes): IFDDataSetReference;
+function TModelCartoes<T>.Pesquisar(pObject: T): IFDDataSetReference;
 begin
   Result:= FDaoCartoes.Select(pObject);
 end;
 
-procedure TModelCartoes.Salvar(pState: TDataSetState; pObject: TCartoes; pChave: string);
+procedure TModelCartoes<T>.Salvar(pState: TDataSetState; pObject: T; pChave: string);
 begin
-  case pState of
-    dsEdit   : FDaoCartoes.Update(pObject, pChave);
-    dsInsert : FDaoCartoes.Insert(pObject);
-  end;
+//  case pState of
+//    dsEdit   : FDaoCartoes.Update(pObject, pChave);
+//    dsInsert : FDaoCartoes.Insert(pObject);
+//  end;
 end;
 
 end.

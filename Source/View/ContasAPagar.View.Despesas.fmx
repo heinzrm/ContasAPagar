@@ -4,19 +4,16 @@ inherited frmDespesas: TfrmDespesas
   inherited LayoutMain: TLayout
     inherited lytMain: TLayout
       inherited TabControl1: TTabControl
-        TabIndex = 0
         Sizes = (
           640s
-          480s
+          430s
           640s
-          480s)
+          430s)
         inherited TabItem1: TTabItem
-          IsSelected = True
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
         end
         inherited TabItem2: TTabItem
-          IsSelected = False
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
         end

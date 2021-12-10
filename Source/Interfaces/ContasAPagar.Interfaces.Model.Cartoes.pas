@@ -4,7 +4,8 @@ interface
 
 uses
   ContasAPagar.Model.Entity.Cartoes,
-  Data.DB, FireDAC.Comp.DataSet;
+  Data.DB, FireDAC.Comp.DataSet,
+  System.Generics.Collections;
 
 type
   ICartoes = interface

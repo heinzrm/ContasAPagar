@@ -40,6 +40,7 @@ type
     procedure ltbEntradaClick(Sender: TObject);
     procedure ltbDespesasClick(Sender: TObject);
     procedure sbSairClick(Sender: TObject);
+    procedure ltbConfiguraçõesClick(Sender: TObject);
   private
     { Private declarations }
     procedure AbrirFormulario(pFormulario: TComponentClass);
@@ -57,7 +58,8 @@ uses
   ContasAPagar.Diversos.LoadLayout,
   ContasAPagar.View.Entradas,
   ContasAPagar.View.DashBoard,
-  ContasAPagar.View.Despesas;
+//  ContasAPagar.View.Despesas,
+  ContasAPagar.View.Configuracoes;
 
 {$R *.fmx}
 
@@ -83,6 +85,11 @@ begin
   AbrirFormulario(TfrmCartoes)
 end;
 
+procedure TfrmPrincipal.ltbConfiguraçõesClick(Sender: TObject);
+begin
+  AbrirFormulario(TfrmConfiguracoes);
+end;
+
 procedure TfrmPrincipal.ltbDashBoardClick(Sender: TObject);
 begin
   AbrirFormulario(TfrmDashBoard);
@@ -95,7 +102,7 @@ end;
 
 procedure TfrmPrincipal.ltbDespesasClick(Sender: TObject);
 begin
-  AbrirFormulario(TFrmDespesas);
+//  AbrirFormulario(TFrmDespesas);
 end;
 
 procedure TfrmPrincipal.sbSairClick(Sender: TObject);

@@ -8,7 +8,8 @@ uses
   ContasAPagar.View.ModeloPrincipal, FMX.TabControl, System.Actions,
   FMX.ActnList, System.ImageList, FMX.ImgList, FMX.Controls.Presentation,
   FMX.Layouts, FMX.ListView.Types, FMX.ListView.Appearances,
-  FMX.ListView.Adapters.Base, FMX.ListView;
+  FMX.ListView.Adapters.Base, FMX.ListView, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, FMX.Objects;
 
 type
   TfrmEntrada = class(TfrmModelo)

@@ -28,7 +28,7 @@ uses
   System.ImageList,
   FMX.ImgList,
   ContasAPagar.Diversos.Enumerados,
-  ContasAPagar.Diversos.RTTI,
+//  ContasAPagar.Diversos.RTTI,
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
   FireDAC.Stan.Param,
@@ -48,7 +48,11 @@ uses
   Data.Bind.ObjectScope,
   FireDAC.Phys.Intf,
   FireDAC.DApt.Intf,
-  FMX.ListView.Adapters.Base, FMX.Objects;
+  FMX.ListView.Adapters.Base,
+  FMX.Objects,
+  system.Generics.Collections,
+  ContasAPagar.Model.Entity.Cartoes,
+  ContasAPagar.Interfaces.Controller.Cartoes;
 
 type
   TfrmCartoes = class(TfrmModelo)
@@ -71,6 +75,7 @@ type
     procedure btnVoltarClick(Sender: TObject);
   private
     { Private declarations }
+    Controller : IControllerCartoes<TCartoes>;
     procedure HabilitarBotoes(pHabilitar: Boolean);
   public
     { Public declarations }
@@ -84,8 +89,7 @@ implementation
 {$R *.fmx}
 
 uses
-  ContasAPagar.Diversos.Procedimentos,
-  ContasAPagar.Model.Entity.Cartoes;
+  ContasAPagar.Diversos.Procedimentos, ContasAPagar.Controller.Cartoes;
 
 procedure TfrmCartoes.btnEditarClick(Sender: TObject);
 begin
@@ -108,17 +112,17 @@ begin
 end;
 
 procedure TfrmCartoes.btnSalvarClick(Sender: TObject);
-var
-  Cartoes : Tcartoes;
+//var
+//  Cartoes : Tcartoes;
 begin
-  Cartoes := TCartoes.Create;
-  try
-    TClassRtti.getClassDoForm(Layout1,Cartoes);
-    Controller.Tela(ttCartoes).Salvar(FState,Cartoes, FChave);
-    BuscarDados;
-  finally
-    FreeAndNil(Cartoes)
-  end;
+//  Cartoes := TCartoes.Create;
+//  try
+//    TClassRtti.getClassDoForm(Layout1,Cartoes);
+//    Controller.Tela(ttCartoes).Salvar(FState,Cartoes, FChave);
+//    BuscarDados;
+//  finally
+//    FreeAndNil(Cartoes)
+//  end;
   inherited;
 end;
 
@@ -138,7 +142,7 @@ begin
     begin
       FDConsulta.EmptyDataSet;
     end;
-    FDConsulta.AppendData(Controller.Tela(ttCartoes).Pesquisar(Cartoes),True);
+    FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(Cartoes),True);
   finally
     FreeAndNil(Cartoes);
   end;
@@ -148,6 +152,7 @@ procedure TfrmCartoes.FormCreate(Sender: TObject);
 begin
   Tela := ttCartoes;
   inherited;
+  Controller := TControllerCartoes<TCartoes>.New;
   BuscarDados;
   TabControl1.ActiveTab := TabItem1;
   TProcedimentos.SetarFoco(edtDescricao);

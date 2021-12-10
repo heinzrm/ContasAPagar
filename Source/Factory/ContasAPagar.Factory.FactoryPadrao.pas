@@ -5,32 +5,38 @@ interface
 uses
   ContasAPagar.Factory.Interfaces,
   ContasAPagar.Model.Cartoes,
-  ContasAPagar.Interfaces.Model.Cartoes,
-  ContasAPagar.Model.Conexao;
+  ContasAPagar.Interfaces.Model.Crud,
+  ContasAPagar.Model.Conexao, ContasAPagar.Model.Receitas;
 
 type
-  TFactory= class(TInterfacedObject, IFactory)
+  TFactory<T>= class(TInterfacedObject, IFactory<T>)
   public
-    Class function New:IFactory;
+    Class function New:IFactory<T>;
     constructor Create;
-    function FactoryCartoes: ICartoes;
-  end;
+    function FactoryCartoes: ICrud<T>;
+    function FactoryReceitas: ICrud<T>;
+   end;
 implementation
 
 { TFactory }
 
-constructor TFactory.Create;
+constructor TFactory<T>.Create;
 begin
   inherited Create;
 
 end;
 
-function TFactory.FactoryCartoes: ICartoes;
+function TFactory<T>.FactoryCartoes: ICrud<T>;
 begin
-  Result := TModelCartoes.New;
+  Result := TModelCartoes<T>.New;
 end;
 
-class function TFactory.New: IFactory;
+function TFactory<T>.FactoryReceitas: ICrud<T>;
+begin
+  Result := TModelReceitas<T>.New;
+end;
+
+class function TFactory<T>.New: IFactory<T>;
 begin
   Result := Self.Create;
 end;

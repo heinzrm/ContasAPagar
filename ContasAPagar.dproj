@@ -256,31 +256,11 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Source\Controller\ContasAPagar.Controller.Cartoes.pas"/>
-        <DCCReference Include="Source\Dao\ContasAPagar.Dao.Cartoes.pas"/>
-        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.Conexao.pas"/>
-        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.CustomAttributes.pas"/>
-        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.Enumerados.pas"/>
-        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.LoadLayout.pas"/>
-        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.Procedimentos.pas"/>
-        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.RTTI.pas"/>
-        <DCCReference Include="Source\Factory\ContasAPagar.Factory.FactoryPadrao.pas"/>
-        <DCCReference Include="Source\Factory\ContasAPagar.Factory.Interfaces.pas"/>
-        <DCCReference Include="Source\Interfaces\ContasAPagar.Interfaces.Controller.Cartoes.pas"/>
-        <DCCReference Include="Source\Interfaces\ContasAPagar.Interfaces.Dao.Cartoes.pas"/>
-        <DCCReference Include="Source\Interfaces\ContasAPagar.Interfaces.Model.Cartoes.pas"/>
-        <DCCReference Include="Source\Model\ContasAPagar.Model.Cartoes.pas"/>
-        <DCCReference Include="Source\Model\ContasAPagar.Model.Conexao.pas"/>
-        <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.Cartoes.pas"/>
-        <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.Categoria.pas"/>
         <DCCReference Include="Source\View\ContasAPagar.View.Cartoes.pas">
             <Form>frmCartoes</Form>
         </DCCReference>
         <DCCReference Include="Source\View\ContasAPagar.View.DashBoard.pas">
             <Form>frmDashBoard</Form>
-        </DCCReference>
-        <DCCReference Include="Source\View\ContasAPagar.View.Despesas.pas">
-            <Form>frmDespesas</Form>
         </DCCReference>
         <DCCReference Include="Source\View\ContasAPagar.View.Entradas.pas">
             <Form>frmEntrada</Form>
@@ -291,6 +271,32 @@
         <DCCReference Include="Source\View\ContasAPagar.View.Principal.pas">
             <Form>frmPrincipal</Form>
         </DCCReference>
+        <DCCReference Include="Source\View\ContasAPagar.View.Configuracoes.pas">
+            <Form>frmConfiguracoes</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.LoadLayout.pas"/>
+        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.Enumerados.pas"/>
+        <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.Cartoes.pas"/>
+        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.CustomAttributes.pas"/>
+        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.Procedimentos.pas"/>
+        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.RTTI.pas"/>
+        <DCCReference Include="Source\Controller\ContasAPagar.Controller.Cartoes.pas"/>
+        <DCCReference Include="Source\Interfaces\ContasAPagar.Interfaces.Controller.Cartoes.pas"/>
+        <DCCReference Include="Source\Interfaces\ContasAPagar.Interfaces.Model.Crud.pas"/>
+        <DCCReference Include="Source\Factory\ContasAPagar.Factory.FactoryPadrao.pas"/>
+        <DCCReference Include="Source\Factory\ContasAPagar.Factory.Interfaces.pas"/>
+        <DCCReference Include="Source\Model\ContasAPagar.Model.Conexao.pas"/>
+        <DCCReference Include="Source\Model\ContasAPagar.Model.Cartoes.pas"/>
+        <DCCReference Include="Source\Dao\ContasAPagar.Dao.Cartoes.pas"/>
+        <DCCReference Include="Source\Interfaces\ContasAPagar.Interfaces.Dao.Cartoes.pas"/>
+        <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.Conexao.pas"/>
+        <DCCReference Include="Source\View\ContasAPagar.View.Receitas.pas">
+            <Form>frmReceitas</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.Receita.pas"/>
+        <DCCReference Include="Source\Model\ContasAPagar.Model.Receitas.pas"/>
         <None Include="ModelSupport_ContasAPagar\default.txaPackage"/>
         <None Include="ModelSupport_ContasAPagar\default.txvpck"/>
         <None Include="ModelSupport_ContasAPagar\ContasAPagar\default.txvpck"/>

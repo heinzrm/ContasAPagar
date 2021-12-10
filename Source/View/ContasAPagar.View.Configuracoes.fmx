@@ -1,0 +1,351 @@
+﻿object frmConfiguracoes: TfrmConfiguracoes
+  Left = 0
+  Top = 0
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object lytBase: TLayout
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Layout2: TLayout
+      Align = Client
+      Size.Width = 640.000000000000000000
+      Size.Height = 480.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object LayoutMain: TLayout
+        Align = Client
+        Size.Width = 640.000000000000000000
+        Size.Height = 480.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object lytMain: TLayout
+          Align = Client
+          Size.Width = 495.000000000000000000
+          Size.Height = 480.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+        end
+        object MultiView1: TMultiView
+          TargetControl = LayoutMain
+          Mode = Panel
+          NavigationPaneOptions.CollapsedWidth = 60.000000000000000000
+          Size.Width = 145.000000000000000000
+          Size.Height = 480.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Rectangle2: TRectangle
+            Align = Contents
+            Fill.Color = claSteelblue
+            Sides = []
+            Size.Width = 145.000000000000000000
+            Size.Height = 480.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            Stroke.Dash = Custom
+            Stroke.CustomDash = {020000000000803F0000803F00000000}
+          end
+          object ListBox1: TListBox
+            Align = Client
+            Size.Width = 145.000000000000000000
+            Size.Height = 480.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'transparentlistboxstyle'
+            TabOrder = 0
+            DisableFocusEffect = True
+            ItemHeight = 50.000000000000000000
+            DefaultItemStyles.ItemStyle = ''
+            DefaultItemStyles.GroupHeaderStyle = ''
+            DefaultItemStyles.GroupFooterStyle = ''
+            Viewport.Width = 145.000000000000000000
+            Viewport.Height = 480.000000000000000000
+            object ltbCartoes: TListBoxItem
+              TextSettings.FontColor = claWhite
+              TextSettings.HorzAlign = Center
+              StyledSettings = [Family, Size, Style]
+              Size.Width = 145.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              OnClick = ltbCartoesClick
+              object Image2: TImage
+                MultiResBitmap.Height = 48
+                MultiResBitmap.Width = 48
+                MultiResBitmap = <
+                  item
+                    Width = 48
+                    Height = 48
+                    PNG = {
+                      89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+                      87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                      022F494441546843ED983B4BC35014C7DB2685DAE0732A42411C5A37118A1FC0
+                      CDC1C1A98382837E0F3B29B876F7135445419C1C1C5C9DDC7D5457C5481BFA48
+                      F57F939360D2D44A9226B7727F10CE7DE5DEFFC939F7426E42201008040237BD
+                      5E2FAFEB7AADD168A85F31C33440CB19341549DEEFE09D254DD3DECCD7F9019A
+                      DEBD9C4891B5C1A0C34C26334B556E80A619F87140559B24591B16B26C363B49
+                      55AE68369BAAA228D35435E87380858B8A5C92045434E84BA1714338103743F7
+                      803BE7A266981E914271231C889BFF7F0AF18638857843EC8130E8743A754992
+                      CE91DE97781E21A10EABC3CEA17B19760D7F65E5743A9D77EF813E980351D16E
+                      B75FF003B587A244CB0F0463648CDDA1AA4D6C1180980B7CCCED542AF5494DBE
+                      88650F407C15C237838A67441E0188BF82F00D96E3D41488482380CDFA0AE165
+                      3FE2F15D73547410A903B22CEFFB491B446DA5D56ADDC36E51D360580A8D029C
+                      38CF30434F1B37105D6277426C0E555535D457A9CB1B367014E01CAFD2127FE6
+                      A7788B6EB77B4BDDDED0B8D08198755AC201DAE7A9E8C04B3CF6D003CC020DF1
+                      6654F7A11054A0256CD05CA12BC3123519F816CF40A84FCD57C205A21CB77D68
+                      AA983DF6BDA7E14420F10C4C50744F10069857A1250CF0A18EA8CB809CD80D24
+                      DE021315B0C009D2E9C39C261416697A03D49358E3D8ECF2C697F8288138094E
+                      D40CB52E70EC3EC1389CE612447B0247E38D29DB646CC45BC0892938713796E2
+                      2D203A8774BA86E537E70502EE4824BE01FA77CE357AB466ED0000000049454E
+                      44AE426082}
+                    FileName = 'D:\Delphi\ContasAPagar\Imagens\Icons\credit-card-check.png'
+                  end>
+                Align = Left
+                Margins.Left = 5.000000000000000000
+                Margins.Top = 5.000000000000000000
+                Margins.Right = 5.000000000000000000
+                Margins.Bottom = 5.000000000000000000
+                Position.X = 5.000000000000000000
+                Position.Y = 5.000000000000000000
+                Size.Width = 50.000000000000000000
+                Size.Height = 40.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object lblCartoes: TLabel
+                Align = Client
+                StyledSettings = [Family, Size, Style]
+                Size.Width = 85.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claWhite
+                Text = 'Cart'#245'es'
+                TabOrder = 39
+              end
+            end
+            object ltbEntrada: TListBoxItem
+              TextSettings.FontColor = claWhite
+              TextSettings.HorzAlign = Center
+              StyledSettings = [Family, Size, Style]
+              Position.Y = 50.000000000000000000
+              Size.Width = 145.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              OnClick = ltbEntradaClick
+              object Image3: TImage
+                MultiResBitmap.Height = 48
+                MultiResBitmap.Width = 48
+                MultiResBitmap = <
+                  item
+                    Width = 48
+                    Height = 48
+                    PNG = {
+                      89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+                      87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                      01AF494441546843EDD7CD4E02311405609805C33BA86B12E31BF90AC853E942
+                      62E2DA855B75A72B9F428D3A3381058C9E2B87A2B9D369951A30DE2F9970D39E
+                      4E5B717EE818638C31C6FC635D7E2A6FC0722B7481E517193FFF2CDBC0D6926B
+                      A0C53363C95455F5CA7337624CF9D13750D7F505CB64FAFDFE25CB34B871653A
+                      9D3E6003BB8C29E8CB718C66B3D94D5114A51C52A3ED48FA1853D037984C264F
+                      9C46612C1EC739F88A5FE6F3F929266A5BFC0E167BC7210AFA6E25C3B882BE3D
+                      C4C632D762C40A23F138CE61B31726CFDB16BFC44D78BF8925C61D36C7E33887
+                      CD5E58D488D12064871CE6C5A8C36625D96D148B3A6419F49D6C48B20DE0E2DE
+                      671984EC01CBB56DE44186D79A9AE5DA926D00F7F17B9641799E476743926D20
+                      CBB2639641C89EB0FC3DBCF81D367BC9AD516E918C7B31D3E330AF457A85CDF1
+                      38CE9177153CC8CEB1D001230AFAE441E6DD049F01AD0F32CC71D6F45EC4483C
+                      8E53E4712F1331A620D243FF108BBD2ECBB29003F595B4491F638A9C13E77EFC
+                      98A40163F138CE67CC5832F297E7B91B31168FE31AC9BB0A63C934FDDB7CC698
+                      62BF8937CD36608C31C6186336A5D37907D5662D2A4B429B900000000049454E
+                      44AE426082}
+                    FileName = 'D:\Delphi\ContasAPagar\Imagens\Icons\cash.png'
+                  end>
+                Align = Left
+                Margins.Left = 5.000000000000000000
+                Margins.Top = 5.000000000000000000
+                Margins.Right = 5.000000000000000000
+                Margins.Bottom = 5.000000000000000000
+                Position.X = 5.000000000000000000
+                Position.Y = 5.000000000000000000
+                Size.Width = 50.000000000000000000
+                Size.Height = 40.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object lblReceitas: TLabel
+                Align = Client
+                StyledSettings = [Family, Size, Style]
+                Size.Width = 85.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claWhite
+                Text = 'Receitas'
+                TabOrder = 39
+              end
+            end
+            object ltbDespesas: TListBoxItem
+              TextSettings.FontColor = claWhite
+              TextSettings.HorzAlign = Center
+              StyledSettings = [Family, Size, Style]
+              Position.Y = 100.000000000000000000
+              Size.Width = 145.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              OnClick = ltbDespesasClick
+              object Image4: TImage
+                MultiResBitmap.Height = 48
+                MultiResBitmap.Width = 48
+                MultiResBitmap = <
+                  item
+                    Width = 48
+                    Height = 48
+                    PNG = {
+                      89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+                      87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                      0263494441546843ED995B6ADB4014866D61191BC78696E421240F495EFB9475
+                      B4A54BE8560225D055C42659411690CB02424BFBD00D34A52F8D0BB6F14DB2DD
+                      FF483F932079226BAC22AB9D0F06CDE53F47E7684623592E592C164BFECCE7F3
+                      9DC562D1198D46BF71DC68106377369B9DA1BA2DB1972578DFF73FB9AEBB1F64
+                      53103CCFBB47CCC76564D241FB7DD85D2C70F1DB6599925AADF6827D85623C1E
+                      776506166C079401AB1B49345E87C7C26213C89BB512C02EF00E4BF2B6DFEF0F
+                      A4607FBE41DF5B0E2F45D6701A68A6873A05BB1381F463681107899C52168392
+                      95A19982DD0AA30478E59F059A3794670ADD2B8C1280EC3654EBC12C5C539E29
+                      74AF307A0E0C06837EA3D1D8627329C3E150342D3615D1F325118D276AFF3777
+                      A154819A629440BD5EBF63550B5E4F966AE48AA681667A644A9EC2EE6791AD92
+                      722DD0BCA63C53E85E619480205B254D6260EC03653128D1429916CA14C60908
+                      B255CA6E2337B514D4AF92AE3C4FA385322D9429ECDB68DE18CF0096CA4B1C5E
+                      A1ECA1EC4A1FF809F37BB8FCE6384E977D99128D37D53D80E1239413FC86FEDA
+                      EBF5E681C112640C9A2FA89EA01CD13C1382133C61A50470B57770835E20309F
+                      B295111BD89EA31A7C455897D0EB23890920F8C3E974FA83C3C6C0872CAD03BA
+                      3526F4F6486202E84A7C715B15D972E9D618BA5224DEC458025EB3D9ACB0B916
+                      F8D1E3B75A2D974D2362F12625101D5F97A8FFB444E3F97F9F0379F1CFCD804D
+                      206F0AFD717732993C38D56AF592EDC2E1BAEEA5EC42DB9EE77D2EE01F1CDF2B
+                      95CAB1835DF397FCD381779EB67C6FE7F8C6223122D6B32078C77960B7C562B1
+                      E442A9F407B46222E588458B2F0000000049454E44AE426082}
+                    FileName = 
+                      'D:\Delphi\ContasAPagar\Imagens\Icons\card-account-details-outlin' +
+                      'e.png'
+                  end>
+                Align = Left
+                Margins.Left = 5.000000000000000000
+                Margins.Top = 5.000000000000000000
+                Margins.Right = 5.000000000000000000
+                Margins.Bottom = 5.000000000000000000
+                Position.X = 5.000000000000000000
+                Position.Y = 5.000000000000000000
+                Size.Width = 50.000000000000000000
+                Size.Height = 40.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object lblDespesas: TLabel
+                Align = Client
+                StyledSettings = [Family, Size, Style]
+                Size.Width = 85.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claWhite
+                Text = 'Despesas'
+                TabOrder = 39
+              end
+            end
+            object ltbConfigurações: TListBoxItem
+              TextSettings.FontColor = claWhite
+              TextSettings.HorzAlign = Center
+              StyledSettings = [Family, Size, Style]
+              Position.Y = 150.000000000000000000
+              Size.Width = 145.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 3
+              object Image5: TImage
+                MultiResBitmap.Height = 48
+                MultiResBitmap.Width = 48
+                MultiResBitmap = <
+                  item
+                    Width = 48
+                    Height = 48
+                    PNG = {
+                      89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+                      87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                      05E3494441546843ED9949685D5518C7D3549B84D8512A1A5D58B4559B8595AA
+                      5D686D151545DDD450178A0A850AA2140A5A5C142A822DC50E4E8BA2A81B5701
+                      2D880A15694117A24517AD4375A158E709CD40E6D4DFFFDC7F4EDF7DF7BE9BFB
+                      9297D2457E7038E77ED3F9CEB9C3FBEE7D4DB3CC324B633875EAD49CD1D1D18F
+                      E80B191B1B3B6897B38BF1F1F18B9D6321030303FFD8A52134BB6F042BDC17D2
+                      DADABA98C52EF5E1B439E30B30F5D816D2B00570752CF730C0F17D730C3BBED3
+                      E209CEBE0540755227DD37B186131E06AA173BA3B07B7731E1BF3C613EA57F98
+                      D66A5500FD7CDA93FDFDFD3DE822C82EB1896CD6581CE8EDEDEDA3DB857C894D
+                      028A857C33EDA86E768EAFB26A6A10A06D7878F8074D3AC1E0E0E05F3C0A77A3
+                      5B4E7B84E33FAC8AF4F4F48CD0CD7518EDF8A2A0A8626868E8776274315C4DCC
+                      03D59B80EC3D87981A04DFEE5875A1453B4484647FB3BA2EC8E14E87A80F1C3B
+                      FAFAFA7A1DA714BA34D8B5D718DEEA3011E2AD43F71C0BF935B12EC7C8C8C857
+                      74E7384C79707A2344305C16A3B516848EDCC65E20C90BEC5E136CDA684FE033
+                      60F7149A4373F93080FDE3762F070ED72A29FB0748F079E40B688F795702DC6C
+                      7F23BBC5AEA5C1751597DA4F499464A7155B73682E8B039E2375C3D7047BD534
+                      1F27AE094CF4B302DB24D82869267A93F12A8B03C83B91EF23C6715D526A1A23
+                      DB8B6EA5CD023A560CC5524C8B255FA03935F7045A94D5C5E07CB77D22381FA4
+                      4B3D3EAB413F0FBB17AB4F7F25D2291186E7DA2D17E9B17B2B38197C87C96D99
+                      4D6A83D1F5180FDA2FE253BCC66629502BF90F12CBC9C1F6105DEE2298630567
+                      ECB3C4F234CEE94A9B154390EB48F8FBC4F534DEDD5DB4D4D9D0CE07833AC067
+                      BFDD23CCBB29EF41A15C9493CDCA81C3122679C73152A0DB6E33D9757A6111AE
+                      DF93C8BB68FA9556DB4012DF5A1DC0670479FCA565BCD5AA14CA015DB91BB81A
+                      FC75B36ED36449B80464B7D944BBBFCFE28093CF4C2859E55347E0BBC76AE9EF
+                      B538E0056E63186FEE29C3EE9D48C22610B8C32AE9BEB43880AECBAA0CE836DA
+                      2CC0B57ECC2AE996591CD09C564D9F9C42ADC5AA3CDD7CAB32A05E985825C8D7
+                      2A2DA0DDE240A5AE88A996D3710139943EE52D2D2D71979B9B9BFBF5EEC0B09D
+                      76595B5BDB0341D108722EA12BAC6AD28F94C501741BACCA804E95A738C238F7
+                      91DC7098684BCE4DFC90D5BA89F75A1CD062D19F6F7504D912745FD33F85D9F4
+                      6FCCC9609256927B3D6455811E992471BFCD94D84AC9AC0EE869837C234DB593
+                      5A1767EA0BFA75769B5998A883093F713E1197C2EB6D1661A1A9E2AB1A3F12A7
+                      56D7D70B135D44A2BF78EE08491EA6BBD0662990AB765179900B311FB5690674
+                      99E28F4BED1B642FA3BBDA660142EDF0B036385D934C7B1A8275D3C557C43CD0
+                      6B11FBABEF173842CB5CF3C8CA147F988CED673897B64332BB1783D3DB329E40
+                      A52D0BCB2DA7AB77896395C87BD8D163AE6B6EB42A82ACAEE28F33127F2C1DA2
+                      1892B89CD50FD927C084B92F34BCD4FF499749B20862A58A3F8EBB89BB96D6EE
+                      A6CDC95DA0434C0E0176DB27A0535DF04A3982FDD30CCFB37B4D482E55FC71BC
+                      C5AA0CC47CD76611AB2607DB85FAEC91B8954367834975CD669E5413A08FC51F
+                      E36E8B33A00ED77C355697037B7D64AA1B7D4271880C95D733BBBFD6E214A872
+                      9317362907F6CDB4A3C1D3A8C862E70E305C4D02F7E8064F341916394C8ACACB
+                      107FD53D2910D74C5ED8AC3CDA2592FE0F5F2D6433C7A96A13D96216B453CF6F
+                      4D300176B9B54E55F53AE93D73C66011CF3AA9000B78D0AA14FAC1B2896C6EB2
+                      78CA34ECEB3495F0771E06C82FF7051CBB431ECAA6E613E88CC36EDE10B6B502
+                      CECA5EAB23D8A58A3F8EB75A9502D51CFC9F49AC925F656CA7F7B5BA08822FF5
+                      5C116E707DD9CE941124962AFE38D637A0F5C4D05BD922FA3B907D189486E397
+                      EC3E73E89BBEE78B90CCCD56471017167F39E805A8CDEE330749BDEF0923DCB4
+                      FAEB35AF98AB55FC45D08D63F36A51F20D7D3362CE79B44E6ED4D4C301D971DE
+                      79877C9882E456A2DF44BB9D5FF24B399ECBFBF08FD81F26CE2BF49FDB749659
+                      1A4F53D3FFE33ED1C7E09D91C10000000049454E44AE426082}
+                    FileName = 'D:\Delphi\ContasAPagar\Imagens\Icons\cog-refresh-outline.png'
+                  end>
+                Align = Left
+                Margins.Left = 5.000000000000000000
+                Margins.Top = 5.000000000000000000
+                Margins.Right = 5.000000000000000000
+                Margins.Bottom = 5.000000000000000000
+                Position.X = 5.000000000000000000
+                Position.Y = 5.000000000000000000
+                Size.Width = 50.000000000000000000
+                Size.Height = 40.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object lblConfiguracoes: TLabel
+                Align = Client
+                StyledSettings = [Family, Size, Style]
+                Size.Width = 85.000000000000000000
+                Size.Height = 50.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claWhite
+                Text = 'Configura'#231#245'es'
+                TabOrder = 39
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

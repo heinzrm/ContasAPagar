@@ -6,9 +6,9 @@ inherited frmEntrada: TfrmEntrada
       inherited TabControl1: TTabControl
         Sizes = (
           640s
-          480s
+          430s
           640s
-          480s)
+          430s)
         inherited TabItem1: TTabItem
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
@@ -19,7 +19,7 @@ inherited frmEntrada: TfrmEntrada
             FooterAppearanceClassName = 'TListHeaderObjects'
             Align = Client
             Size.Width = 640.000000000000000000
-            Size.Height = 430.000000000000000000
+            Size.Height = 380.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
             SearchVisible = True
