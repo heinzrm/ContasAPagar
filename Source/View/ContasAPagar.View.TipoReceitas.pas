@@ -1,42 +1,46 @@
-unit ContasAPagar.View.Receitas;
+unit ContasAPagar.View.TipoReceitas;
 
 interface
 
 uses
-  System.SysUtils,
-  System.Types,
-  System.UITypes,
-  System.Classes,
-  System.Variants,
-  FMX.Types,
-  FMX.Graphics,
-  FMX.Controls,
-  FMX.Forms,
-  FMX.Dialogs,
-  FMX.StdCtrls,
+  ContasAPagar.Controller.Cartoes,
+  ContasAPagar.Interfaces.Controller.Cartoes,
+  ContasAPagar.Model.Entity.TipoReceita,
   ContasAPagar.View.ModeloPrincipal,
+  Data.DB,
+  FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet,
+  FireDAC.DApt.Intf,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Error,
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
   FireDAC.Stan.Param,
-  FireDAC.Stan.Error,
-  FireDAC.DatS,
-  FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf,
-  Data.DB,
-  FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client,
-  FMX.TabControl,
-  System.Actions,
   FMX.ActnList,
-  System.ImageList,
-  FMX.ImgList,
-  FMX.Objects,
+  FMX.Controls,
   FMX.Controls.Presentation,
-  FMX.Layouts,
+  FMX.Dialogs,
   FMX.Edit,
-  ContasAPagar.Controller.Cartoes,
-  ContasAPagar.Model.Entity.Receita,
-  ContasAPagar.Interfaces.Controller.Cartoes, FMX.ListView.Types, FMX.ListView.Appearances, FMX.ListView.Adapters.Base, FMX.ListView;
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.ImgList,
+  FMX.Layouts,
+  FMX.ListView.Adapters.Base,
+  FMX.ListView.Appearances,
+  FMX.ListView.Types,
+  FMX.ListView,
+  FMX.Objects,
+  FMX.StdCtrls,
+  FMX.TabControl,
+  FMX.Types,
+  System.Actions,
+  System.Classes,
+  System.ImageList,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Variants;
 
 type
   TfrmReceitas = class(TfrmModelo)
@@ -48,7 +52,7 @@ type
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
-    Controller : IControllerCartoes<TReceitas>;
+    Controller : IControllerCartoes<TTipoReceitas>;
     procedure HabilitarBotoes(pHabilitar: Boolean);
 
   public
@@ -70,10 +74,10 @@ uses
 
 procedure TfrmReceitas.BuscarDados;
 var
-  Receitas : TReceitas;
+  Receitas : TTipoReceitas;
 begin
   inherited;
-  Receitas := TReceitas.Create;
+  Receitas := TTipoReceitas.Create;
   try
     if FDConsulta.Active then
     begin
@@ -87,8 +91,8 @@ end;
 
 procedure TfrmReceitas.FormCreate(Sender: TObject);
 begin
-  Tela := ttReceitas;
-  Controller := TControllerCartoes<TReceitas>.New;
+  Tela := ttTipoReceitas;
+  Controller := TControllerCartoes<TTipoReceitas>.New;
   inherited;
   BuscarDados;
   TabControl1.ActiveTab := TabItem1;

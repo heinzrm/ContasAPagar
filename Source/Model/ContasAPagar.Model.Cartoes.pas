@@ -14,7 +14,7 @@ uses
 type
   TModelCartoes<T>= class(TInterfacedObject,ICrud<T>)
   private
-    FDaoCartoes : IDaoCartoes<TCartoes>;
+//    FDaoCartoes : IDaoCartoes<?>;
   public
     Class function New:ICrud<T>;
     constructor Create;
@@ -49,7 +49,7 @@ constructor TModelCartoes<T>.Create;
 begin
   inherited Create;
 
-  FDaoCartoes := TDaoCartoes<TCartoes>.Create;
+//  FDaoCartoes := TDaoCartoes<T>.Create;
 end;
 
 destructor TModelCartoes<T>.Destroy;
@@ -75,7 +75,7 @@ end;
 
 function TModelCartoes<T>.Pesquisar(pObject: T): IFDDataSetReference;
 begin
-  Result:= FDaoCartoes.Select(pObject);
+  Result:= TDaoCartoes<T>.New.Select(pObject);
 end;
 
 procedure TModelCartoes<T>.Salvar(pState: TDataSetState; pObject: T; pChave: string);

@@ -36,8 +36,8 @@ end;
 function TControllerCartoes<T>.Tela(pTela: TTelas): ICrud<T>;
 begin
   case  pTela of
-    ttCartoes : Result := TFactory<T>.New.FactoryCartoes;
-    ttReceitas: Result := TFactory<T>.New.FactoryCartoes;
+    ttCartoes     : Result := TFactory<T>.New.FactoryCartoes;
+    ttTipoReceitas: Result := TFactory<T>.New.FactoryCartoes;
   end;
 end;
 

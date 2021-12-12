@@ -3,7 +3,7 @@ unit ContasAPagar.Diversos.Enumerados;
 interface
 
 type
-  TTelas = (ttCartoes, ttReceitas);
+  TTelas = (ttCartoes, ttTipoReceitas, ttTipoDespesas);
 
 implementation
 

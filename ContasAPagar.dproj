@@ -262,9 +262,6 @@
         <DCCReference Include="Source\View\ContasAPagar.View.DashBoard.pas">
             <Form>frmDashBoard</Form>
         </DCCReference>
-        <DCCReference Include="Source\View\ContasAPagar.View.Entradas.pas">
-            <Form>frmEntrada</Form>
-        </DCCReference>
         <DCCReference Include="Source\View\ContasAPagar.View.ModeloPrincipal.pas">
             <Form>frmModelo</Form>
         </DCCReference>
@@ -291,12 +288,17 @@
         <DCCReference Include="Source\Dao\ContasAPagar.Dao.Cartoes.pas"/>
         <DCCReference Include="Source\Interfaces\ContasAPagar.Interfaces.Dao.Cartoes.pas"/>
         <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.Conexao.pas"/>
-        <DCCReference Include="Source\View\ContasAPagar.View.Receitas.pas">
+        <DCCReference Include="Source\View\ContasAPagar.View.TipoReceitas.pas">
             <Form>frmReceitas</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.Receita.pas"/>
+        <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.TipoReceita.pas"/>
         <DCCReference Include="Source\Model\ContasAPagar.Model.Receitas.pas"/>
+        <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.TipoDespesa.pas"/>
+        <DCCReference Include="Source\View\ContasAPagar.View.TipoDespesas.pas">
+            <Form>frmModelo1</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <None Include="ModelSupport_ContasAPagar\default.txaPackage"/>
         <None Include="ModelSupport_ContasAPagar\default.txvpck"/>
         <None Include="ModelSupport_ContasAPagar\ContasAPagar\default.txvpck"/>

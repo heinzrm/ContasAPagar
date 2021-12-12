@@ -4,7 +4,7 @@ interface
 
 uses
 //  ContasAPagar.Dao.Receitas,
-  ContasAPagar.Model.Entity.Receita,
+  ContasAPagar.Model.Entity.TipoReceita,
   ContasAPagar.Interfaces.Model.Crud,
   ContasAPagar.Model.Conexao,
   Data.DB, FireDAC.Comp.DataSet,

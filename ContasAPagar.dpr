@@ -5,7 +5,6 @@ uses
   FMX.Forms,
   ContasAPagar.View.Cartoes in 'Source\View\ContasAPagar.View.Cartoes.pas' {frmCartoes},
   ContasAPagar.View.DashBoard in 'Source\View\ContasAPagar.View.DashBoard.pas' {frmDashBoard},
-  ContasAPagar.View.Entradas in 'Source\View\ContasAPagar.View.Entradas.pas' {frmEntrada},
   ContasAPagar.View.ModeloPrincipal in 'Source\View\ContasAPagar.View.ModeloPrincipal.pas' {frmModelo},
   ContasAPagar.View.Principal in 'Source\View\ContasAPagar.View.Principal.pas' {frmPrincipal},
   ContasAPagar.View.Configuracoes in 'Source\View\ContasAPagar.View.Configuracoes.pas' {frmConfiguracoes},
@@ -25,9 +24,11 @@ uses
   ContasAPagar.Dao.Cartoes in 'Source\Dao\ContasAPagar.Dao.Cartoes.pas',
   ContasAPagar.Interfaces.Dao.Cartoes in 'Source\Interfaces\ContasAPagar.Interfaces.Dao.Cartoes.pas',
   ContasAPagar.Diversos.Conexao in 'Source\Diversos\ContasAPagar.Diversos.Conexao.pas',
-  ContasAPagar.View.Receitas in 'Source\View\ContasAPagar.View.Receitas.pas' {frmReceitas},
-  ContasAPagar.Model.Entity.Receita in 'Source\Model\Entity\ContasAPagar.Model.Entity.Receita.pas',
-  ContasAPagar.Model.Receitas in 'Source\Model\ContasAPagar.Model.Receitas.pas';
+  ContasAPagar.View.TipoReceitas in 'Source\View\ContasAPagar.View.TipoReceitas.pas' {frmReceitas},
+  ContasAPagar.Model.Entity.TipoReceita in 'Source\Model\Entity\ContasAPagar.Model.Entity.TipoReceita.pas',
+  ContasAPagar.Model.Receitas in 'Source\Model\ContasAPagar.Model.Receitas.pas',
+  ContasAPagar.Model.Entity.TipoDespesa in 'Source\Model\Entity\ContasAPagar.Model.Entity.TipoDespesa.pas',
+  ContasAPagar.View.TipoDespesas in 'Source\View\ContasAPagar.View.TipoDespesas.pas' {frmModelo1};
 
 {$R *.res}
 
@@ -35,5 +36,6 @@ begin
   ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmModelo1, frmModelo1);
   Application.Run;
 end.

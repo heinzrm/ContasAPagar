@@ -57,7 +57,7 @@ var
 implementation
 
 uses
-  ContasAPagar.Diversos.LoadLayout, ContasAPagar.View.Cartoes, ContasAPagar.View.Receitas;
+  ContasAPagar.Diversos.LoadLayout, ContasAPagar.View.Cartoes, ContasAPagar.View.TipoReceitas;
 
 {$R *.fmx}
 

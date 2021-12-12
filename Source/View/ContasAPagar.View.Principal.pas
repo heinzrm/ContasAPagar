@@ -56,7 +56,7 @@ implementation
 
 uses
   ContasAPagar.Diversos.LoadLayout,
-  ContasAPagar.View.Entradas,
+//  ContasAPagar.View.Entradas,
   ContasAPagar.View.DashBoard,
 //  ContasAPagar.View.Despesas,
   ContasAPagar.View.Configuracoes;
@@ -97,7 +97,7 @@ end;
 
 procedure TfrmPrincipal.ltbEntradaClick(Sender: TObject);
 begin
-  AbrirFormulario(TfrmEntrada)
+//  AbrirFormulario(TfrmEntrada)
 end;
 
 procedure TfrmPrincipal.ltbDespesasClick(Sender: TObject);

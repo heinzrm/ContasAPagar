@@ -10,12 +10,13 @@ uses
   System.Generics.Collections;
 
 type
-  TDaoCartoes<T> = class(TInterfacedObject,IDaoCartoes<T>)
+  TDaoCartoes<T: class, constructor> = class(TInterfacedObject,IDaoCartoes<T>)
   private
     FConexao : TConexao;
   public
     constructor Create;
     destructor Destroy; override;
+    class function New:IDaoCartoes<T>;
     function Select(pCartoes: T): IFDDataSetReference;
     procedure Delete(pChave: string);
     procedure Insert(pCartoes: T);
@@ -75,11 +76,16 @@ begin
 //  end;
 end;
 
+class function TDaoCartoes<T>.New: IDaoCartoes<T>;
+begin
+  Result := Self.Create;
+end;
+
 function TDaoCartoes<T>.Select(pCartoes: T): IFDDataSetReference;
 begin
-  FConexao.PrepareStatment(TClassRtti.MontarSelect(pCartoes,Tabela));
-  FConexao.Open;
-  Result := FConexao.RetornaDados;
+//  FConexao.PrepareStatment(TClassRtti.MontarSelect(pCartoes,Tabela));
+//  FConexao.Open;
+//  Result := FConexao.RetornaDados;
 end;
 
 procedure TDaoCartoes<T>.Update(pCartoes: T; pChave:string);

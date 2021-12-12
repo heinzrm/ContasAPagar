@@ -1,5 +1,5 @@
-inherited frmCartoes: TfrmCartoes
-  Caption = 'frmModelo1'
+inherited frmReceitas: TfrmReceitas
+  Caption = ''
   DesignerMasterStyle = 0
   inherited LayoutMain: TLayout
     inherited lytMain: TLayout
@@ -12,8 +12,8 @@ inherited frmCartoes: TfrmCartoes
           430s)
         inherited TabItem1: TTabItem
           IsSelected = False
-          ExplicitSize.cx = 69.000000000000000000
-          ExplicitSize.cy = 26.000000000000000000
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
           object ListView1: TListView
             ItemAppearanceClassName = 'TListItemAppearance'
             ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
@@ -25,7 +25,6 @@ inherited frmCartoes: TfrmCartoes
             Size.PlatformDefault = False
             TabOrder = 1
             ItemAppearanceObjects.ItemObjects.Accessory.Visible = False
-            OnDblClick = ListView1DblClick
             CanSwipeDelete = False
             DeleteButtonText = ''
             SearchVisible = True
@@ -33,8 +32,8 @@ inherited frmCartoes: TfrmCartoes
         end
         inherited TabItem2: TTabItem
           IsSelected = True
-          ExplicitSize.cx = 69.000000000000000000
-          ExplicitSize.cy = 26.000000000000000000
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
           object Layout1: TLayout
             Align = Top
             Position.Y = 50.000000000000000000
@@ -77,34 +76,5 @@ inherited frmCartoes: TfrmCartoes
         end
       end
     end
-  end
-  inherited FDConsulta: TFDMemTable
-    object FDConsultaDescricao: TStringField
-      FieldName = 'Descricao'
-    end
-    object FDConsultaIdCartoes: TStringField
-      FieldName = 'IdCartoes'
-    end
-  end
-  object BindingsList1: TBindingsList
-    Methods = <>
-    OutputConverters = <>
-    Left = 20
-    Top = 5
-    object LinkListControlToField1: TLinkListControlToField
-      Category = 'Quick Bindings'
-      DataSource = BindSourceDB1
-      FieldName = 'Descricao'
-      Control = ListView1
-      FillExpressions = <>
-      FillHeaderExpressions = <>
-      FillBreakGroups = <>
-    end
-  end
-  object BindSourceDB1: TBindSourceDB
-    DataSet = FDConsulta
-    ScopeMappings = <>
-    Left = 576
-    Top = 104
   end
 end
