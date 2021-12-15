@@ -3,7 +3,7 @@ unit ContasAPagar.Model.Entity.Cartoes;
 interface
 
 uses
-  System.Generics.Collections,
+
   Data.DB,
   ContasAPagar.Diversos.CustomAttributes,
   SysUtils;

@@ -4,14 +4,14 @@ interface
 
 uses
 //  ContasAPagar.Controller.Cartoes,
-  ContasAPagar.Interfaces.Controller.Cartoes,
+
   ContasAPagar.Diversos.Enumerados,
   Data.DB,
   FireDAC.Comp.Client,
   FireDAC.Comp.DataSet,
-  FireDAC.DApt.Intf,
+
   FireDAC.DatS,
-  FireDAC.Phys.Intf,
+
   FireDAC.Stan.Error,
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
@@ -34,8 +34,8 @@ uses
   System.ImageList,
   System.Types,
   System.UITypes,
-  System.Variants,
-  system.Generics.Collections;
+  System.Variants, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  ContasAPagar.Controller.Cartoes, ContasAPagar.Interfaces.Controller.Cartoes;
 
 type
   TfrmModelo = class(TForm)
@@ -64,15 +64,16 @@ type
     procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnVoltarClick(Sender: TObject);
-    procedure btnExcluirClick(Sender: TObject);
   private
     FTela : TTelas;
     { Private declarations }
+  protected
     procedure ExibirMensagem(pMensagem: String);
   public
     { Public declarations }
     FState     : TDataSetState;
     FChave     : string;
+    Controller : IControllerCartoes<TObject>;
     property Tela : TTelas read FTela write FTela;
     procedure BuscarDados; virtual;abstract;
   end;
@@ -86,24 +87,6 @@ uses
   System.SysUtils;
 
 {$R *.fmx}
-
-procedure TfrmModelo.btnExcluirClick(Sender: TObject);
-begin
-//  TDialogService.MessageDialog('Excluir do registro selecionado?',
-//                                  TMsgDlgType.mtConfirmation,
-//                                  [TMsgDlgBtn.mbYes,TMsgDlgBtn.mbNo],
-//                                  TMsgDlgBtn.mbNo,
-//                                  0,
-//                                  procedure(const AResult: TModalResult)
-//                                  begin
-//                                    if  AResult = mrYes then
-//                                    begin
-//                                      Controller.Tela(ttCartoes).Excluir(FChave);
-//                                      BuscarDados;
-//                                      ExibirMensagem('Registro excluido com sucesso!');
-//                                    end;
-//                                  end);
-end;
 
 procedure TfrmModelo.btnInserirClick(Sender: TObject);
 begin
@@ -139,7 +122,6 @@ end;
 procedure TfrmModelo.FormCreate(Sender: TObject);
 begin
   lytMensagem.Visible := False;
-//  Controller := TControllerCartoes.New;
 end;
 
 end.

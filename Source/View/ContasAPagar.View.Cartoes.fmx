@@ -1,19 +1,23 @@
 inherited frmCartoes: TfrmCartoes
   Caption = 'frmModelo1'
+  OnClose = FormClose
   DesignerMasterStyle = 0
   inherited LayoutMain: TLayout
     inherited lytMain: TLayout
       inherited TabControl1: TTabControl
-        TabIndex = 1
         Sizes = (
           640s
           430s
           640s
           430s)
         inherited TabItem1: TTabItem
-          IsSelected = False
           ExplicitSize.cx = 69.000000000000000000
           ExplicitSize.cy = 26.000000000000000000
+          inherited lytPage1Top: TLayout
+            inherited btnExcluir: TButton
+              OnClick = btnExcluirClick
+            end
+          end
           object ListView1: TListView
             ItemAppearanceClassName = 'TListItemAppearance'
             ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
@@ -32,7 +36,6 @@ inherited frmCartoes: TfrmCartoes
           end
         end
         inherited TabItem2: TTabItem
-          IsSelected = True
           ExplicitSize.cx = 69.000000000000000000
           ExplicitSize.cy = 26.000000000000000000
           object Layout1: TLayout
@@ -79,11 +82,13 @@ inherited frmCartoes: TfrmCartoes
     end
   end
   inherited FDConsulta: TFDMemTable
-    object FDConsultaDescricao: TStringField
-      FieldName = 'Descricao'
-    end
+    StoreDefs = True
     object FDConsultaIdCartoes: TStringField
       FieldName = 'IdCartoes'
+      Size = 50
+    end
+    object FDConsultaDescricao: TStringField
+      FieldName = 'Descricao'
     end
   end
   object BindingsList1: TBindingsList

@@ -4,27 +4,24 @@ interface
 
 uses
   System.Generics.Collections,
-  ContasAPagar.Dao.Cartoes,
+  ContasAPagar.Dao.Generico,
   ContasAPagar.Model.Entity.Cartoes,
   ContasAPagar.Interfaces.Model.Crud,
   ContasAPagar.Model.Conexao,
   Data.DB, FireDAC.Comp.DataSet,
-  ContasAPagar.Interfaces.Dao.Cartoes;
+  ContasAPagar.Interfaces.Dao.Generico;
 
 type
   TModelCartoes<T>= class(TInterfacedObject,ICrud<T>)
   private
-//    FDaoCartoes : IDaoCartoes<?>;
+    FDaoGenerico : IDaoGenerico<TCartoes>;
   public
     Class function New:ICrud<T>;
     constructor Create;
     destructor Destroy; override;
-    procedure Alterar;
-    procedure Cancelar;
-    procedure Editar;
-    procedure Excluir(pChave: string);
-    function Pesquisar(pObject: T): IFDDataSetReference;
-    procedure Salvar(pState: TDataSetState; pObject: T; pChave: string);
+    procedure Excluir(pObject: TObject; pChave: string);
+    function Pesquisar(pObject: TObject): IFDDataSetReference;
+    procedure Salvar(pState: TDataSetState; pObject: TObject; pChave: string);
 
   end;
 
@@ -35,21 +32,11 @@ uses
 
 { TCartoes }
 
-procedure TModelCartoes<T>.Alterar;
-begin
-
-end;
-
-procedure TModelCartoes<T>.Cancelar;
-begin
-
-end;
-
 constructor TModelCartoes<T>.Create;
 begin
   inherited Create;
 
-//  FDaoCartoes := TDaoCartoes<T>.Create;
+  FDaoGenerico := TDaoGenerico<TCartoes>.Create('CARTOES');
 end;
 
 destructor TModelCartoes<T>.Destroy;
@@ -58,14 +45,9 @@ begin
   inherited;
 end;
 
-procedure TModelCartoes<T>.Editar;
+procedure TModelCartoes<T>.Excluir(pObject: TObject; pChave: string);
 begin
-
-end;
-
-procedure TModelCartoes<T>.Excluir(pChave: string);
-begin
-//  FDaoCartoes.Delete(pChave)
+  FDaoGenerico.Delete(pObject,pChave)
 end;
 
 class function TModelCartoes<T>.New: ICrud<T>;
@@ -73,17 +55,17 @@ begin
   Result := Self.Create;
 end;
 
-function TModelCartoes<T>.Pesquisar(pObject: T): IFDDataSetReference;
+function TModelCartoes<T>.Pesquisar(pObject: TObject): IFDDataSetReference;
 begin
-  Result:= TDaoCartoes<T>.New.Select(pObject);
+  Result:= FDaoGenerico.Select(pObject);
 end;
 
-procedure TModelCartoes<T>.Salvar(pState: TDataSetState; pObject: T; pChave: string);
+procedure TModelCartoes<T>.Salvar(pState: TDataSetState; pObject: TObject; pChave: string);
 begin
-//  case pState of
-//    dsEdit   : FDaoCartoes.Update(pObject, pChave);
-//    dsInsert : FDaoCartoes.Insert(pObject);
-//  end;
+  case pState of
+    dsEdit   : FDaoGenerico.Update(pObject, pChave);
+    dsInsert : FDaoGenerico.Insert(pObject);
+  end;
 end;
 
 end.

@@ -24,11 +24,10 @@ uses
   FMX.ListView.Appearances,
   FMX.ListView,
   System.Actions,
-  FMX.ActnList,
-  System.ImageList,
+
+
   FMX.ImgList,
   ContasAPagar.Diversos.Enumerados,
-//  ContasAPagar.Diversos.RTTI,
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
   FireDAC.Stan.Param,
@@ -46,13 +45,13 @@ uses
   Data.Bind.DBScope,
   Data.Bind.GenData,
   Data.Bind.ObjectScope,
-  FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf,
-  FMX.ListView.Adapters.Base,
+
+
+
   FMX.Objects,
   system.Generics.Collections,
   ContasAPagar.Model.Entity.Cartoes,
-  ContasAPagar.Interfaces.Controller.Cartoes;
+  ContasAPagar.Interfaces.Controller.Cartoes, ContasAPagar.Diversos.RTTI, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FMX.ListView.Adapters.Base, FMX.ActnList, System.ImageList;
 
 type
   TfrmCartoes = class(TfrmModelo)
@@ -73,9 +72,11 @@ type
     procedure btnInserirClick(Sender: TObject);
     procedure ListView1DblClick(Sender: TObject);
     procedure btnVoltarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     Controller : IControllerCartoes<TCartoes>;
+    Cartoes    : TCartoes;
     procedure HabilitarBotoes(pHabilitar: Boolean);
   public
     { Public declarations }
@@ -89,7 +90,8 @@ implementation
 {$R *.fmx}
 
 uses
-  ContasAPagar.Diversos.Procedimentos, ContasAPagar.Controller.Cartoes;
+  ContasAPagar.Diversos.Procedimentos,
+  ContasAPagar.Controller.Cartoes, FMX.DialogService;
 
 procedure TfrmCartoes.btnEditarClick(Sender: TObject);
 begin
@@ -102,6 +104,20 @@ procedure TfrmCartoes.btnExcluirClick(Sender: TObject);
 begin
   FChave := FDConsulta.FieldByName('IdCartoes').AsString;
   inherited;
+  TDialogService.MessageDialog('Excluir do registro selecionado?',
+                                  TMsgDlgType.mtConfirmation,
+                                  [TMsgDlgBtn.mbYes,TMsgDlgBtn.mbNo],
+                                  TMsgDlgBtn.mbNo,
+                                  0,
+                                  procedure(const AResult: TModalResult)
+                                  begin
+                                    if  AResult = mrYes then
+                                    begin
+                                      Controller.Tela(ttCartoes).Excluir(Cartoes,FChave);
+                                      BuscarDados;
+                                      ExibirMensagem('Registro excluido com sucesso!');
+                                    end;
+                                  end);
 end;
 
 procedure TfrmCartoes.btnInserirClick(Sender: TObject);
@@ -112,17 +128,10 @@ begin
 end;
 
 procedure TfrmCartoes.btnSalvarClick(Sender: TObject);
-//var
-//  Cartoes : Tcartoes;
 begin
-//  Cartoes := TCartoes.Create;
-//  try
-//    TClassRtti.getClassDoForm(Layout1,Cartoes);
-//    Controller.Tela(ttCartoes).Salvar(FState,Cartoes, FChave);
-//    BuscarDados;
-//  finally
-//    FreeAndNil(Cartoes)
-//  end;
+  TClassRtti<TCartoes>.getClassDoForm(Layout1,Cartoes);
+  Controller.Tela(ttCartoes).Salvar(FState,Cartoes, FChave);
+  BuscarDados;
   inherited;
 end;
 
@@ -133,26 +142,27 @@ begin
 end;
 
 procedure TfrmCartoes.BuscarDados;
-var
-  Cartoes : TCartoes;
 begin
-  Cartoes := TCartoes.Create;
-  try
-    if FDConsulta.Active then
-    begin
-      FDConsulta.EmptyDataSet;
-    end;
-    FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(Cartoes),True);
-  finally
-    FreeAndNil(Cartoes);
+  if FDConsulta.Active then
+  begin
+    FDConsulta.EmptyDataSet;
   end;
+
+  FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(Cartoes),False);
+end;
+
+procedure TfrmCartoes.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  FreeAndNil(Cartoes)
 end;
 
 procedure TfrmCartoes.FormCreate(Sender: TObject);
 begin
-  Tela := ttCartoes;
+  Tela    := ttCartoes;
+  Cartoes := TCartoes.Create;
   inherited;
-  Controller := TControllerCartoes<TCartoes>.New;
+  Controller := TController<TCartoes>.New;
   BuscarDados;
   TabControl1.ActiveTab := TabItem1;
   TProcedimentos.SetarFoco(edtDescricao);

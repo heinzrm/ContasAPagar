@@ -7,12 +7,10 @@ uses
   ContasAPagar.Diversos.Enumerados,
   ContasAPagar.Factory.FactoryPadrao,
   ContasAPagar.Interfaces.Model.Crud,
-  Data.DB,
-  ContasAPagar.Model.Conexao,
-  system.Generics.Collections;
+  Data.DB;
 
 type
-  TControllerCartoes<T> = class(TInterfacedObject,IControllerCartoes<T>)
+  TController<T> = class(TInterfacedObject,IControllerCartoes<T>)
   public
     constructor Create;
     class function New:IControllerCartoes<T>;
@@ -23,21 +21,22 @@ implementation
 
 { TControllerDao }
 
-constructor TControllerCartoes<T>.Create;
+constructor TController<T>.Create;
 begin
   inherited Create;
 end;
 
-class function TControllerCartoes<T>.New: IControllerCartoes<T>;
+class function TController<T>.New: IControllerCartoes<T>;
 begin
   Result := Self.Create;
 end;
 
-function TControllerCartoes<T>.Tela(pTela: TTelas): ICrud<T>;
+function TController<T>.Tela(pTela: TTelas): ICrud<T>;
 begin
   case  pTela of
     ttCartoes     : Result := TFactory<T>.New.FactoryCartoes;
-    ttTipoReceitas: Result := TFactory<T>.New.FactoryCartoes;
+    ttTipoReceitas: Result := TFactory<T>.New.FactoryReceitas;
+    ttTipoDespesas: Result := TFactory<T>.New.FactoryDespesas;
   end;
 end;
 

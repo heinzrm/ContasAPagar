@@ -3,7 +3,7 @@ unit ContasAPagar.Model.Entity.TipoReceita;
 interface
 
 uses
-  System.Generics.Collections,
+
   Data.DB,
   ContasAPagar.Diversos.CustomAttributes,
   SysUtils;
@@ -17,7 +17,7 @@ type
   public
     [APK('IdTipoReceita')]
     [ACampo('IdTipoReceita',False,True) , ANotNull, AFormato(4)]
-    property IdReceita: string read FIDTipoReceita write FIDTipoReceita;
+    property IdTipoReceita: string read FIDTipoReceita write FIDTipoReceita;
     [ACampo('DESCRICAO'), AFormato(100)]
     property Descricao: String read FDescricao write FDescricao;
   end;

@@ -10,14 +10,14 @@ uses
   Data.DB,
   FireDAC.Comp.Client,
   FireDAC.Comp.DataSet,
-  FireDAC.DApt.Intf,
+
   FireDAC.DatS,
-  FireDAC.Phys.Intf,
+
   FireDAC.Stan.Error,
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
   FireDAC.Stan.Param,
-  FMX.ActnList,
+
   FMX.Controls,
   FMX.Controls.Presentation,
   FMX.Dialogs,
@@ -26,7 +26,7 @@ uses
   FMX.Graphics,
   FMX.ImgList,
   FMX.Layouts,
-  FMX.ListView.Adapters.Base,
+
   FMX.ListView.Appearances,
   FMX.ListView.Types,
   FMX.ListView,
@@ -36,23 +36,36 @@ uses
   FMX.Types,
   System.Actions,
   System.Classes,
-  System.ImageList,
+
   System.SysUtils,
   System.Types,
   System.UITypes,
-  System.Variants;
+  System.Variants, ContasAPagar.Diversos.RTTI, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FMX.ListView.Adapters.Base, FMX.ActnList, System.ImageList,
+  FMX.DialogService, System.Rtti, System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope;
 
 type
   TfrmReceitas = class(TfrmModelo)
     Layout1: TLayout;
     edtDescricao: TEdit;
     lblDesc: TLabel;
-    edtIdCartoes: TEdit;
+    edtIdTipoReceita: TEdit;
     ListView1: TListView;
+    FDConsultaIdTipoReceita: TStringField;
+    FDConsultaDescricao: TStringField;
+    BindSourceDB1: TBindSourceDB;
+    BindingsList1: TBindingsList;
+    LinkListControlToField1: TLinkListControlToField;
     procedure FormCreate(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure btnInserirClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
-    Controller : IControllerCartoes<TTipoReceitas>;
+    Controller  : IControllerCartoes<TTipoReceitas>;
+    TipoReceita : TTipoReceitas;
     procedure HabilitarBotoes(pHabilitar: Boolean);
 
   public
@@ -72,30 +85,78 @@ uses
 
 { TfrmModelo1 }
 
-procedure TfrmReceitas.BuscarDados;
-var
-  Receitas : TTipoReceitas;
+procedure TfrmReceitas.btnEditarClick(Sender: TObject);
 begin
   inherited;
-  Receitas := TTipoReceitas.Create;
-  try
-    if FDConsulta.Active then
-    begin
-      FDConsulta.EmptyDataSet;
-    end;
-    FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(Receitas),True);
-  finally
-    FreeAndNil(Receitas);
+  edtDescricao.Text     := FDConsulta.FieldByName('DESCRICAO').AsString;
+  edtIdTipoReceita.Text := FDConsulta.FieldByName('IdTipoReceita').AsString;
+end;
+
+procedure TfrmReceitas.btnExcluirClick(Sender: TObject);
+begin
+  FChave := FDConsulta.FieldByName('IdTipoReceita').AsString;
+  inherited;
+  TDialogService.MessageDialog('Excluir do registro selecionado?',
+                                  TMsgDlgType.mtConfirmation,
+                                  [TMsgDlgBtn.mbYes,TMsgDlgBtn.mbNo],
+                                  TMsgDlgBtn.mbNo,
+                                  0,
+                                  procedure(const AResult: TModalResult)
+                                  begin
+                                    if  AResult = mrYes then
+                                    begin
+                                      Controller.Tela(ttTipoReceitas).Excluir(TipoReceita,FChave);
+                                      BuscarDados;
+                                      ExibirMensagem('Registro excluido com sucesso!');
+                                    end;
+                                  end);
+end;
+
+procedure TfrmReceitas.btnInserirClick(Sender: TObject);
+begin
+  inherited;
+  edtDescricao.Text     := EmptyStr;
+  edtIdTipoReceita.Text := EmptyStr;
+end;
+
+procedure TfrmReceitas.btnSalvarClick(Sender: TObject);
+begin
+  TClassRtti<TTipoReceitas>.getClassDoForm(Layout1,TipoReceita);
+  Controller.Tela(ttTipoReceitas).Salvar(FState,TipoReceita, FChave);
+  BuscarDados;
+  inherited;
+end;
+
+procedure TfrmReceitas.btnVoltarClick(Sender: TObject);
+begin
+  inherited;
+  HabilitarBotoes(True);
+end;
+
+procedure TfrmReceitas.BuscarDados;
+begin
+  inherited;
+  if FDConsulta.Active then
+  begin
+    FDConsulta.EmptyDataSet;
   end;
+  FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(TipoReceita),True);
 end;
 
 procedure TfrmReceitas.FormCreate(Sender: TObject);
 begin
-  Tela := ttTipoReceitas;
-  Controller := TControllerCartoes<TTipoReceitas>.New;
+  Tela        := ttTipoReceitas;
+  Controller  := TController<TTipoReceitas>.New;
+  TipoReceita := TTipoReceitas.Create;
   inherited;
   BuscarDados;
   TabControl1.ActiveTab := TabItem1;
+end;
+
+procedure TfrmReceitas.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  FreeAndNil(TipoReceita);
 end;
 
 procedure TfrmReceitas.HabilitarBotoes(pHabilitar: Boolean);
@@ -103,15 +164,15 @@ begin
   case pHabilitar of
     True:
     begin
-      edtIdCartoes.Enabled := True;
-      edtDescricao.Enabled := True;
-      btnSalvar.Visible    := True;
+      edtIdTipoReceita.Enabled := True;
+      edtDescricao.Enabled     := True;
+      btnSalvar.Visible        := True;
     end;
     False:
     begin
-      edtIdCartoes.Enabled := False;
-      edtDescricao.Enabled := False;
-      btnSalvar.Visible    := False;
+      edtIdTipoReceita.Enabled := False;
+      edtDescricao.Enabled     := False;
+      btnSalvar.Visible        := False;
     end;
   end;
 end;

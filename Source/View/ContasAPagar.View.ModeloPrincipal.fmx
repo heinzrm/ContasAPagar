@@ -91,7 +91,6 @@ object frmModelo: TfrmModelo
               StyleLookup = 'trashtoolbutton'
               TabOrder = 2
               Text = 'btnExcluir'
-              OnClick = btnExcluirClick
             end
           end
         end

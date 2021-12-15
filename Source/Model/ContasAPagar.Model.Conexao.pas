@@ -20,7 +20,7 @@ uses
   FireDAC.DApt,
   ContasAPagar.Diversos.Conexao,
   FireDAC.Stan.Param,
-  System.Generics.Collections, FireDAC.Comp.DataSet;
+  FireDAC.Comp.DataSet;
 
 type
   TConexao = class

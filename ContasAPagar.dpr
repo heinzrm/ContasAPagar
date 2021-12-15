@@ -21,14 +21,15 @@ uses
   ContasAPagar.Factory.Interfaces in 'Source\Factory\ContasAPagar.Factory.Interfaces.pas',
   ContasAPagar.Model.Conexao in 'Source\Model\ContasAPagar.Model.Conexao.pas',
   ContasAPagar.Model.Cartoes in 'Source\Model\ContasAPagar.Model.Cartoes.pas',
-  ContasAPagar.Dao.Cartoes in 'Source\Dao\ContasAPagar.Dao.Cartoes.pas',
-  ContasAPagar.Interfaces.Dao.Cartoes in 'Source\Interfaces\ContasAPagar.Interfaces.Dao.Cartoes.pas',
+  ContasAPagar.Dao.Generico in 'Source\Dao\ContasAPagar.Dao.Generico.pas',
+  ContasAPagar.Interfaces.Dao.Generico in 'Source\Interfaces\ContasAPagar.Interfaces.Dao.Generico.pas',
   ContasAPagar.Diversos.Conexao in 'Source\Diversos\ContasAPagar.Diversos.Conexao.pas',
   ContasAPagar.View.TipoReceitas in 'Source\View\ContasAPagar.View.TipoReceitas.pas' {frmReceitas},
   ContasAPagar.Model.Entity.TipoReceita in 'Source\Model\Entity\ContasAPagar.Model.Entity.TipoReceita.pas',
   ContasAPagar.Model.Receitas in 'Source\Model\ContasAPagar.Model.Receitas.pas',
   ContasAPagar.Model.Entity.TipoDespesa in 'Source\Model\Entity\ContasAPagar.Model.Entity.TipoDespesa.pas',
-  ContasAPagar.View.TipoDespesas in 'Source\View\ContasAPagar.View.TipoDespesas.pas' {frmModelo1};
+  ContasAPagar.View.TipoDespesas in 'Source\View\ContasAPagar.View.TipoDespesas.pas' {frmTipoDespesas},
+  ContasAPagar.Model.Despesas in 'Source\Model\ContasAPagar.Model.Despesas.pas';
 
 {$R *.res}
 
@@ -36,6 +37,5 @@ begin
   ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmModelo1, frmModelo1);
   Application.Run;
 end.

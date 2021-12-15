@@ -3,7 +3,7 @@ unit ContasAPagar.Diversos.CustomAttributes;
 interface
 
 uses
-  Rtti, System.TypInfo;
+  Rtti;
 
 type
   TEntidade = class(TObject)

@@ -1,85 +1,94 @@
 ﻿[ActionList1]
-Coordinates=87,283,70,33
+Coordinates=87,283,78,36
 
 [ListView1]
-Coordinates=10,10,89,141
+Coordinates=10,10,107,168
 Visible=True
 
 [Layout1]
-Coordinates=468,254,53,33
+Coordinates=468,254,60,36
 
 [btnSalvar]
-Coordinates=285,177,61,51
+Coordinates=285,177,69,58
 
 [lytMain]
-Coordinates=293,254,49,33
+Coordinates=293,254,56,36
 
 [TabItem1]
-Coordinates=10,254,59,33
+Coordinates=10,254,69,36
 
 [btnExcluir]
-Coordinates=372,177,64,51
+Coordinates=372,177,71,58
 
 [lblDesc]
-Coordinates=462,177,50,51
+Coordinates=462,177,57,58
 
 [btnVoltar]
-Coordinates=200,177,59,51
+Coordinates=200,177,66,58
 
 [NextTabAction1]
-Coordinates=363,111,92,33
+Coordinates=363,111,106,36
 
 [btnEditar]
-Coordinates=297,10,59,51
+Coordinates=297,10,66,58
 
 [Layout2]
-Coordinates=95,313,53,33
+Coordinates=95,313,60,36
 
 [lytPage1Top]
-Coordinates=192,254,75,33
+Coordinates=192,254,87,36
 
 [ImageList1]
-Coordinates=363,276,68,33
+Coordinates=363,276,77,36
 
 [PreviousTabAction1]
-Coordinates=507,1,113,33
+Coordinates=507,1,130,36
 
 [LayoutMain]
-Coordinates=95,254,71,33
+Coordinates=95,254,81,36
 
 [TabControl1]
-Coordinates=368,254,74,33
+Coordinates=368,254,85,36
 Visible=True
 
 [edtDescricao]
-Coordinates=382,10,79,51
+Coordinates=382,10,90,58
 
 [edtIdCartoes]
-Coordinates=97,177,77,51
+Coordinates=97,177,88,58
 
 [btnInserir]
-Coordinates=10,177,61,51
+Coordinates=10,177,69,58
 
 [TabItem2]
-Coordinates=10,313,59,33
+Coordinates=10,313,69,36
 
 []
 Coordinates=270,80,61,51
 Visible=False
 
 [BindingsList1]
-Coordinates=136,109,82,33
+Coordinates=136,109,91,36
 
 [FDConsulta]
-Coordinates=140,10,72,33
+Coordinates=140,10,82,36
 Visible=False
 
 [FDConsultaDescricao]
-Coordinates=658,1,121,33
+Coordinates=658,1,140,36
 
 [BindSourceDB1]
-Coordinates=179,28,92,105
+Coordinates=179,28,106,124
 
 [FDConsultaIdCartoes]
-Coordinates=493,80,119,33
+Coordinates=493,80,138,36
+
+[lytMensagem]
+Coordinates=264,293,91,36
+
+[Rectangle1]
+Coordinates=175,293,80,36
+
+[lblMensagem]
+Coordinates=106,197,91,58
 

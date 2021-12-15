@@ -1,9 +1,9 @@
-unit ContasAPagar.Model.Receitas;
+unit ContasAPagar.Model.Despesas;
 
 interface
 
 uses
-  ContasAPagar.Model.Entity.TipoReceita,
+  ContasAPagar.Model.Entity.TipoDespesa,
   ContasAPagar.Interfaces.Model.Crud,
   ContasAPagar.Model.Conexao,
   Data.DB,
@@ -12,9 +12,9 @@ uses
   ContasAPagar.Dao.Generico;
 
 type
-  TModelReceitas<T>= class(TInterfacedObject,ICrud<T>)
+  TModelDespesas<T>= class(TInterfacedObject,ICrud<T>)
   private
-    FDaoGenerico : TDaoGenerico<TTipoReceitas>;
+    FDaoGenerico : TDaoGenerico<TTipoDespesas>;
   public
     Class function New: ICrud<T>;
     constructor Create;
@@ -29,39 +29,37 @@ implementation
 uses
   System.SysUtils;
 
-{ TCartoes }
-
 { TModelReceitas<T> }
 
-constructor TModelReceitas<T>.Create;
+constructor TModelDespesas<T>.Create;
 begin
   inherited Create;
 
-  FDaoGenerico := TDaoGenerico<TTipoReceitas>.Create('TipoReceitas');
+  FDaoGenerico := TDaoGenerico<TTipoDespesas>.Create('TipoDespesas');
 end;
 
-destructor TModelReceitas<T>.Destroy;
+destructor TModelDespesas<T>.Destroy;
 begin
   FreeAndNil(FDaoGenerico);
   inherited;
 end;
 
-procedure TModelReceitas<T>.Excluir(pObject: TObject; pChave: string);
+procedure TModelDespesas<T>.Excluir(pObject: TObject; pChave: string);
 begin
   FDaoGenerico.Delete(pObject,pChave)
 end;
 
-class function TModelReceitas<T>.New: ICrud<T>;
+class function TModelDespesas<T>.New: ICrud<T>;
 begin
   Result := Self.Create;
 end;
 
-function TModelReceitas<T>.Pesquisar(pObject: TObject): IFDDataSetReference;
+function TModelDespesas<T>.Pesquisar(pObject: TObject): IFDDataSetReference;
 begin
   Result:= FDaoGenerico.Select(pObject);
 end;
 
-procedure TModelReceitas<T>.Salvar(pState: TDataSetState; pObject: TObject; pChave: string);
+procedure TModelDespesas<T>.Salvar(pState: TDataSetState; pObject: TObject; pChave: string);
 begin
   case pState of
     dsEdit   : FDaoGenerico.Update(pObject, pChave);

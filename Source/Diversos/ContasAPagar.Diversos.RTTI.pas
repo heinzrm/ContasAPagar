@@ -5,11 +5,8 @@ interface
 uses
   ContasAPagar.Diversos.CustomAttributes,
   Data.DB,
-  FMX.Dialogs,
   FMX.Edit,
-  FMX.Forms,
   FMX.Layouts,
-  FMX.ListBox,
   FMX.StdCtrls,
   Math,
   System.Classes,
@@ -19,19 +16,20 @@ uses
   System.Generics.Collections;
 
 type
-  TClassRtti = class
+  TClassRtti<T> = class
   private
     class function getTextFromComponente(componente: TComponent):string;
-    class function MontarColunas<T>(pObjet: T): String;
-    class function MontarColunasUpDate<T>(pObjet: T): String;
-    class function MontarValoresInsert<T>(pObjet: T; pLstSql: TStringBuilder):string;
-    class function MontarWhere<T>(pObjet: T): String;
+    class function MontarColunas(pObjet: TObject): String;
+    class function MontarColunasUpDate(pObjet: TObject): String;
+    class function MontarValoresInsert(pObjet: TObject; pLstSql: TStringBuilder): string;
+    class function MontarWhere(pObjet: TObject): String;
   public
     class procedure getClassDoForm(Formulario: Tlayout; classe: TObject);
     class procedure AlimentaDataSet(DataSet:TDataSet;Classe:TObject);
-    class function MontarInsert<T>(pObjet: T; pNomeTabela: string): string;
-    class function MontarSelect<T>(pObjet: T; pNomeTabela: string): string;
-    class function MontarUpdate<T>(pObjet: T; pNomeTabela: string; pChave: string): string;
+    class function MontarInsert(pObjet: TObject; pNomeTabela: string): string;
+    class function MontarSelect(pObjet: TObject; pNomeTabela: string): string;
+    class function MontarUpdate(pObjet: TObject; pNomeTabela: string; pChave: string): string;
+    class function BuscaChavePrimaria(pObject: TObject): string;
   end;
 
 implementation
@@ -42,7 +40,7 @@ uses
 
 { TClassRtti }
 
-class procedure TClassRtti.AlimentaDataSet(DataSet: TDataSet; Classe: TObject);
+class procedure TClassRtti<T>.AlimentaDataSet(DataSet: TDataSet; Classe: TObject);
 var
   rtCtx      : TRttiContext;
   rtType     : TRttiType;
@@ -73,7 +71,35 @@ begin
   end;
 end;
 
-class procedure TClassRtti.getClassDoForm(Formulario: Tlayout; classe: TObject);
+class function TClassRtti<T>.BuscaChavePrimaria(pObject: TObject): string;
+var
+  rtCtx      : TRttiContext;
+  rtType     : TRttiType;
+  rtProp     : TRttiProperty;
+  rtAtrib    : TCustomAttribute;
+  NomeCampo  : string;
+begin
+  rtCtx := TRttiContext.Create;
+  try
+
+    rtType := rtCtx.GetType(pObject.ClassType);
+    for rtProp in rtType.GetProperties do
+    begin
+      for rtAtrib in rtProp.GetAttributes do
+      begin
+        if rtAtrib is APK then
+        begin
+          Result := (rtAtrib as APK).ChavePrimaria;
+          Exit;
+        end;
+      end;
+    end;
+  finally
+    rtCtx.Free;
+  end;
+end;
+
+class procedure TClassRtti<T>.getClassDoForm(Formulario: Tlayout; classe: TObject);
 var
   rtCtx      : TRttiContext;
   rtType     : TRttiType;
@@ -116,7 +142,7 @@ begin
   end;
 end;
 
-class function TClassRtti.getTextFromComponente(componente: TComponent): string;
+class function TClassRtti<T>.getTextFromComponente(componente: TComponent): string;
 begin
   if componente is TEdit then
   begin
@@ -135,7 +161,7 @@ begin
   end;
 end;
 
-class function TClassRtti.MontarColunas<T>(pObjet: T): String;
+class function TClassRtti<T>.MontarColunas(pObjet: TObject): String;
 var
   rtCtx      : TRttiContext;
   rtType     : TRttiType;
@@ -152,7 +178,7 @@ begin
   try
     pLista:= TStringBuilder.Create;
 
-    rtType := rtCtx.GetType(TypeInfo(T));
+    rtType := rtCtx.GetType(pObjet.ClassType);
     for rtProp in rtType.GetProperties do
     begin
       for rtAtrib in rtProp.GetAttributes do
@@ -173,7 +199,7 @@ begin
   end;
 end;
 
-class function TClassRtti.MontarColunasUpDate<T>(pObjet: T): String;
+class function TClassRtti<T>.MontarColunasUpDate(pObjet: TObject): String;
 var
   rtCtx      : TRttiContext;
   rtType     : TRttiType;
@@ -191,7 +217,7 @@ begin
   try
     pLista:= TStringBuilder.Create;
 
-    rtType := rtCtx.GetType(TypeInfo(T));
+    rtType := rtCtx.GetType(pObjet.ClassType);
     for rtProp in rtType.GetProperties do
     begin
       for rtAtrib in rtProp.GetAttributes do
@@ -207,8 +233,8 @@ begin
           if not (rtAtrib as ACampo).SomenteLeitura and (NomeCampo <> sNomeChavePrimaria) then
           begin
             pLista.AppendLine(IfThen((iContador = 0),
-                              Format('%s = %s',[NomeCampo, QuotedStr(rtProp.GetValue(TypeInfo(T)).ToString)]),
-                              Format(',%s = %s',[NomeCampo,QuotedStr(rtProp.GetValue(TypeInfo(T)).ToString)])));
+                              Format('%s = %s',[NomeCampo, QuotedStr(rtProp.GetValue(pObjet).ToString)]),
+                              Format(',%s = %s',[NomeCampo,QuotedStr(rtProp.GetValue(pObjet).ToString)])));
             Inc(iContador);
           end;
         end;
@@ -222,7 +248,7 @@ begin
   end;
 end;
 
-class function TClassRtti.MontarInsert<T>(pObjet: T; pNomeTabela: string): string;
+class function TClassRtti<T>.MontarInsert(pObjet: TObject; pNomeTabela: string): string;
 var
   LstSql : TStringBuilder;
 begin
@@ -242,7 +268,7 @@ begin
 end;
 
 
-class function TClassRtti.MontarSelect<T>(pObjet: T; pNomeTabela: string): string;
+class function TClassRtti<T>.MontarSelect(pObjet: TObject; pNomeTabela: string): string;
 var
   LstSql : TStringBuilder;
 begin
@@ -257,7 +283,7 @@ begin
   end;
 end;
 
-class function TClassRtti.MontarUpdate<T>(pObjet: T; pNomeTabela: string; pChave: string): string;
+class function TClassRtti<T>.MontarUpdate(pObjet: TObject; pNomeTabela: string; pChave: string): string;
 var
   LstSql : TStringBuilder;
 begin
@@ -272,7 +298,7 @@ begin
   end;
 end;
 
-class function TClassRtti.MontarValoresInsert<T>(pObjet: T; pLstSql: TStringBuilder): string;
+class function TClassRtti<T>.MontarValoresInsert(pObjet: TObject; pLstSql: TStringBuilder): string;
 var
   rtCtx      : TRttiContext;
   rtType     : TRttiType;
@@ -289,24 +315,24 @@ begin
   try
     pLista:= TStringBuilder.Create;
 
-    rtType := rtCtx.GetType(TypeInfo(T));
+    rtType := rtCtx.GetType(pObjet.ClassType);
     for rtProp in rtType.GetProperties do
     begin
       for rtAtrib in rtProp.GetAttributes do
       begin
         if (rtAtrib is APK) then
         begin
-          rtProp.SetValue(TypeInfo(T), TGuid.NewGuid.ToString);
+          rtProp.SetValue(pObjet, TGuid.NewGuid.ToString);
         end;
         if (rtAtrib is ACampo) then
         begin
           NomeCampo := (rtAtrib as ACampo).NomeDB;
           if not (rtAtrib as ACampo).SomenteLeitura then
           begin
-            case rtProp.GetValue(rtType).Kind of
-               tkUString: pLista.AppendLine(ifthen((iContador = 0),QuotedStr(rtProp.GetValue(rtType).toString),Format(',%s',[QuotedStr(rtProp.GetValue(rtType).toString)])));
-               tkInteger: pLista.AppendLine(ifthen((iContador = 0),rtProp.GetValue(rtType).toString,Format(',%s',[rtProp.GetValue(rtType).toString])));
-               tkFloat:   pLista.AppendLine(ifthen((iContador = 0),QuotedStr(rtProp.GetValue(rtType).toString),Format(',%s',[QuotedStr(rtProp.GetValue(rtType).toString)])));
+            case rtProp.GetValue(pObjet).Kind of
+               tkUString: pLista.AppendLine(ifthen((iContador = 0),QuotedStr(rtProp.GetValue(pObjet).toString),Format(',%s',[QuotedStr(rtProp.GetValue(pObjet).toString)])));
+               tkInteger: pLista.AppendLine(ifthen((iContador = 0),rtProp.GetValue(pObjet).toString,Format(',%s',[rtProp.GetValue(pObjet).toString])));
+               tkFloat:   pLista.AppendLine(ifthen((iContador = 0),QuotedStr(rtProp.GetValue(pObjet).toString),Format(',%s',[QuotedStr(rtProp.GetValue(pObjet).toString)])));
             end;
           end;
         end;
@@ -320,7 +346,7 @@ begin
   end;
 end;
 
-class function TClassRtti.MontarWhere<T>(pObjet: T): String;
+class function TClassRtti<T>.MontarWhere(pObjet: TObject): String;
 var
   rtCtx      : TRttiContext;
   rtType     : TRttiType;
@@ -338,7 +364,7 @@ begin
   try
     pLista:= TStringBuilder.Create;
 
-    rtType := rtCtx.GetType(TypeInfo(T));
+    rtType := rtCtx.GetType(pObjet.ClassType);
     for rtProp in rtType.GetProperties do
     begin
       for rtAtrib in rtProp.GetAttributes do
@@ -348,7 +374,7 @@ begin
           NomeCampo := (rtAtrib as ACampo).NomeDB;
           if (not (rtAtrib as ACampo).SomenteLeitura) and ((rtAtrib as ACampo).CondicaoWhere) then
           begin
-            Value := rtProp.GetValue(rtType).ToString;
+            Value := rtProp.GetValue(pObjet).ToString;
             pLista.AppendLine(ifthen((iContador = 0),
                                       Format('%s = %s',[NomeCampo,QuotedStr(Value)]),
                                       Format('and %s = %s',[NomeCampo,QuotedStr(Value)])));

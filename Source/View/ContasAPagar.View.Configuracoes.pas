@@ -57,7 +57,8 @@ var
 implementation
 
 uses
-  ContasAPagar.Diversos.LoadLayout, ContasAPagar.View.Cartoes, ContasAPagar.View.TipoReceitas;
+  ContasAPagar.Diversos.LoadLayout, ContasAPagar.View.Cartoes, ContasAPagar.View.TipoReceitas,
+  ContasAPagar.View.TipoDespesas;
 
 {$R *.fmx}
 
@@ -76,7 +77,7 @@ end;
 
 procedure TfrmConfiguracoes.ltbDespesasClick(Sender: TObject);
 begin
-//  AbrirFormulario(Tfrmdepesas)
+  AbrirFormulario(TfrmTipoDespesas)
 end;
 
 procedure TfrmConfiguracoes.ltbEntradaClick(Sender: TObject);

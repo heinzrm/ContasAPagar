@@ -5,8 +5,7 @@ interface
 uses
   Data.DB,
   ContasAPagar.Diversos.Enumerados,
-  ContasAPagar.Interfaces.Model.Crud,
-  system.Generics.Collections;
+  ContasAPagar.Interfaces.Model.Crud;
 
 type
   IControllerCartoes<T> = interface
