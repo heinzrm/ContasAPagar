@@ -300,6 +300,13 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Source\Model\ContasAPagar.Model.Despesas.pas"/>
+        <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.Despesa.pas"/>
+        <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.Categoria.pas"/>
+        <DCCReference Include="Source\View\ContasAPagar.View.Categoria.pas">
+            <Form>frmCategoria</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Source\Model\ContasAPagar.Model.Categoria.pas"/>
         <None Include="ModelSupport_ContasAPagar\default.txaPackage"/>
         <None Include="ModelSupport_ContasAPagar\default.txvpck"/>
         <None Include="ModelSupport_ContasAPagar\ContasAPagar\default.txvpck"/>

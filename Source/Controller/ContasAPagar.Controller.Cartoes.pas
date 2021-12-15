@@ -37,6 +37,7 @@ begin
     ttCartoes     : Result := TFactory<T>.New.FactoryCartoes;
     ttTipoReceitas: Result := TFactory<T>.New.FactoryReceitas;
     ttTipoDespesas: Result := TFactory<T>.New.FactoryDespesas;
+    ttCategoria   : Result := TFactory<T>.New.FactoryCategoria;
   end;
 end;
 

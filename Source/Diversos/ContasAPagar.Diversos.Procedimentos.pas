@@ -12,14 +12,24 @@ type
   end;
 implementation
 
+uses
+  System.Classes;
+
 { TProcedures }
 
 class procedure TProcedimentos.SetarFoco(pComponent: TControl);
 begin
-  if pComponent.Canfocus then
-  begin
-    pComponent.SetFocus;
-  end;
+  TThread.CreateAnonymousThread(
+    procedure
+    begin
+      TThread.Synchronize( nil,
+         procedure
+         begin
+           pComponent.SetFocus;
+         end
+      );
+    end
+  ).Start;
 end;
 
 end.

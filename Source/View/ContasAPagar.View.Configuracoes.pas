@@ -29,21 +29,22 @@ type
     Rectangle2: TRectangle;
     ListBox1: TListBox;
     ltbCartoes: TListBoxItem;
-    Image2: TImage;
+    imgCartoes: TImage;
     lblCartoes: TLabel;
     ltbEntrada: TListBoxItem;
-    Image3: TImage;
+    imgReceitas: TImage;
     lblReceitas: TLabel;
     ltbDespesas: TListBoxItem;
-    Image4: TImage;
+    imgDespesas: TImage;
     lblDespesas: TLabel;
-    ltbConfigurações: TListBoxItem;
-    Image5: TImage;
-    lblConfiguracoes: TLabel;
     lytMain: TLayout;
+    ltbCategoria: TListBoxItem;
+    imgCategoria: TImage;
+    lblCategoria: TLabel;
     procedure ltbCartoesClick(Sender: TObject);
     procedure ltbDespesasClick(Sender: TObject);
     procedure ltbEntradaClick(Sender: TObject);
+    procedure ltbCategoriaClick(Sender: TObject);
   private
     { Private declarations }
     procedure AbrirFormulario(pFormulario: TComponentClass);
@@ -58,7 +59,7 @@ implementation
 
 uses
   ContasAPagar.Diversos.LoadLayout, ContasAPagar.View.Cartoes, ContasAPagar.View.TipoReceitas,
-  ContasAPagar.View.TipoDespesas;
+  ContasAPagar.View.TipoDespesas, ContasAPagar.View.Categoria;
 
 {$R *.fmx}
 
@@ -73,6 +74,11 @@ end;
 procedure TfrmConfiguracoes.ltbCartoesClick(Sender: TObject);
 begin
   AbrirFormulario(TFrmCartoes);
+end;
+
+procedure TfrmConfiguracoes.ltbCategoriaClick(Sender: TObject);
+begin
+  AbrirFormulario(TfrmCategoria);
 end;
 
 procedure TfrmConfiguracoes.ltbDespesasClick(Sender: TObject);

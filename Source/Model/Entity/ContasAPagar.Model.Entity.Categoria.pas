@@ -2,16 +2,28 @@ unit ContasAPagar.Model.Entity.Categoria;
 
 interface
 
+uses
+
+  Data.DB,
+  ContasAPagar.Diversos.CustomAttributes,
+  SysUtils;
+
 type
+  [ATabela('Categoria')]
   TCategoria = class
   private
-    FID: Integer;
+    FIDCategoria: string;
     FDescricao: String;
   public
+    [APK('IdCategoria')]
+    [ACampo('IdCategoria',False,True) , ANotNull, AFormato(4)]
+    property IdCategoria: string read FIDCategoria write FIDCategoria;
+    [ACampo('DESCRICAO'), AFormato(100)]
     property Descricao: String read FDescricao write FDescricao;
-    property ID: Integer read FID write FID;
   end;
 
 implementation
+
+{ TCartoes }
 
 end.

@@ -1,18 +1,20 @@
-inherited frmCartoes: TfrmCartoes
-  Caption = 'frmModelo1'
+inherited frmCategoria: TfrmCategoria
+  Caption = ''
   OnDestroy = FormDestroy
   DesignerMasterStyle = 0
   inherited LayoutMain: TLayout
     inherited lytMain: TLayout
       inherited TabControl1: TTabControl
+        TabIndex = 1
         Sizes = (
           640s
           430s
           640s
           430s)
         inherited TabItem1: TTabItem
-          ExplicitSize.cx = 69.000000000000000000
-          ExplicitSize.cy = 26.000000000000000000
+          IsSelected = False
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
           inherited lytPage1Top: TLayout
             inherited btnExcluir: TButton
               OnClick = btnExcluirClick
@@ -29,15 +31,15 @@ inherited frmCartoes: TfrmCartoes
             Size.PlatformDefault = False
             TabOrder = 1
             ItemAppearanceObjects.ItemObjects.Accessory.Visible = False
-            OnDblClick = ListView1DblClick
             CanSwipeDelete = False
             DeleteButtonText = ''
             SearchVisible = True
           end
         end
         inherited TabItem2: TTabItem
-          ExplicitSize.cx = 69.000000000000000000
-          ExplicitSize.cy = 26.000000000000000000
+          IsSelected = True
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
           object Layout1: TLayout
             Align = Top
             Position.Y = 50.000000000000000000
@@ -65,7 +67,7 @@ inherited frmCartoes: TfrmCartoes
               Text = 'Descri'#231#227'o:'
               TabOrder = 0
             end
-            object edtIdCartoes: TEdit
+            object edtIdCategoria: TEdit
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               StyleLookup = 'transparentedit'
               TabOrder = 2
@@ -82,14 +84,19 @@ inherited frmCartoes: TfrmCartoes
     end
   end
   inherited FDConsulta: TFDMemTable
-    StoreDefs = True
-    object FDConsultaIdCartoes: TStringField
-      FieldName = 'IdCartoes'
+    object FDConsultaIdCategoria: TStringField
+      FieldName = 'IdCategoria'
       Size = 50
     end
     object FDConsultaDescricao: TStringField
       FieldName = 'Descricao'
     end
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = FDConsulta
+    ScopeMappings = <>
+    Left = 304
+    Top = 224
   end
   object BindingsList1: TBindingsList
     Methods = <>
@@ -105,11 +112,5 @@ inherited frmCartoes: TfrmCartoes
       FillHeaderExpressions = <>
       FillBreakGroups = <>
     end
-  end
-  object BindSourceDB1: TBindSourceDB
-    DataSet = FDConsulta
-    ScopeMappings = <>
-    Left = 576
-    Top = 104
   end
 end

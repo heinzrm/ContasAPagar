@@ -18,9 +18,13 @@ type
     function FactoryCartoes: ICrud<T>;
     function FactoryReceitas: ICrud<T>;
     function FactoryDespesas: ICrud<T>;
-    end;
+    function FactoryCategoria: ICrud<T>;
+   end;
 
 implementation
+
+uses
+  ContasAPagar.Model.Categoria;
 
 { TFactory }
 
@@ -33,6 +37,11 @@ end;
 function TFactory<T>.FactoryCartoes: ICrud<T>;
 begin
   Result := TModelCartoes<T>.New;
+end;
+
+function TFactory<T>.FactoryCategoria: ICrud<T>;
+begin
+  Result := TModelCategoria<T>.New
 end;
 
 function TFactory<T>.FactoryDespesas: ICrud<T>;

@@ -11,6 +11,7 @@ type
     function FactoryCartoes:ICrud<T>;
     function FactoryReceitas:ICrud<T>;
     function FactoryDespesas:ICrud<T>;
+    function FactoryCategoria:ICrud<T>;
   end;
 
 implementation

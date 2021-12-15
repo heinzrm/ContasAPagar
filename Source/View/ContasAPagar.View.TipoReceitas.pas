@@ -79,7 +79,8 @@ var
 implementation
 
 uses
-  ContasAPagar.Diversos.Enumerados;
+  ContasAPagar.Diversos.Enumerados,
+  ContasAPagar.Diversos.Procedimentos;
 
 {$R *.fmx}
 
@@ -90,6 +91,7 @@ begin
   inherited;
   edtDescricao.Text     := FDConsulta.FieldByName('DESCRICAO').AsString;
   edtIdTipoReceita.Text := FDConsulta.FieldByName('IdTipoReceita').AsString;
+  TProcedimentos.SetarFoco(edtDescricao);
 end;
 
 procedure TfrmReceitas.btnExcluirClick(Sender: TObject);
@@ -117,6 +119,7 @@ begin
   inherited;
   edtDescricao.Text     := EmptyStr;
   edtIdTipoReceita.Text := EmptyStr;
+  TProcedimentos.SetarFoco(edtDescricao);
 end;
 
 procedure TfrmReceitas.btnSalvarClick(Sender: TObject);
@@ -141,6 +144,7 @@ begin
     FDConsulta.EmptyDataSet;
   end;
   FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(TipoReceita),True);
+  FDConsulta.IndexFieldNames := 'Descricao';
 end;
 
 procedure TfrmReceitas.FormCreate(Sender: TObject);

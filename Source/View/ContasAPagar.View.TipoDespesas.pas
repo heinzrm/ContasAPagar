@@ -70,7 +70,9 @@ var
 implementation
 
 uses
-  ContasAPagar.Diversos.Enumerados, ContasAPagar.Controller.Cartoes;
+  ContasAPagar.Diversos.Enumerados,
+  ContasAPagar.Controller.Cartoes,
+  ContasAPagar.Diversos.Procedimentos;
 
 {$R *.fmx}
 
@@ -81,6 +83,7 @@ begin
   inherited;
   edtDescricao.Text      := FDConsulta.FieldByName('DESCRICAO').AsString;
   edtIdTipoDespesas.Text := FDConsulta.FieldByName('IdTipoDespesas').AsString;
+  TProcedimentos.SetarFoco(edtDescricao);
 end;
 
 procedure TfrmTipoDespesas.btnExcluirClick(Sender: TObject);
@@ -108,6 +111,7 @@ begin
   inherited;
   edtDescricao.Text      := EmptyStr;
   edtIdTipoDespesas.Text := EmptyStr;
+  TProcedimentos.SetarFoco(edtDescricao);
 end;
 
 procedure TfrmTipoDespesas.btnSalvarClick(Sender: TObject);
@@ -132,6 +136,7 @@ begin
     FDConsulta.EmptyDataSet;
   end;
   FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(TipoDespesa),True);
+  FDConsulta.IndexFieldNames := 'Descricao';
 end;
 
 procedure TfrmTipoDespesas.FormCreate(Sender: TObject);

@@ -1,3 +1,6 @@
 ﻿[frmCartoes.FDConsulta]
 Visible=False
 
+[frmCategoria.FDConsulta]
+Visible=False
+

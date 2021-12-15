@@ -1,18 +1,12 @@
-unit ContasAPagar.View.Cartoes;
+unit ContasAPagar.View.Categoria;
 
 interface
 
 uses
-  ContasAPagar.Diversos.Enumerados,
-  ContasAPagar.Diversos.RTTI,
-  ContasAPagar.Interfaces.Controller.Cartoes,
-  ContasAPagar.Model.Entity.Cartoes,
   ContasAPagar.View.ModeloPrincipal,
   Data.Bind.Components,
   Data.Bind.DBScope,
   Data.Bind.EngExt,
-  Data.Bind.GenData,
-  Data.Bind.ObjectScope,
   Data.DB,
   FireDAC.Comp.Client,
   FireDAC.Comp.DataSet,
@@ -23,7 +17,7 @@ uses
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
   FireDAC.Stan.Param,
-  FMX.ActnList, System.ImageList,
+  FMX.ActnList,
   Fmx.Bind.DBEngExt,
   Fmx.Bind.Editors,
   FMX.Controls,
@@ -34,7 +28,6 @@ uses
   FMX.Graphics,
   FMX.ImgList,
   FMX.Layouts,
-  FMX.ListBox,
   FMX.ListView,
   FMX.ListView.Adapters.Base,
   FMX.ListView.Appearances,
@@ -46,62 +39,66 @@ uses
   System.Actions,
   System.Bindings.Outputs,
   System.Classes,
-  system.Generics.Collections,
+  System.ImageList,
   System.Rtti,
   System.SysUtils,
   System.Types,
   System.UITypes,
-  System.Variants;
+  System.Variants,
+  ContasAPagar.Model.Entity.Categoria,
+  ContasAPagar.Diversos.Procedimentos,
+  ContasAPagar.Controller.Cartoes,
+  ContasAPagar.Interfaces.Controller.Cartoes;
 
 type
-  TfrmCartoes = class(TfrmModelo)
+  TfrmCategoria = class(TfrmModelo)
     ListView1: TListView;
     Layout1: TLayout;
     edtDescricao: TEdit;
     lblDesc: TLabel;
-    edtIdCartoes: TEdit;
-    BindingsList1: TBindingsList;
+    edtIdCategoria: TEdit;
+    FDConsultaIdCategoria: TStringField;
     FDConsultaDescricao: TStringField;
-    LinkListControlToField1: TLinkListControlToField;
     BindSourceDB1: TBindSourceDB;
-    FDConsultaIdCartoes: TStringField;
+    BindingsList1: TBindingsList;
+    LinkListControlToField1: TLinkListControlToField;
     procedure FormCreate(Sender: TObject);
-    procedure btnSalvarClick(Sender: TObject);
-    procedure btnEditarClick(Sender: TObject);
-    procedure btnExcluirClick(Sender: TObject);
-    procedure btnInserirClick(Sender: TObject);
-    procedure ListView1DblClick(Sender: TObject);
-    procedure btnVoltarClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnInserirClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
   private
     { Private declarations }
-    Controller : IControllerCartoes<TCartoes>;
-    Cartoes    : TCartoes;
+    Controller : IControllerCartoes<TCategoria>;
+    Categoria    : TCategoria;
     procedure HabilitarBotoes(pHabilitar: Boolean);
   public
     { Public declarations }
     procedure BuscarDados; override;
   end;
+
 var
-  frmCartoes: TfrmCartoes;
+  frmCategoria: TfrmCategoria;
 
 implementation
 
+uses
+  ContasAPagar.Diversos.Enumerados, FMX.DialogService,
+  ContasAPagar.Diversos.RTTI;
+
 {$R *.fmx}
 
-uses
-  ContasAPagar.Diversos.Procedimentos,
-  ContasAPagar.Controller.Cartoes, FMX.DialogService;
-
-procedure TfrmCartoes.btnEditarClick(Sender: TObject);
+procedure TfrmCategoria.btnEditarClick(Sender: TObject);
 begin
   inherited;
-  edtDescricao.Text := FDConsulta.FieldByName('DESCRICAO').AsString;
-  edtIdCartoes.Text := FDConsulta.FieldByName('IdCartoes').AsString;
+  edtDescricao.Text   := FDConsulta.FieldByName('DESCRICAO').AsString;
+  edtIdCategoria.Text := FDConsulta.FieldByName('IdCategoria').AsString;
   TProcedimentos.SetarFoco(edtDescricao);
 end;
 
-procedure TfrmCartoes.btnExcluirClick(Sender: TObject);
+procedure TfrmCategoria.btnExcluirClick(Sender: TObject);
 begin
   FChave := FDConsulta.FieldByName('IdCartoes').AsString;
   inherited;
@@ -114,87 +111,78 @@ begin
                                   begin
                                     if  AResult = mrYes then
                                     begin
-                                      Controller.Tela(ttCartoes).Excluir(Cartoes,FChave);
+                                      Controller.Tela(ttCategoria).Excluir(Categoria,FChave);
                                       BuscarDados;
                                       ExibirMensagem('Registro excluido com sucesso!');
                                     end;
                                   end);
 end;
 
-procedure TfrmCartoes.btnInserirClick(Sender: TObject);
+procedure TfrmCategoria.btnInserirClick(Sender: TObject);
 begin
   inherited;
-  edtDescricao.Text := EmptyStr;
-  edtIdCartoes.Text := EmptyStr;
+  edtDescricao.Text   := EmptyStr;
+  edtIdCategoria.Text := EmptyStr;
   TProcedimentos.SetarFoco(edtDescricao);
 end;
 
-procedure TfrmCartoes.btnSalvarClick(Sender: TObject);
+procedure TfrmCategoria.btnSalvarClick(Sender: TObject);
 begin
-  TClassRtti<TCartoes>.getClassDoForm(Layout1,Cartoes);
-  Controller.Tela(ttCartoes).Salvar(FState,Cartoes, FChave);
+  TClassRtti<TCategoria>.getClassDoForm(Layout1,Categoria);
+  Controller.Tela(ttCategoria).Salvar(FState,Categoria, FChave);
   BuscarDados;
   inherited;
 end;
 
-procedure TfrmCartoes.btnVoltarClick(Sender: TObject);
+procedure TfrmCategoria.btnVoltarClick(Sender: TObject);
 begin
   inherited;
-  HabilitarBotoes(True);
+  HabilitarBotoes(True)
 end;
 
-procedure TfrmCartoes.BuscarDados;
+procedure TfrmCategoria.BuscarDados;
 begin
   if FDConsulta.Active then
   begin
     FDConsulta.EmptyDataSet;
   end;
 
-  FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(Cartoes),False);
+  FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(Categoria),False);
   FDConsulta.IndexFieldNames := 'Descricao';
 end;
 
-procedure TfrmCartoes.FormCreate(Sender: TObject);
+procedure TfrmCategoria.FormCreate(Sender: TObject);
 begin
-  Tela    := ttCartoes;
-  Cartoes := TCartoes.Create;
+  Tela      := ttCategoria;
+  Categoria := TCategoria.Create;
   inherited;
-  Controller := TController<TCartoes>.New;
+  Controller := TController<TCategoria>.New;
   BuscarDados;
   TabControl1.ActiveTab := TabItem1;
 end;
 
-procedure TfrmCartoes.FormDestroy(Sender: TObject);
+procedure TfrmCategoria.FormDestroy(Sender: TObject);
 begin
   inherited;
-  FreeAndNil(Cartoes)
+  FreeAndNil(Categoria)
 end;
 
-procedure TfrmCartoes.HabilitarBotoes(pHabilitar: Boolean);
+procedure TfrmCategoria.HabilitarBotoes(pHabilitar: Boolean);
 begin
   case pHabilitar of
     True:
     begin
-      edtIdCartoes.Enabled := True;
-      edtDescricao.Enabled := True;
-      btnSalvar.Visible    := True;
+      edtIdCategoria.Enabled := True;
+      edtDescricao.Enabled   := True;
+      btnSalvar.Visible      := True;
     end;
     False:
     begin
-      edtIdCartoes.Enabled := False;
-      edtDescricao.Enabled := False;
-      btnSalvar.Visible    := False;
+      edtIdCategoria.Enabled := False;
+      edtDescricao.Enabled   := False;
+      btnSalvar.Visible      := False;
     end;
   end;
-end;
-
-procedure TfrmCartoes.ListView1DblClick(Sender: TObject);
-begin
-  inherited;
-  edtDescricao.Text := FDConsulta.FieldByName('DESCRICAO').AsString;
-  edtIdCartoes.Text := FDConsulta.FieldByName('IdCartoes').AsString;
-  HabilitarBotoes(False);
-  NextTabAction1.ExecuteTarget(Sender);
 end;
 
 end.

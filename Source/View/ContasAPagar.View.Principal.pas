@@ -3,7 +3,6 @@ unit ContasAPagar.View.Principal;
 interface
 
 uses
-  ContasAPagar.View.Cartoes,
   FMX.Controls,
   FMX.Controls.Presentation,
   FMX.Dialogs,
@@ -82,7 +81,7 @@ end;
 
 procedure TfrmPrincipal.ltbCartoesClick(Sender: TObject);
 begin
-  AbrirFormulario(TfrmCartoes)
+//  AbrirFormulario(TfrmCartoes)
 end;
 
 procedure TfrmPrincipal.ltbConfiguraçõesClick(Sender: TObject);
