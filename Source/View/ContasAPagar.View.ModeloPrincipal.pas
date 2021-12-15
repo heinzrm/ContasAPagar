@@ -34,8 +34,8 @@ uses
   System.ImageList,
   System.Types,
   System.UITypes,
-  System.Variants, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  ContasAPagar.Controller.Cartoes, ContasAPagar.Interfaces.Controller.Cartoes;
+  System.Variants,
+  ContasAPagar.Interfaces.Controller.Cartoes, FireDAC.Phys.Intf, FireDAC.DApt.Intf;
 
 type
   TfrmModelo = class(TForm)

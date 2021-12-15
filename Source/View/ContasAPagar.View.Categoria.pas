@@ -3,6 +3,10 @@ unit ContasAPagar.View.Categoria;
 interface
 
 uses
+  ContasAPagar.Controller.Cartoes,
+  ContasAPagar.Diversos.Procedimentos,
+  ContasAPagar.Interfaces.Controller.Cartoes,
+  ContasAPagar.Model.Entity.Categoria,
   ContasAPagar.View.ModeloPrincipal,
   Data.Bind.Components,
   Data.Bind.DBScope,
@@ -44,11 +48,7 @@ uses
   System.SysUtils,
   System.Types,
   System.UITypes,
-  System.Variants,
-  ContasAPagar.Model.Entity.Categoria,
-  ContasAPagar.Diversos.Procedimentos,
-  ContasAPagar.Controller.Cartoes,
-  ContasAPagar.Interfaces.Controller.Cartoes;
+  System.Variants;
 
 type
   TfrmCategoria = class(TfrmModelo)

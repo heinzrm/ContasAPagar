@@ -3,10 +3,7 @@ unit ContasAPagar.Model.Entity.Cartoes;
 interface
 
 uses
-
-  Data.DB,
-  ContasAPagar.Diversos.CustomAttributes,
-  SysUtils;
+  ContasAPagar.Diversos.CustomAttributes;
 
 type
   [ATabela('Cartoes')]
