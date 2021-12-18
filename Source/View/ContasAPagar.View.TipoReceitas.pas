@@ -153,6 +153,7 @@ begin
   end;
   FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(TipoReceita),True);
   FDConsulta.IndexFieldNames := 'Descricao';
+  FDConsulta.First;
 end;
 
 procedure TfrmReceitas.FormCreate(Sender: TObject);

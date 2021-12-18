@@ -153,6 +153,7 @@ begin
 
   FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(Cartoes),False);
   FDConsulta.IndexFieldNames := 'Descricao';
+  FDConsulta.First;
 end;
 
 procedure TfrmCartoes.FormCreate(Sender: TObject);

@@ -33,7 +33,6 @@ type
     btnMasterbuttom: TButton;
     Label1: TLabel;
     Layout2: TLayout;
-    procedure ltbCartoesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ltbDashBoardClick(Sender: TObject);
     procedure ltbEntradaClick(Sender: TObject);
@@ -55,10 +54,9 @@ implementation
 
 uses
   ContasAPagar.Diversos.LoadLayout,
-//  ContasAPagar.View.Entradas,
   ContasAPagar.View.DashBoard,
-//  ContasAPagar.View.Despesas,
-  ContasAPagar.View.Configuracoes;
+  ContasAPagar.View.Configuracoes,
+  ContasAPagar.View.Despesas;
 
 {$R *.fmx}
 
@@ -79,11 +77,6 @@ begin
   MultiView1.Mode := TMultiViewMode.PlatformBehaviour;
 end;
 
-procedure TfrmPrincipal.ltbCartoesClick(Sender: TObject);
-begin
-//  AbrirFormulario(TfrmCartoes)
-end;
-
 procedure TfrmPrincipal.ltbConfiguraçõesClick(Sender: TObject);
 begin
   AbrirFormulario(TfrmConfiguracoes);
@@ -101,7 +94,7 @@ end;
 
 procedure TfrmPrincipal.ltbDespesasClick(Sender: TObject);
 begin
-//  AbrirFormulario(TFrmDespesas);
+  AbrirFormulario(TFrmDespesas);
 end;
 
 procedure TfrmPrincipal.sbSairClick(Sender: TObject);

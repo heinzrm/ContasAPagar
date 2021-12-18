@@ -4,20 +4,189 @@ inherited frmDespesas: TfrmDespesas
   inherited LayoutMain: TLayout
     inherited lytMain: TLayout
       inherited TabControl1: TTabControl
+        TabIndex = 1
         Sizes = (
           640s
           430s
           640s
           430s)
         inherited TabItem1: TTabItem
+          IsSelected = False
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
+          object ListView1: TListView
+            ItemAppearanceClassName = 'TMultiDetailItemAppearance'
+            ItemEditAppearanceClassName = 'TMultiDetailDeleteAppearance'
+            HeaderAppearanceClassName = 'TListHeaderObjects'
+            FooterAppearanceClassName = 'TListHeaderObjects'
+            ItemIndex = 0
+            Align = Client
+            Size.Width = 640.000000000000000000
+            Size.Height = 380.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            StyleLookup = 'ListView1Style1'
+            CanSwipeDelete = False
+            DeleteButtonText = ''
+            SearchVisible = True
+          end
         end
         inherited TabItem2: TTabItem
+          IsSelected = True
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
+          object Layout1: TLayout
+            Align = Top
+            Position.Y = 50.000000000000000000
+            Size.Width = 640.000000000000000000
+            Size.Height = 135.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object cbCategoria: TComboBox
+              Position.X = 152.000000000000000000
+              Position.Y = 64.000000000000000000
+              Size.Width = 137.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 5
+            end
+            object cbTipoDespesa: TComboBox
+              Position.X = 8.000000000000000000
+              Position.Y = 64.000000000000000000
+              Size.Width = 137.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 3
+            end
+            object dtDataVencimento: TDateEdit
+              Date = 44546.000000000000000000
+              Position.X = 8.000000000000000000
+              Position.Y = 104.000000000000000000
+              Size.Width = 137.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 7
+            end
+            object edtDescricao: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              TabOrder = 1
+              Position.X = 8.000000000000000000
+              Position.Y = 24.000000000000000000
+              Size.Width = 281.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              CharCase = ecUpperCase
+            end
+            object edtValor: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              TabOrder = 9
+              Position.X = 152.000000000000000000
+              Position.Y = 104.000000000000000000
+              Size.Width = 137.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+            end
+            object lblCategoria: TLabel
+              Position.X = 152.000000000000000000
+              Position.Y = 48.000000000000000000
+              Size.Width = 65.000000000000000000
+              Size.Height = 16.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Categoria:'
+              TabOrder = 4
+            end
+            object lblDataVencimento: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 88.000000000000000000
+              Size.Width = 97.000000000000000000
+              Size.Height = 16.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Data Vencimento:'
+              TabOrder = 6
+            end
+            object lblDescricao: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 8.000000000000000000
+              Size.Width = 65.000000000000000000
+              Size.Height = 16.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Descri'#231#227'o:'
+              TabOrder = 0
+            end
+            object lblTipoDespesa: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 48.000000000000000000
+              Size.Width = 81.000000000000000000
+              Size.Height = 16.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Tipo Despesa:'
+              TabOrder = 2
+            end
+            object lblValor: TLabel
+              Position.X = 152.000000000000000000
+              Position.Y = 88.000000000000000000
+              Size.Width = 49.000000000000000000
+              Size.Height = 16.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Valor:'
+              TabOrder = 8
+            end
+          end
         end
       end
+    end
+  end
+  object DataGeneratorAdapter1: TDataGeneratorAdapter
+    FieldDefs = <
+      item
+        Name = 'BitmapName1'
+        Generator = 'BitmapNames'
+        ReadOnly = False
+      end
+      item
+        Name = 'ContactTitle1'
+        Generator = 'ContactTitles'
+        ReadOnly = False
+      end
+      item
+        Name = 'DateField1'
+        Generator = 'Date'
+        ReadOnly = False
+      end>
+    Active = True
+    AutoPost = False
+    Options = [loptAllowInsert, loptAllowDelete, loptAllowModify]
+    Left = 216
+    Top = 162
+  end
+  object AdapterBindSource1: TAdapterBindSource
+    AutoActivate = True
+    Adapter = DataGeneratorAdapter1
+    ScopeMappings = <>
+    Left = 304
+    Top = 224
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 20
+    Top = 5
+    object LinkListControlToField1: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = AdapterBindSource1
+      FieldName = 'BitmapName1'
+      Control = ListView1
+      FillExpressions = <
+        item
+          SourceMemberName = 'ContactTitle1'
+          ControlMemberName = 'Detail1'
+        end
+        item
+          SourceMemberName = 'DateField1'
+          ControlMemberName = 'Detail2'
+        end>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
     end
   end
 end

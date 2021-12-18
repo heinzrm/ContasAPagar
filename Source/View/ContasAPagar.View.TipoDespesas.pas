@@ -152,6 +152,7 @@ begin
   end;
   FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(TipoDespesa),True);
   FDConsulta.IndexFieldNames := 'Descricao';
+  FDConsulta.First;
 end;
 
 procedure TfrmTipoDespesas.FormCreate(Sender: TObject);
