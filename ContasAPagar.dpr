@@ -33,7 +33,8 @@ uses
   ContasAPagar.Model.Entity.Despesa in 'Source\Model\Entity\ContasAPagar.Model.Entity.Despesa.pas',
   ContasAPagar.Model.Entity.Categoria in 'Source\Model\Entity\ContasAPagar.Model.Entity.Categoria.pas',
   ContasAPagar.View.Categoria in 'Source\View\ContasAPagar.View.Categoria.pas' {frmCategoria},
-  ContasAPagar.Model.Categoria in 'Source\Model\ContasAPagar.Model.Categoria.pas';
+  ContasAPagar.Model.Categoria in 'Source\Model\ContasAPagar.Model.Categoria.pas',
+  ContasAPagar.View.Despesas in 'Source\View\ContasAPagar.View.Despesas.pas' {frmDespesas};
 
 {$R *.res}
 
@@ -41,6 +42,5 @@ begin
   ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmCategoria, frmCategoria);
   Application.Run;
 end.

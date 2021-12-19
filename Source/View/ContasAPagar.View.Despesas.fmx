@@ -1,19 +1,35 @@
 inherited frmDespesas: TfrmDespesas
   Caption = 'frmModelo1'
+  ClientWidth = 656
   DesignerMasterStyle = 0
   inherited LayoutMain: TLayout
+    Size.Width = 656.000000000000000000
     inherited lytMain: TLayout
+      Size.Width = 656.000000000000000000
       inherited TabControl1: TTabControl
+        Size.Width = 656.000000000000000000
         TabIndex = 1
         Sizes = (
-          640s
+          656s
           430s
-          640s
+          656s
           430s)
         inherited TabItem1: TTabItem
           IsSelected = False
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
+          inherited lytPage1Top: TLayout
+            Size.Width = 656.000000000000000000
+            inherited btnInserir: TButton
+              Position.X = 608.000000000000000000
+            end
+            inherited btnEditar: TButton
+              Position.X = 560.000000000000000000
+            end
+            inherited btnExcluir: TButton
+              Position.X = 512.000000000000000000
+            end
+          end
           object ListView1: TListView
             ItemAppearanceClassName = 'TMultiDetailItemAppearance'
             ItemEditAppearanceClassName = 'TMultiDetailDeleteAppearance'
@@ -21,7 +37,7 @@ inherited frmDespesas: TfrmDespesas
             FooterAppearanceClassName = 'TListHeaderObjects'
             ItemIndex = 0
             Align = Client
-            Size.Width = 640.000000000000000000
+            Size.Width = 656.000000000000000000
             Size.Height = 380.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
@@ -35,17 +51,23 @@ inherited frmDespesas: TfrmDespesas
           IsSelected = True
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
+          inherited Layout2: TLayout
+            Size.Width = 656.000000000000000000
+            inherited btnSalvar: TButton
+              Position.X = 608.000000000000000000
+            end
+          end
           object Layout1: TLayout
             Align = Top
             Position.Y = 50.000000000000000000
-            Size.Width = 640.000000000000000000
+            Size.Width = 656.000000000000000000
             Size.Height = 135.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
             object cbCategoria: TComboBox
-              Position.X = 152.000000000000000000
+              Position.X = 224.000000000000000000
               Position.Y = 64.000000000000000000
-              Size.Width = 137.000000000000000000
+              Size.Width = 201.000000000000000000
               Size.Height = 22.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 5
@@ -53,7 +75,7 @@ inherited frmDespesas: TfrmDespesas
             object cbTipoDespesa: TComboBox
               Position.X = 8.000000000000000000
               Position.Y = 64.000000000000000000
-              Size.Width = 137.000000000000000000
+              Size.Width = 209.000000000000000000
               Size.Height = 22.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 3
@@ -62,7 +84,7 @@ inherited frmDespesas: TfrmDespesas
               Date = 44546.000000000000000000
               Position.X = 8.000000000000000000
               Position.Y = 104.000000000000000000
-              Size.Width = 137.000000000000000000
+              Size.Width = 209.000000000000000000
               Size.Height = 22.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 7
@@ -72,7 +94,7 @@ inherited frmDespesas: TfrmDespesas
               TabOrder = 1
               Position.X = 8.000000000000000000
               Position.Y = 24.000000000000000000
-              Size.Width = 281.000000000000000000
+              Size.Width = 417.000000000000000000
               Size.Height = 22.000000000000000000
               Size.PlatformDefault = False
               CharCase = ecUpperCase
@@ -80,14 +102,14 @@ inherited frmDespesas: TfrmDespesas
             object edtValor: TEdit
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               TabOrder = 9
-              Position.X = 152.000000000000000000
+              Position.X = 224.000000000000000000
               Position.Y = 104.000000000000000000
-              Size.Width = 137.000000000000000000
+              Size.Width = 201.000000000000000000
               Size.Height = 22.000000000000000000
               Size.PlatformDefault = False
             end
             object lblCategoria: TLabel
-              Position.X = 152.000000000000000000
+              Position.X = 224.000000000000000000
               Position.Y = 48.000000000000000000
               Size.Width = 65.000000000000000000
               Size.Height = 16.000000000000000000
@@ -123,7 +145,7 @@ inherited frmDespesas: TfrmDespesas
               TabOrder = 2
             end
             object lblValor: TLabel
-              Position.X = 152.000000000000000000
+              Position.X = 224.000000000000000000
               Position.Y = 88.000000000000000000
               Size.Width = 49.000000000000000000
               Size.Height = 16.000000000000000000
@@ -132,6 +154,15 @@ inherited frmDespesas: TfrmDespesas
               TabOrder = 8
             end
           end
+        end
+      end
+      inherited lytMensagem: TLayout
+        Size.Width = 656.000000000000000000
+        inherited Rectangle1: TRectangle
+          Size.Width = 656.000000000000000000
+        end
+        inherited lblMensagem: TLabel
+          Size.Width = 646.000000000000000000
         end
       end
     end
