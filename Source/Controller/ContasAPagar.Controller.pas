@@ -35,10 +35,11 @@ function TController<T>.Tela(pTela: TTelas): ICrud<T>;
 begin
   case  pTela of
     ttCartoes     : Result := TFactory<T>.New.FactoryCartoes;
-    ttTipoReceitas: Result := TFactory<T>.New.FactoryReceitas;
+    ttTipoReceitas: Result := TFactory<T>.New.FactoryTipoReceitas;
     ttTipoDespesas: Result := TFactory<T>.New.FactoryTipoDespesas;
     ttCategoria   : Result := TFactory<T>.New.FactoryCategoria;
     ttDespesa     : Result := TFactory<T>.New.FactoryDespesa;
+    ttReceita     : Result := TFactory<T>.New.FactoryReceitas;
   end;
 end;
 

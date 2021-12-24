@@ -2,86 +2,86 @@
 Visible=False
 
 [lblEntradas]
-Coordinates=288,155,79,58
+Coordinates=288,155,70,51
 
 [ltbEntrada]
-Coordinates=91,327,73,36
+Coordinates=91,327,65,33
 
 [Rectangle2]
-Coordinates=0,291,80,36
+Coordinates=0,291,69,33
 
 [lytMestre]
-Coordinates=437,1,67,36
+Coordinates=437,1,59,33
 
 [Image4]
-Coordinates=80,231,57,58
+Coordinates=80,231,49,51
 
 [Rectangle1]
-Coordinates=437,56,80,36
+Coordinates=437,56,69,33
 
 [ltbDashBoard]
-Coordinates=437,111,92,36
+Coordinates=437,111,81,33
 
 [Layout1]
-Coordinates=437,166,60,36
+Coordinates=437,166,53,33
 
 [Image3]
-Coordinates=288,309,57,58
+Coordinates=288,309,49,51
 
 [btnMasterbuttom]
-Coordinates=288,1,111,58
+Coordinates=288,1,98,51
 
 [MultiView1]
-Coordinates=437,221,77,36
+Coordinates=437,221,67,33
 
 [lytBase]
-Coordinates=437,276,57,36
+Coordinates=437,276,50,33
 
 [ListBox1]
-Coordinates=0,0,139,212
+Coordinates=0,0,116,177
 
 [sbSair]
-Coordinates=288,232,51,58
+Coordinates=288,232,45,51
 
 [Image1]
-Coordinates=229,327,57,58
+Coordinates=229,327,49,51
 
 [Layout2]
-Coordinates=437,331,60,36
+Coordinates=437,331,53,33
 
 [lblDashboard]
-Coordinates=158,1,90,58
+Coordinates=158,1,80,51
 
 [lblSair]
-Coordinates=21,231,51,58
+Coordinates=21,231,45,51
 
 [LayoutMain]
-Coordinates=437,386,81,36
+Coordinates=437,386,71,33
 Visible=True
 
 [Image6]
-Coordinates=170,327,57,58
+Coordinates=170,327,49,51
 
 [Label1]
-Coordinates=158,155,53,58
+Coordinates=158,155,46,51
 
 [lytTopo]
-Coordinates=418,423,57,36
+Coordinates=418,423,51,33
 
 [lblConfiguracoes]
-Coordinates=139,231,111,58
+Coordinates=139,231,98,51
 
 [lblDespesas]
-Coordinates=288,78,85,58
+Coordinates=288,78,74,51
 
 [ltbConfigurações]
-Coordinates=299,423,111,36
+Coordinates=299,423,99,33
 
 [ltbDespesas]
-Coordinates=210,423,85,36
+Coordinates=210,423,75,33
 
 [Image5]
-Coordinates=158,78,57,58
+Coordinates=158,78,49,51
 
 [frmDespesas.DataGeneratorAdapter1]
 Visible=False
@@ -91,5 +91,23 @@ Coordinates=567,166,231,36
 Coordinates=567,1,215,146
 
 [frmDespesas.FDConsulta]
-Coordinates=820,1,162,58
+Coordinates=820,1,139,33
+Visible=False
+
+[frmDespesas.FDCategoria]
+Visible=False
+Coordinates=544,53,143,33
+
+[frmDespesas.FDTipoDespesa]
+Visible=False
+Coordinates=544,1,159,33
+
+[frmDespesas.BindSourceDB3]
+Coordinates=314,195,160,105
+
+[frmDespesas.BindSourceDB1]
+Coordinates=135,1,160,195
+
+[frmDespesas.BindSourceDB2]
+Coordinates=314,71,160,105
 

@@ -26,7 +26,7 @@ uses
   ContasAPagar.Diversos.Conexao in 'Source\Diversos\ContasAPagar.Diversos.Conexao.pas',
   ContasAPagar.View.TipoReceitas in 'Source\View\ContasAPagar.View.TipoReceitas.pas' {frmReceitas},
   ContasAPagar.Model.Entity.TipoReceita in 'Source\Model\Entity\ContasAPagar.Model.Entity.TipoReceita.pas',
-  ContasAPagar.Model.Receitas in 'Source\Model\ContasAPagar.Model.Receitas.pas',
+  ContasAPagar.Model.TipoReceitas in 'Source\Model\ContasAPagar.Model.TipoReceitas.pas',
   ContasAPagar.Model.Entity.TipoDespesa in 'Source\Model\Entity\ContasAPagar.Model.Entity.TipoDespesa.pas',
   ContasAPagar.View.TipoDespesas in 'Source\View\ContasAPagar.View.TipoDespesas.pas' {frmTipoDespesas},
   ContasAPagar.Model.TipoDespesas in 'Source\Model\ContasAPagar.Model.TipoDespesas.pas',
@@ -36,7 +36,10 @@ uses
   ContasAPagar.Model.Categoria in 'Source\Model\ContasAPagar.Model.Categoria.pas',
   ContasAPagar.View.Despesas in 'Source\View\ContasAPagar.View.Despesas.pas' {frmDespesas},
   ContasAPagar.Model.Despesas in 'Source\Model\ContasAPagar.Model.Despesas.pas',
-  ContasAPagar.Diversos.Formatar in 'Source\Diversos\ContasAPagar.Diversos.Formatar.pas';
+  ContasAPagar.Diversos.Formatar in 'Source\Diversos\ContasAPagar.Diversos.Formatar.pas',
+  ContasAPagar.View.Entradas in 'Source\View\ContasAPagar.View.Entradas.pas' {frmEntrada},
+  ContasAPagar.Model.Entity.Receita in 'Source\Model\Entity\ContasAPagar.Model.Entity.Receita.pas',
+  ContasAPagar.Model.Receitas in 'Source\Model\ContasAPagar.Model.Receitas.pas';
 
 {$R *.res}
 

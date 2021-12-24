@@ -22,7 +22,7 @@ type
     property IdDespesa: string read FIdDespesa write FIdDespesa;
     [ACampo('Descricao'), AFormato(100)]
     property Descricao: string read FDescricao write FDescricao;
-    [ACampo('IdTipoDespesas',False,True) , ANotNull, AFormato(4)]
+    [ACampo('IdTipoDespesas',False,False) , ANotNull, AFormato(4)]
     property IdTipoDespesas: string read FIdTipoDespesas write FIdTipoDespesas;
     [ACampo('DataPagamento'), AFormato(100)]
     property DataPagamento: TDateTime  read FDataPagamento write FDataPagamento;
@@ -30,7 +30,7 @@ type
     property DataVencimento: TDateTime read FDataVencimento write FDataVencimento;
     [ACampo('Valor'), AFormato(100)]
     property Valor: Currency read FValor write FValor;
-    [ACampo('IdCategoria',False,True) , ANotNull, AFormato(4)]
+    [ACampo('IdCategoria',False,False) , ANotNull, AFormato(4)]
     property IdCategoria: string  read FIdCategoria write FIdCategoria;
   end;
 

@@ -56,7 +56,7 @@ uses
   ContasAPagar.Diversos.LoadLayout,
   ContasAPagar.View.DashBoard,
   ContasAPagar.View.Configuracoes,
-  ContasAPagar.View.Despesas;
+  ContasAPagar.View.Despesas, ContasAPagar.View.Entradas;
 
 {$R *.fmx}
 
@@ -89,7 +89,7 @@ end;
 
 procedure TfrmPrincipal.ltbEntradaClick(Sender: TObject);
 begin
-//  AbrirFormulario(TfrmEntrada)
+  AbrirFormulario(TfrmEntrada)
 end;
 
 procedure TfrmPrincipal.ltbDespesasClick(Sender: TObject);

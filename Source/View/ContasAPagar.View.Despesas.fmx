@@ -9,12 +9,14 @@ inherited frmDespesas: TfrmDespesas
       Size.Width = 656.000000000000000000
       inherited TabControl1: TTabControl
         Size.Width = 656.000000000000000000
+        TabIndex = 1
         Sizes = (
           656s
           430s
           656s
           430s)
         inherited TabItem1: TTabItem
+          IsSelected = False
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
           inherited lytPage1Top: TLayout
@@ -46,6 +48,7 @@ inherited frmDespesas: TfrmDespesas
           end
         end
         inherited TabItem2: TTabItem
+          IsSelected = True
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
           inherited Layout2: TLayout
@@ -265,23 +268,54 @@ inherited frmDespesas: TfrmDespesas
       FillHeaderExpressions = <>
       FillBreakGroups = <>
     end
-    object LinkListControlToField2: TLinkListControlToField
+    object LinkFillControlToField1: TLinkFillControlToField
       Category = 'Quick Bindings'
-      DataSource = BindSourceDB2
-      FieldName = 'Descricao'
+      DataSource = BindSourceDB1
+      FieldName = 'IdCategoria'
       Control = cbCategoria
+      Track = True
+      FillDataSource = BindSourceDB2
+      FillValueFieldName = 'IdCategoria'
+      FillDisplayFieldName = 'Descricao'
+      AutoFill = False
       FillExpressions = <>
       FillHeaderExpressions = <>
       FillBreakGroups = <>
     end
-    object LinkListControlToField3: TLinkListControlToField
+    object LinkFillControlToField: TLinkFillControlToField
       Category = 'Quick Bindings'
-      DataSource = BindSourceDB3
-      FieldName = 'Descricao'
+      DataSource = BindSourceDB1
+      FieldName = 'IdTipoDespesas'
       Control = cbTipoDespesa
+      Track = False
+      FillDataSource = BindSourceDB3
+      FillValueFieldName = 'IdTipoDespesas'
+      FillDisplayFieldName = 'Descricao'
+      AutoFill = True
       FillExpressions = <>
       FillHeaderExpressions = <>
       FillBreakGroups = <>
+    end
+    object LinkControlToField1: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'DataVencimento'
+      Control = dtDataVencimento
+      Track = False
+    end
+    object LinkControlToField2: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'Descricao'
+      Control = edtDescricao
+      Track = False
+    end
+    object LinkControlToField3: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'Valor'
+      Control = edtValor
+      Track = False
     end
   end
   object BindSourceDB2: TBindSourceDB

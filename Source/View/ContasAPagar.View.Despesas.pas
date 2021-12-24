@@ -84,9 +84,12 @@ type
     BindingsList1: TBindingsList;
     LinkListControlToField1: TLinkListControlToField;
     BindSourceDB2: TBindSourceDB;
-    LinkListControlToField2: TLinkListControlToField;
     BindSourceDB3: TBindSourceDB;
-    LinkListControlToField3: TLinkListControlToField;
+    LinkFillControlToField1: TLinkFillControlToField;
+    LinkFillControlToField: TLinkFillControlToField;
+    LinkControlToField1: TLinkControlToField;
+    LinkControlToField2: TLinkControlToField;
+    LinkControlToField3: TLinkControlToField;
     procedure btnInserirClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -126,12 +129,6 @@ procedure TfrmDespesas.btnEditarClick(Sender: TObject);
 begin
 
   inherited;
-  FDTipoDespesa.Locate('IdTipoDespesas',FDConsulta.FieldByName('IdTipoDespesas').AsString,[loCaseInsensitive]);
-  FDCategoria.Locate('IdCategoria',FDConsulta.FieldByName('IdCategoria').AsString,[loCaseInsensitive]);
-
-  edtDescricao.Text       := FDConsulta.FieldByName('DESCRICAO').AsString;
-  edtValor.Text           := FDConsulta.FieldByName('VALOR').AsString;
-  dtDataVencimento.Date   := FDConsulta.FieldByName('DataVencimento').AsDateTime;
   TProcedimentos.SetarFoco(edtValor);
 end;
 
@@ -168,14 +165,6 @@ end;
 
 procedure TfrmDespesas.btnSalvarClick(Sender: TObject);
 begin
-  FDConsulta.Edit;
-  FDConsulta.FieldByName('IdTipoDespesas').AsString   := FDTipoDespesa.FieldByName('IdTipoDespesas').AsString;
-  FDConsulta.FieldByName('IdCategoria').AsString      := FDCategoria.FieldByName('IdCategoria').AsString;
-  FDConsulta.FieldByName('Descricao').AsString        := edtDescricao.Text;
-  FDConsulta.FieldByName('Valor').AsCurrency          := edtValor.Text.ToDouble;
-  FDConsulta.FieldByName('DataVencimento').AsDateTime := dtDataVencimento.Date;
-  FDConsulta.Post;
-
   TClassRtti<TDespesa>.getClassDoDataSet(FDConsulta,Despesas);
   Controller.Tela(ttDespesa).Salvar(FState,Despesas, FChave);
   BuscarDados;

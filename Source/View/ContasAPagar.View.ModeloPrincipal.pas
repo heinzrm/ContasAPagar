@@ -103,7 +103,7 @@ begin
   Texto  := EmptyStr;
   aMask  := aMask.ToUpper;
   for iContador := 0 to aValue.Length-1 do
-     if aValue.Chars[iContador] In ['0'..'9'] Then
+     if CharInSet(aValue.Chars[iContador],['0'..'9']) Then
         Texto := Texto + aValue.Chars[iContador];
   iContador2 := 0;
   iContador := 0;

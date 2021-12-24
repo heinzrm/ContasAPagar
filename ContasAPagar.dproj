@@ -293,7 +293,7 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.TipoReceita.pas"/>
-        <DCCReference Include="Source\Model\ContasAPagar.Model.Receitas.pas"/>
+        <DCCReference Include="Source\Model\ContasAPagar.Model.TipoReceitas.pas"/>
         <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.TipoDespesa.pas"/>
         <DCCReference Include="Source\View\ContasAPagar.View.TipoDespesas.pas">
             <Form>frmTipoDespesas</Form>
@@ -313,6 +313,12 @@
         </DCCReference>
         <DCCReference Include="Source\Model\ContasAPagar.Model.Despesas.pas"/>
         <DCCReference Include="Source\Diversos\ContasAPagar.Diversos.Formatar.pas"/>
+        <DCCReference Include="Source\View\ContasAPagar.View.Entradas.pas">
+            <Form>frmEntrada</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Source\Model\Entity\ContasAPagar.Model.Entity.Receita.pas"/>
+        <DCCReference Include="Source\Model\ContasAPagar.Model.Receitas.pas"/>
         <None Include="ModelSupport_ContasAPagar\default.txaPackage"/>
         <None Include="ModelSupport_ContasAPagar\default.txvpck"/>
         <None Include="ModelSupport_ContasAPagar\ContasAPagar\default.txvpck"/>
