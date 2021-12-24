@@ -3,15 +3,11 @@ unit ContasAPagar.View.ModeloPrincipal;
 interface
 
 uses
-//  ContasAPagar.Controller.Cartoes,
-
   ContasAPagar.Diversos.Enumerados,
   Data.DB,
   FireDAC.Comp.Client,
   FireDAC.Comp.DataSet,
-
   FireDAC.DatS,
-
   FireDAC.Stan.Error,
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
@@ -35,7 +31,9 @@ uses
   System.Types,
   System.UITypes,
   System.Variants,
-  ContasAPagar.Interfaces.Controller.Cartoes, FireDAC.Phys.Intf, FireDAC.DApt.Intf;
+  ContasAPagar.Interfaces.Controller,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf;
 
 type
   TfrmModelo = class(TForm)
@@ -73,9 +71,10 @@ type
     { Public declarations }
     FState     : TDataSetState;
     FChave     : string;
-    Controller : IControllerCartoes<TObject>;
+    Controller : IController<TObject>;
     property Tela : TTelas read FTela write FTela;
     procedure BuscarDados; virtual;abstract;
+    function ApplyMask(aMask, aValue: String): String;
   end;
 
 var
@@ -92,6 +91,33 @@ procedure TfrmModelo.btnInserirClick(Sender: TObject);
 begin
   NextTabAction1.ExecuteTarget(Sender);
   FState := dsInsert;
+end;
+
+function TfrmModelo.ApplyMask(aMask, aValue: String): String;
+Var
+  iContador : Integer;
+  iContador2 : Integer;
+  Texto : String;
+begin
+  Result := EmptyStr;
+  Texto  := EmptyStr;
+  aMask  := aMask.ToUpper;
+  for iContador := 0 to aValue.Length-1 do
+     if aValue.Chars[iContador] In ['0'..'9'] Then
+        Texto := Texto + aValue.Chars[iContador];
+  iContador2 := 0;
+  iContador := 0;
+  while (iContador < Texto.Length) And (iContador2 < aMask.Length) do
+  Begin
+    While aMask.Chars[iContador2] <> '#' Do
+    Begin
+      Result := Result + aMask.Chars[iContador2];
+      Inc(iContador2);
+    End;
+    Result := Result + Texto.Chars[iContador];
+    Inc(iContador2);
+    Inc(iContador);
+  End;
 end;
 
 procedure TfrmModelo.btnEditarClick(Sender: TObject);

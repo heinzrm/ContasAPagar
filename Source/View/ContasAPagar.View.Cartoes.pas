@@ -5,7 +5,7 @@ interface
 uses
   ContasAPagar.Diversos.Enumerados,
   ContasAPagar.Diversos.RTTI,
-  ContasAPagar.Interfaces.Controller.Cartoes,
+  ContasAPagar.Interfaces.Controller,
   ContasAPagar.Model.Entity.Cartoes,
   ContasAPagar.View.ModeloPrincipal,
   Data.Bind.Components,
@@ -76,7 +76,7 @@ type
     procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
-    Controller : IControllerCartoes<TCartoes>;
+    Controller : IController<TCartoes>;
     Cartoes    : TCartoes;
     procedure HabilitarBotoes(pHabilitar: Boolean);
   public
@@ -92,7 +92,8 @@ implementation
 
 uses
   ContasAPagar.Diversos.Procedimentos,
-  ContasAPagar.Controller.Cartoes, FMX.DialogService;
+  ContasAPagar.Controller,
+  FMX.DialogService;
 
 procedure TfrmCartoes.btnEditarClick(Sender: TObject);
 begin

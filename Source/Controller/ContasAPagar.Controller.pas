@@ -1,19 +1,19 @@
-unit ContasAPagar.Controller.Cartoes;
+unit ContasAPagar.Controller;
 
 interface
 
 uses
-  ContasAPagar.Interfaces.Controller.Cartoes,
+  ContasAPagar.Interfaces.Controller,
   ContasAPagar.Diversos.Enumerados,
   ContasAPagar.Factory.FactoryPadrao,
   ContasAPagar.Interfaces.Model.Crud,
   Data.DB;
 
 type
-  TController<T> = class(TInterfacedObject,IControllerCartoes<T>)
+  TController<T> = class(TInterfacedObject,IController<T>)
   public
     constructor Create;
-    class function New:IControllerCartoes<T>;
+    class function New:IController<T>;
     function Tela(pTela: TTelas): ICrud<T>;
   end;
 
@@ -26,7 +26,7 @@ begin
   inherited Create;
 end;
 
-class function TController<T>.New: IControllerCartoes<T>;
+class function TController<T>.New: IController<T>;
 begin
   Result := Self.Create;
 end;
@@ -36,8 +36,9 @@ begin
   case  pTela of
     ttCartoes     : Result := TFactory<T>.New.FactoryCartoes;
     ttTipoReceitas: Result := TFactory<T>.New.FactoryReceitas;
-    ttTipoDespesas: Result := TFactory<T>.New.FactoryDespesas;
+    ttTipoDespesas: Result := TFactory<T>.New.FactoryTipoDespesas;
     ttCategoria   : Result := TFactory<T>.New.FactoryCategoria;
+    ttDespesa     : Result := TFactory<T>.New.FactoryDespesa;
   end;
 end;
 

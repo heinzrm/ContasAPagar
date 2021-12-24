@@ -1,110 +1,157 @@
 ﻿[lblTipoDespesa]
-Coordinates=177,188,90,51
+Coordinates=488,416,90,51
 
 [lblDescricao]
-Coordinates=481,256,75,51
+Coordinates=244,267,75,51
 
 [lblMensagem]
-Coordinates=499,188,79,51
+Coordinates=109,416,79,51
 
 [btnVoltar]
-Coordinates=423,188,59,51
+Coordinates=694,267,59,51
 
 [edtValor]
-Coordinates=104,188,55,51
+Coordinates=10,493,55,51
 
 [lblDataVencimento]
-Coordinates=290,188,107,51
+Coordinates=214,416,107,51
 
 [lytMensagem]
-Coordinates=10,370,79,33
+Coordinates=164,570,79,33
 
 [dtDataVencimento]
-Coordinates=265,256,115,51
+Coordinates=347,416,115,51
 
 [cbTipoDespesa]
-Coordinates=238,10,90,123
+Coordinates=10,267,90,123
 
 [ListView1]
 Coordinates=10,10,89,231
 Visible=True
 
 [btnExcluir]
-Coordinates=606,10,64,51
+Coordinates=345,267,64,51
 
 [ActionList1]
 Coordinates=612,1,70,33
 
 [edtDescricao]
-Coordinates=165,256,79,51
+Coordinates=604,416,79,51
 
 [Rectangle1]
-Coordinates=560,324,69,33
+Coordinates=355,493,69,33
 
 [FDConsulta]
-Coordinates=514,10,72,51
+Coordinates=596,20,72,33
+Visible=False
 
 [btnInserir]
-Coordinates=600,188,61,51
+Coordinates=607,267,61,51
 
 [TabItem1]
-Coordinates=481,324,59,33
+Coordinates=270,493,59,33
 
 [cbCategoria]
-Coordinates=127,10,84,123
+Coordinates=469,10,84,123
 
 [btnEditar]
-Coordinates=10,256,59,51
+Coordinates=522,267,59,51
 
 [btnSalvar]
-Coordinates=86,256,61,51
+Coordinates=435,267,61,51
 
 [NextTabAction1]
 Coordinates=612,111,92,33
 
 [lblValor]
-Coordinates=413,256,52,51
+Coordinates=91,493,52,51
 
 [TabControl1]
-Coordinates=386,324,74,33
+Coordinates=711,493,74,33
+Visible=True
 
 [TabItem2]
-Coordinates=307,324,59,33
+Coordinates=626,493,59,33
 
 [ImageList1]
 Coordinates=612,221,68,33
 
 [Layout2]
-Coordinates=237,324,53,33
+Coordinates=450,493,53,33
 
 [LayoutMain]
-Coordinates=146,324,71,33
+Coordinates=529,493,71,33
 
 [Layout1]
-Coordinates=76,324,53,33
+Coordinates=10,570,53,33
+Visible=True
 
 [lytMain]
-Coordinates=10,324,49,33
+Coordinates=89,570,49,33
 
 [PreviousTabAction1]
 Coordinates=612,331,113,33
 
 [lblCategoria]
-Coordinates=10,188,73,51
+Coordinates=10,416,73,51
 
 [lytPage1Top]
-Coordinates=576,256,75,33
-
-[DataGeneratorAdapter1]
-Coordinates=352,10,130,33
-Visible=False
+Coordinates=169,493,75,33
 
 []
-Coordinates=513,460,91,36
+Coordinates=118,1,82,33
+Visible=False
 
-[AdapterBindSource1]
-Coordinates=352,10,116,123
+[FDConsultaIdDespesa]
+Coordinates=393,398,123,33
+
+[FDConsultaIdTipoDespesas]
+Coordinates=780,1,151,33
+
+[FDConsultaDescricao]
+Coordinates=780,56,121,33
+
+[FDConsultaIdCategoria]
+Coordinates=780,111,128,33
+
+[FDConsultaDataVencimento]
+Coordinates=528,379,152,33
+
+[FDConsultaDataPagamento]
+Coordinates=528,379,149,33
+
+[FDConsultaValor]
+Coordinates=380,379,97,33
+
+[FDCategoria]
+Coordinates=523,10,75,33
+Visible=False
+
+[FDCategoriaIdCategoria]
+Coordinates=558,152,132,33
+
+[FDCategoriaDescricao]
+Coordinates=776,163,124,33
+
+[FDTipoDespesaDescricao]
+Coordinates=776,215,141,33
+
+[FDTipoDespesa]
+Coordinates=126,267,92,33
+Visible=False
+
+[FDTipoDespesaIdTipoDespesas]
+Coordinates=763,267,171,33
+
+[BindSourceDB1]
+Coordinates=179,28,92,195
 
 [BindingsList1]
-Coordinates=528,87,82,33
+Coordinates=118,1,82,33
+
+[BindSourceDB2]
+Coordinates=297,19,92,105
+
+[BindSourceDB3]
+Coordinates=126,267,92,105
 

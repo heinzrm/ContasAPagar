@@ -21,6 +21,9 @@ procedure Formatar(Obj: TObject; Formato : TFormato; Extra : string = '');
 
 implementation
 
+uses
+  System.TypInfo;
+
 function SomenteNumero(str : string) : string;
 var
   iContador : integer;
@@ -97,34 +100,38 @@ function FormataIE(Num, UF: string): string;
 var
   Mascara : string;
 begin
-  Mascara := '';
-  IF UF = 'AC' Then Mascara := '##.###.###/###-##';
-  IF UF = 'AL' Then Mascara := '#########';
-  IF UF = 'AP' Then Mascara := '#########';
-  IF UF = 'AM' Then Mascara := '##.###.###-#';
-  IF UF = 'BA' Then Mascara := '######-##';
-  IF UF = 'CE' Then Mascara := '########-#';
-  IF UF = 'DF' Then Mascara := '###########-##';
-  IF UF = 'ES' Then Mascara := '#########';
-  IF UF = 'GO' Then Mascara := '##.###.###-#';
-  IF UF = 'MA' Then Mascara := '#########';
-  IF UF = 'MT' Then Mascara := '##########-#';
-  IF UF = 'MS' Then Mascara := '#########';
-  IF UF = 'MG' Then Mascara := '###.###.###/####';
-  IF UF = 'PA' Then Mascara := '##-######-#';
-  IF UF = 'PB' Then Mascara := '########-#';
-  IF UF = 'PR' Then Mascara := '########-##';
-  IF UF = 'PE' Then Mascara := '##.#.###.#######-#';
-  IF UF = 'PI' Then Mascara := '#########';
-  IF UF = 'RJ' Then Mascara := '##.###.##-#';
-  IF UF = 'RN' Then Mascara := '##.###.###-#';
-  IF UF = 'RS' Then Mascara := '###/#######';
-  IF UF = 'RO' Then Mascara := '###.#####-#';
-  IF UF = 'RR' Then Mascara := '########-#';
-  IF UF = 'SC' Then Mascara := '###.###.###';
-  IF UF = 'SP' Then Mascara := '###.###.###.###';
-  IF UF = 'SE' Then Mascara := '#########-#';
-  IF UF = 'TO' Then Mascara := '###########';
+  Mascara := EmptyStr;
+  UF := Concat('se',UF);
+
+  case TSiglaEstado(GetEnumValue(TypeInfo(TSiglaEstado),UF)) of
+    seAC: Mascara := '##.###.###/###-##';
+    seAL: Mascara := '#########';
+    seAP: Mascara := '#########';
+    seAM: Mascara := '##.###.###-#';
+    seBA: Mascara := '######-##';
+    seCE: Mascara := '########-#';
+    seDF: Mascara := '###########-##';
+    seES: Mascara := '#########';
+    seGO: Mascara := '##.###.###-#';
+    seMA: Mascara := '#########';
+    seMT: Mascara := '##########-#';
+    seMS: Mascara := '#########';
+    seMG: Mascara := '###.###.###/####';
+    sePA: Mascara := '##-######-#';
+    sePB: Mascara := '########-#';
+    sePR: Mascara := '########-##';
+    sePE: Mascara := '##.#.###.#######-#';
+    sePI: Mascara := '#########';
+    seRJ: Mascara := '##.###.##-#';
+    seRN: Mascara := '##.###.###-#';
+    seRS: Mascara := '###/#######';
+    seRO: Mascara := '###.#####-#';
+    seRR: Mascara := '########-#';
+    seSC: Mascara := '###.###.###';
+    seSP: Mascara := '###.###.###.###';
+    seSE: Mascara := '#########-#';
+    seTO: Mascara := '###########';
+  end;
 
   Result := Mask(mascara, Num);
 end;

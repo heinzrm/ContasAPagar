@@ -3,25 +3,27 @@ unit ContasAPagar.Model.Despesas;
 interface
 
 uses
-  ContasAPagar.Model.Entity.TipoDespesa,
+  System.Generics.Collections,
+  ContasAPagar.Dao.Generico,
+  ContasAPagar.Model.Entity.Despesa,
   ContasAPagar.Interfaces.Model.Crud,
   ContasAPagar.Model.Conexao,
   Data.DB,
   FireDAC.Comp.DataSet,
-  System.Generics.Collections,
-  ContasAPagar.Dao.Generico;
+  ContasAPagar.Interfaces.Dao.Generico;
 
 type
   TModelDespesas<T>= class(TInterfacedObject,ICrud<T>)
   private
-    FDaoGenerico : TDaoGenerico<TTipoDespesas>;
+    FDaoGenerico : IDaoGenerico<TDespesa>;
   public
-    Class function New: ICrud<T>;
+    Class function New:ICrud<T>;
     constructor Create;
     destructor Destroy; override;
     procedure Excluir(pObject: TObject; pChave: string);
     function Pesquisar(pObject: TObject): IFDDataSetReference;
     procedure Salvar(pState: TDataSetState; pObject: TObject; pChave: string);
+
   end;
 
 implementation
@@ -29,18 +31,18 @@ implementation
 uses
   System.SysUtils;
 
-{ TModelReceitas<T> }
+{ TCartoes }
 
 constructor TModelDespesas<T>.Create;
 begin
   inherited Create;
 
-  FDaoGenerico := TDaoGenerico<TTipoDespesas>.Create('TipoDespesas');
+  FDaoGenerico := TDaoGenerico<TDespesa>.Create('DESPESA');
 end;
 
 destructor TModelDespesas<T>.Destroy;
 begin
-  FreeAndNil(FDaoGenerico);
+
   inherited;
 end;
 
@@ -66,5 +68,4 @@ begin
     dsInsert : FDaoGenerico.Insert(pObject);
   end;
 end;
-
 end.

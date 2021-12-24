@@ -1,6 +1,7 @@
 inherited frmDespesas: TfrmDespesas
   Caption = 'frmModelo1'
   ClientWidth = 656
+  OnDestroy = FormDestroy
   DesignerMasterStyle = 0
   inherited LayoutMain: TLayout
     Size.Width = 656.000000000000000000
@@ -8,14 +9,12 @@ inherited frmDespesas: TfrmDespesas
       Size.Width = 656.000000000000000000
       inherited TabControl1: TTabControl
         Size.Width = 656.000000000000000000
-        TabIndex = 1
         Sizes = (
           656s
           430s
           656s
           430s)
         inherited TabItem1: TTabItem
-          IsSelected = False
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
           inherited lytPage1Top: TLayout
@@ -28,6 +27,7 @@ inherited frmDespesas: TfrmDespesas
             end
             inherited btnExcluir: TButton
               Position.X = 512.000000000000000000
+              OnClick = btnExcluirClick
             end
           end
           object ListView1: TListView
@@ -35,20 +35,17 @@ inherited frmDespesas: TfrmDespesas
             ItemEditAppearanceClassName = 'TMultiDetailDeleteAppearance'
             HeaderAppearanceClassName = 'TListHeaderObjects'
             FooterAppearanceClassName = 'TListHeaderObjects'
-            ItemIndex = 0
             Align = Client
             Size.Width = 656.000000000000000000
             Size.Height = 380.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
-            StyleLookup = 'ListView1Style1'
             CanSwipeDelete = False
             DeleteButtonText = ''
             SearchVisible = True
           end
         end
         inherited TabItem2: TTabItem
-          IsSelected = True
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
           inherited Layout2: TLayout
@@ -61,97 +58,101 @@ inherited frmDespesas: TfrmDespesas
             Align = Top
             Position.Y = 50.000000000000000000
             Size.Width = 656.000000000000000000
-            Size.Height = 135.000000000000000000
+            Size.Height = 247.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
             object cbCategoria: TComboBox
-              Position.X = 224.000000000000000000
-              Position.Y = 64.000000000000000000
-              Size.Width = 201.000000000000000000
-              Size.Height = 22.000000000000000000
-              Size.PlatformDefault = False
-              TabOrder = 5
-            end
-            object cbTipoDespesa: TComboBox
               Position.X = 8.000000000000000000
-              Position.Y = 64.000000000000000000
-              Size.Width = 209.000000000000000000
-              Size.Height = 22.000000000000000000
-              Size.PlatformDefault = False
-              TabOrder = 3
-            end
-            object dtDataVencimento: TDateEdit
-              Date = 44546.000000000000000000
-              Position.X = 8.000000000000000000
-              Position.Y = 104.000000000000000000
+              Position.Y = 144.000000000000000000
               Size.Width = 209.000000000000000000
               Size.Height = 22.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 7
             end
+            object cbTipoDespesa: TComboBox
+              Position.X = 8.000000000000000000
+              Position.Y = 104.000000000000000000
+              Size.Width = 209.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 5
+            end
+            object dtDataVencimento: TDateEdit
+              Date = 44546.000000000000000000
+              Position.X = 8.000000000000000000
+              Position.Y = 184.000000000000000000
+              Size.Width = 209.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 9
+            end
             object edtDescricao: TEdit
               Touch.InteractiveGestures = [LongTap, DoubleTap]
-              TabOrder = 1
+              TabOrder = 3
               Position.X = 8.000000000000000000
-              Position.Y = 24.000000000000000000
-              Size.Width = 417.000000000000000000
+              Position.Y = 64.000000000000000000
+              Size.Width = 209.000000000000000000
               Size.Height = 22.000000000000000000
               Size.PlatformDefault = False
               CharCase = ecUpperCase
             end
             object edtValor: TEdit
               Touch.InteractiveGestures = [LongTap, DoubleTap]
-              TabOrder = 9
-              Position.X = 224.000000000000000000
-              Position.Y = 104.000000000000000000
-              Size.Width = 201.000000000000000000
+              TabOrder = 1
+              TextSettings.HorzAlign = Trailing
+              Position.X = 8.000000000000000000
+              Position.Y = 24.000000000000000000
+              Size.Width = 209.000000000000000000
               Size.Height = 22.000000000000000000
               Size.PlatformDefault = False
+              OnTyping = edtValorTyping
             end
             object lblCategoria: TLabel
-              Position.X = 224.000000000000000000
-              Position.Y = 48.000000000000000000
+              Position.X = 8.000000000000000000
+              Position.Y = 128.000000000000000000
               Size.Width = 65.000000000000000000
               Size.Height = 16.000000000000000000
               Size.PlatformDefault = False
               Text = 'Categoria:'
-              TabOrder = 4
+              TabOrder = 6
             end
             object lblDataVencimento: TLabel
               Position.X = 8.000000000000000000
-              Position.Y = 88.000000000000000000
+              Position.Y = 168.000000000000000000
               Size.Width = 97.000000000000000000
               Size.Height = 16.000000000000000000
               Size.PlatformDefault = False
               Text = 'Data Vencimento:'
-              TabOrder = 6
+              TabOrder = 8
             end
             object lblDescricao: TLabel
+              FocusControl = edtDescricao
               Position.X = 8.000000000000000000
-              Position.Y = 8.000000000000000000
+              Position.Y = 48.000000000000000000
               Size.Width = 65.000000000000000000
               Size.Height = 16.000000000000000000
               Size.PlatformDefault = False
               Text = 'Descri'#231#227'o:'
-              TabOrder = 0
+              TabOrder = 2
             end
             object lblTipoDespesa: TLabel
               Position.X = 8.000000000000000000
-              Position.Y = 48.000000000000000000
+              Position.Y = 88.000000000000000000
               Size.Width = 81.000000000000000000
               Size.Height = 16.000000000000000000
               Size.PlatformDefault = False
               Text = 'Tipo Despesa:'
-              TabOrder = 2
+              TabOrder = 4
             end
             object lblValor: TLabel
-              Position.X = 224.000000000000000000
-              Position.Y = 88.000000000000000000
+              FocusControl = edtValor
+              Position.X = 8.000000000000000000
+              Position.Y = 8.000000000000000000
               Size.Width = 49.000000000000000000
               Size.Height = 16.000000000000000000
               Size.PlatformDefault = False
               Text = 'Valor:'
-              TabOrder = 8
+              TabOrder = 0
             end
           end
         end
@@ -167,35 +168,80 @@ inherited frmDespesas: TfrmDespesas
       end
     end
   end
-  object DataGeneratorAdapter1: TDataGeneratorAdapter
-    FieldDefs = <
-      item
-        Name = 'BitmapName1'
-        Generator = 'BitmapNames'
-        ReadOnly = False
-      end
-      item
-        Name = 'ContactTitle1'
-        Generator = 'ContactTitles'
-        ReadOnly = False
-      end
-      item
-        Name = 'DateField1'
-        Generator = 'Date'
-        ReadOnly = False
-      end>
-    Active = True
-    AutoPost = False
-    Options = [loptAllowInsert, loptAllowDelete, loptAllowModify]
-    Left = 216
-    Top = 162
+  inherited FDConsulta: TFDMemTable
+    object FDConsultaIdDespesa: TStringField
+      FieldName = 'IdDespesa'
+      Size = 50
+    end
+    object FDConsultaDescricao: TStringField
+      FieldName = 'Descricao'
+    end
+    object FDConsultaIdTipoDespesas: TStringField
+      FieldName = 'IdTipoDespesas'
+      LookupDataSet = FDTipoDespesa
+      LookupKeyFields = 'IdTipoDespesas'
+      LookupResultField = 'IdTipoDespesas'
+      Size = 50
+    end
+    object FDConsultaIdCategoria: TStringField
+      FieldName = 'IdCategoria'
+      Size = 50
+    end
+    object FDConsultaDataVencimento: TSQLTimeStampField
+      FieldName = 'DataVencimento'
+    end
+    object FDConsultaDataPagamento: TSQLTimeStampField
+      FieldName = 'DataPagamento'
+    end
+    object FDConsultaValor: TFMTBCDField
+      FieldName = 'Valor'
+      Size = 0
+    end
   end
-  object AdapterBindSource1: TAdapterBindSource
-    AutoActivate = True
-    Adapter = DataGeneratorAdapter1
+  object FDCategoria: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 536
+    Top = 368
+    object FDCategoriaIdCategoria: TStringField
+      FieldName = 'IdCategoria'
+      Size = 50
+    end
+    object FDCategoriaDescricao: TStringField
+      FieldName = 'Descricao'
+    end
+  end
+  object FDTipoDespesa: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 96
+    Top = 264
+    object FDTipoDespesaIdTipoDespesas: TStringField
+      FieldName = 'IdTipoDespesas'
+      LookupDataSet = FDConsulta
+      LookupKeyFields = 'IdTipoDespesas'
+      LookupResultField = 'IdTipoDespesas'
+      Size = 50
+    end
+    object FDTipoDespesaDescricao: TStringField
+      FieldName = 'Descricao'
+    end
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = FDConsulta
     ScopeMappings = <>
-    Left = 304
-    Top = 224
+    Left = 80
+    Top = 96
   end
   object BindingsList1: TBindingsList
     Methods = <>
@@ -204,20 +250,50 @@ inherited frmDespesas: TfrmDespesas
     Top = 5
     object LinkListControlToField1: TLinkListControlToField
       Category = 'Quick Bindings'
-      DataSource = AdapterBindSource1
-      FieldName = 'BitmapName1'
+      DataSource = BindSourceDB1
+      FieldName = 'Descricao'
       Control = ListView1
       FillExpressions = <
         item
-          SourceMemberName = 'ContactTitle1'
+          SourceMemberName = 'Valor'
           ControlMemberName = 'Detail1'
         end
         item
-          SourceMemberName = 'DateField1'
+          SourceMemberName = 'DataVencimento'
           ControlMemberName = 'Detail2'
         end>
       FillHeaderExpressions = <>
       FillBreakGroups = <>
     end
+    object LinkListControlToField2: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB2
+      FieldName = 'Descricao'
+      Control = cbCategoria
+      FillExpressions = <>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+    object LinkListControlToField3: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB3
+      FieldName = 'Descricao'
+      Control = cbTipoDespesa
+      FillExpressions = <>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+  end
+  object BindSourceDB2: TBindSourceDB
+    DataSet = FDCategoria
+    ScopeMappings = <>
+    Left = 192
+    Top = 96
+  end
+  object BindSourceDB3: TBindSourceDB
+    DataSet = FDTipoDespesa
+    ScopeMappings = <>
+    Left = 448
+    Top = 360
   end
 end

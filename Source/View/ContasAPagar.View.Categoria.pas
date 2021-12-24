@@ -3,9 +3,9 @@ unit ContasAPagar.View.Categoria;
 interface
 
 uses
-  ContasAPagar.Controller.Cartoes,
+  ContasAPagar.Controller,
   ContasAPagar.Diversos.Procedimentos,
-  ContasAPagar.Interfaces.Controller.Cartoes,
+  ContasAPagar.Interfaces.Controller,
   ContasAPagar.Model.Entity.Categoria,
   ContasAPagar.View.ModeloPrincipal,
   Data.Bind.Components,
@@ -71,7 +71,7 @@ type
     procedure btnSalvarClick(Sender: TObject);
   private
     { Private declarations }
-    Controller : IControllerCartoes<TCategoria>;
+    Controller : IController<TCategoria>;
     Categoria    : TCategoria;
     procedure HabilitarBotoes(pHabilitar: Boolean);
   public

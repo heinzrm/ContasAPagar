@@ -14,8 +14,8 @@ uses
   ContasAPagar.Diversos.CustomAttributes in 'Source\Diversos\ContasAPagar.Diversos.CustomAttributes.pas',
   ContasAPagar.Diversos.Procedimentos in 'Source\Diversos\ContasAPagar.Diversos.Procedimentos.pas',
   ContasAPagar.Diversos.RTTI in 'Source\Diversos\ContasAPagar.Diversos.RTTI.pas',
-  ContasAPagar.Controller.Cartoes in 'Source\Controller\ContasAPagar.Controller.Cartoes.pas',
-  ContasAPagar.Interfaces.Controller.Cartoes in 'Source\Interfaces\ContasAPagar.Interfaces.Controller.Cartoes.pas',
+  ContasAPagar.Controller in 'Source\Controller\ContasAPagar.Controller.pas',
+  ContasAPagar.Interfaces.Controller in 'Source\Interfaces\ContasAPagar.Interfaces.Controller.pas',
   ContasAPagar.Interfaces.Model.Crud in 'Source\Interfaces\ContasAPagar.Interfaces.Model.Crud.pas',
   ContasAPagar.Factory.FactoryPadrao in 'Source\Factory\ContasAPagar.Factory.FactoryPadrao.pas',
   ContasAPagar.Factory.Interfaces in 'Source\Factory\ContasAPagar.Factory.Interfaces.pas',
@@ -29,12 +29,14 @@ uses
   ContasAPagar.Model.Receitas in 'Source\Model\ContasAPagar.Model.Receitas.pas',
   ContasAPagar.Model.Entity.TipoDespesa in 'Source\Model\Entity\ContasAPagar.Model.Entity.TipoDespesa.pas',
   ContasAPagar.View.TipoDespesas in 'Source\View\ContasAPagar.View.TipoDespesas.pas' {frmTipoDespesas},
-  ContasAPagar.Model.Despesas in 'Source\Model\ContasAPagar.Model.Despesas.pas',
+  ContasAPagar.Model.TipoDespesas in 'Source\Model\ContasAPagar.Model.TipoDespesas.pas',
   ContasAPagar.Model.Entity.Despesa in 'Source\Model\Entity\ContasAPagar.Model.Entity.Despesa.pas',
   ContasAPagar.Model.Entity.Categoria in 'Source\Model\Entity\ContasAPagar.Model.Entity.Categoria.pas',
   ContasAPagar.View.Categoria in 'Source\View\ContasAPagar.View.Categoria.pas' {frmCategoria},
   ContasAPagar.Model.Categoria in 'Source\Model\ContasAPagar.Model.Categoria.pas',
-  ContasAPagar.View.Despesas in 'Source\View\ContasAPagar.View.Despesas.pas' {frmDespesas};
+  ContasAPagar.View.Despesas in 'Source\View\ContasAPagar.View.Despesas.pas' {frmDespesas},
+  ContasAPagar.Model.Despesas in 'Source\Model\ContasAPagar.Model.Despesas.pas',
+  ContasAPagar.Diversos.Formatar in 'Source\Diversos\ContasAPagar.Diversos.Formatar.pas';
 
 {$R *.res}
 

@@ -3,9 +3,9 @@ unit ContasAPagar.View.TipoReceitas;
 interface
 
 uses
-  ContasAPagar.Controller.Cartoes,
+  ContasAPagar.Controller,
   ContasAPagar.Diversos.RTTI,
-  ContasAPagar.Interfaces.Controller.Cartoes,
+  ContasAPagar.Interfaces.Controller,
   ContasAPagar.Model.Entity.TipoReceita,
   ContasAPagar.View.ModeloPrincipal,
   Data.Bind.Components,
@@ -72,7 +72,7 @@ type
     procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
-    Controller  : IControllerCartoes<TTipoReceitas>;
+    Controller  : IController<TTipoReceitas>;
     TipoReceita : TTipoReceitas;
     procedure HabilitarBotoes(pHabilitar: Boolean);
 

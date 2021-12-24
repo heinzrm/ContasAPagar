@@ -7,7 +7,7 @@ uses
   ContasAPagar.Model.Cartoes,
   ContasAPagar.Interfaces.Model.Crud,
   ContasAPagar.Model.Conexao,
-  ContasAPagar.Model.Despesas,
+  ContasAPagar.Model.TipoDespesas,
   ContasAPagar.Model.Receitas;
 
 type
@@ -17,14 +17,15 @@ type
     constructor Create;
     function FactoryCartoes: ICrud<T>;
     function FactoryReceitas: ICrud<T>;
-    function FactoryDespesas: ICrud<T>;
+    function FactoryTipoDespesas: ICrud<T>;
     function FactoryCategoria: ICrud<T>;
-   end;
+    function FactoryDespesa: ICrud<T>;
+    end;
 
 implementation
 
 uses
-  ContasAPagar.Model.Categoria;
+  ContasAPagar.Model.Categoria, ContasAPagar.Model.Despesas;
 
 { TFactory }
 
@@ -44,9 +45,14 @@ begin
   Result := TModelCategoria<T>.New
 end;
 
-function TFactory<T>.FactoryDespesas: ICrud<T>;
+function TFactory<T>.FactoryDespesa: ICrud<T>;
 begin
-  Result := TModelDespesas<T>.New
+  Result := TModelDespesas<T>.New;
+end;
+
+function TFactory<T>.FactoryTipoDespesas: ICrud<T>;
+begin
+  Result := TModelTipoDespesas<T>.New
 end;
 
 function TFactory<T>.FactoryReceitas: ICrud<T>;

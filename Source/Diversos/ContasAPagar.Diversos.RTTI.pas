@@ -18,13 +18,14 @@ uses
 type
   TClassRtti<T> = class
   private
-    class function getTextFromComponente(componente: TComponent):string;
+    class function getTextFromComponente(componente: TComponent): string;
     class function MontarColunas(pObjet: TObject): String;
     class function MontarColunasUpDate(pObjet: TObject): String;
     class function MontarValoresInsert(pObjet: TObject; pLstSql: TStringBuilder): string;
     class function MontarWhere(pObjet: TObject): String;
   public
     class procedure getClassDoForm(Formulario: Tlayout; classe: TObject);
+    class procedure getClassDoDataSet(DataSet: TDataSet; classe: TObject);
     class procedure AlimentaDataSet(DataSet:TDataSet;Classe:TObject);
     class function MontarInsert(pObjet: TObject; pNomeTabela: string): string;
     class function MontarSelect(pObjet: TObject; pNomeTabela: string): string;
@@ -35,7 +36,7 @@ type
 implementation
 
 uses
-  System.Rtti;
+  System.Rtti, FMX.DateTimeCtrls;
 
 
 { TClassRtti }
@@ -99,16 +100,68 @@ begin
   end;
 end;
 
+class procedure TClassRtti<T>.getClassDoDataSet(DataSet: TDataSet; classe: TObject);
+var
+  rtCtx      : TRttiContext;
+  rtType     : TRttiType;
+  rtProp     : TRttiProperty;
+  rtAtrib    : TCustomAttribute;
+  NomeCampo    :string;
+begin
+  rtCtx := TRttiContext.Create;
+  try
+    rtType := rtCtx.GetType(Classe.ClassType);
+    for rtProp in rtType.GetProperties do
+    begin
+      for rtAtrib in rtProp.GetAttributes do
+      begin
+        if (rtAtrib is ACampo) then
+        begin
+          NomeCampo := (rtAtrib as ACampo).NomeDB;
+          if not (rtAtrib as ACampo).SomenteLeitura then
+          begin
+            var Valor : TValue;
+            case rtprop.GetValue(classe).Kind of
+              tkInteger : Valor := DataSet.FindField(NomeCampo).AsInteger;
+              tkUString,
+              tkString : Valor := DataSet.FindField(NomeCampo).AsString;
+              tkFloat   :
+              begin
+                if (rtProp.GetValue(classe).TypeInfo = TypeInfo(TDate)) or
+                   (rtProp.GetValue(classe).TypeInfo = TypeInfo(TTime)) or
+                   (rtProp.GetValue(classe).TypeInfo = TypeInfo(TDateTime)) then
+                begin
+                  Valor := DataSet.FindField(NomeCampo).AsDateTime;
+                end
+                else
+                begin
+                  Valor := DataSet.FindField(NomeCampo).AsFloat;
+                end;
+              end;
+            end;
+
+            if valor.ToString = EmptyStr then
+              Continue;
+            rtProp.SetValue(classe, Valor);
+          end;
+        end;
+      end;
+    end;
+  finally
+    rtCtx.Free;
+  end;
+end;
+
 class procedure TClassRtti<T>.getClassDoForm(Formulario: Tlayout; classe: TObject);
 var
   rtCtx      : TRttiContext;
   rtType     : TRttiType;
   rtProp     : TRttiProperty;
   rtAtrib    : TCustomAttribute;
-  Value        : TValue;
-  Componente   : TComponent;
-  I            : Integer;
-  NomeCampo    :string;
+  Value      : TValue;
+  Componente : TComponent;
+  I          : Integer;
+  NomeCampo  : string;
 begin
   rtCtx:=TRttiContext.Create;
   try
@@ -117,24 +170,36 @@ begin
     begin
       for rtAtrib in rtProp.GetAttributes do
       begin
-       if (rtAtrib is ACampo) then
-       begin
-        NomeCampo := (rtAtrib as ACampo).NomeDB;
-         for I:=0 to pred(formulario.ControlsCount) do
-         begin
-           componente:=Formulario.Controls[I];
-           if String(AnsiUpperCase(componente.Name)).Contains(AnsiUpperCase(NomeCampo)) then
-           begin
-             case rtProp.GetValue(classe).Kind of
-               tkUString: Value:= getTextFromComponente(componente);
-               tkInteger: Value:= getTextFromComponente(componente).ToInteger;
-               tkFloat:   Value:= getTextFromComponente(componente).ToDouble;
-             end;
+        if (rtAtrib is ACampo) then
+        begin
+          NomeCampo := (rtAtrib as ACampo).NomeDB;
+          for I:=0 to pred(formulario.ControlsCount) do
+          begin
+            componente:=Formulario.Controls[I];
+            if String(AnsiUpperCase(componente.Name)).Contains(AnsiUpperCase(NomeCampo)) then
+            begin
+              case rtProp.GetValue(classe).Kind of
+                tkUString: Value:= getTextFromComponente(componente);
+                tkInteger: Value:= getTextFromComponente(componente).ToInteger;
+                tkFloat  :
+                begin
+                  if (rtProp.GetValue(classe).TypeInfo = TypeInfo(TDate)) or
+                     (rtProp.GetValue(classe).TypeInfo = TypeInfo(TTime)) or
+                     (rtProp.GetValue(classe).TypeInfo = TypeInfo(TDateTime)) then
+                  begin
+                    Value:= StrToDateTime(getTextFromComponente(componente));
+                  end
+                  else
+                  begin
+                    Value:= getTextFromComponente(componente).Replace('.',EmptyStr).ToDouble;
+                  end;
+                end;
+              end;
 
-             rtProp.SetValue(classe, Value);
-           end;
-         end;
-       end;
+             rtProp.SetValue(Pointer(classe), Value);
+            end;
+          end;
+        end;
       end;
     end;
   finally
@@ -143,6 +208,8 @@ begin
 end;
 
 class function TClassRtti<T>.getTextFromComponente(componente: TComponent): string;
+var
+  dData: TDateTime;
 begin
   if componente is TEdit then
   begin
@@ -152,12 +219,14 @@ begin
       Exit((componente as TEdit).Text);
   end;
 
-  if componente is TLabel then
+  if componente is TDateEdit then
   begin
-    if ((componente as TLabel).Text='') then
+    if ((componente as TDateEdit).Text='') then
       Exit('0')
     else
-      Exit((componente as TLabel).Text);
+    begin
+      Exit((componente as TDateEdit).Text);
+    end;
   end;
 end;
 
@@ -307,6 +376,7 @@ var
   NomeCampo  : string;
   pLista     : TStringBuilder;
   iContador  : Integer;
+  sData      : string;
 begin
   iContador := 0;
 
@@ -330,9 +400,27 @@ begin
           if not (rtAtrib as ACampo).SomenteLeitura then
           begin
             case rtProp.GetValue(pObjet).Kind of
-               tkUString: pLista.AppendLine(ifthen((iContador = 0),QuotedStr(rtProp.GetValue(pObjet).toString),Format(',%s',[QuotedStr(rtProp.GetValue(pObjet).toString)])));
-               tkInteger: pLista.AppendLine(ifthen((iContador = 0),rtProp.GetValue(pObjet).toString,Format(',%s',[rtProp.GetValue(pObjet).toString])));
-               tkFloat:   pLista.AppendLine(ifthen((iContador = 0),QuotedStr(rtProp.GetValue(pObjet).toString),Format(',%s',[QuotedStr(rtProp.GetValue(pObjet).toString)])));
+              tkUString: pLista.AppendLine(ifthen((iContador = 0),QuotedStr(rtProp.GetValue(pObjet).toString),Format(',%s',[QuotedStr(rtProp.GetValue(pObjet).toString)])));
+              tkInteger: pLista.AppendLine(ifthen((iContador = 0),rtProp.GetValue(pObjet).toString,Format(',%s',[rtProp.GetValue(pObjet).toString])));
+              tkFloat  :
+              begin
+                if (rtProp.GetValue(pObjet).TypeInfo = TypeInfo(TDate)) or
+                   (rtProp.GetValue(pObjet).TypeInfo = TypeInfo(TTime)) or
+                   (rtProp.GetValue(pObjet).TypeInfo = TypeInfo(TDateTime)) then
+                begin
+                  if StrToDateTime(rtProp.GetValue(pObjet).ToString) = 0 then
+                    sData := 'NULL'
+                  else
+                    sData := QuotedStr(FormatDateTime('yyyymmdd',StrToDateTime(rtProp.GetValue(pObjet).ToString)));
+
+                  pLista.AppendLine(ifthen((iContador = 0),sData,Format(',%s',[sData])));
+                end
+                else
+                begin
+                  pLista.AppendLine(ifthen((iContador = 0),QuotedStr(rtProp.GetValue(pObjet).ToString.Replace('.','').Replace(',','.')),
+                                                          Format(',%s',[QuotedStr(rtProp.GetValue(pObjet).ToString.Replace('.','').Replace(',','.'))])));
+                end;
+              end;
             end;
           end;
         end;
