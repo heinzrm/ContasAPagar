@@ -103,6 +103,7 @@ inherited frmEntrada: TfrmEntrada
     end
   end
   inherited FDConsulta: TFDMemTable
+    OnCalcFields = FDConsultaCalcFields
     object FDConsultaIdReceita: TStringField
       FieldName = 'IdReceita'
       Size = 50
@@ -116,7 +117,15 @@ inherited frmEntrada: TfrmEntrada
     end
     object FDConsultaValor: TFMTBCDField
       FieldName = 'Valor'
+      DisplayFormat = '#,##0.00'
+      EditFormat = '#,##0.00'
       Size = 0
+    end
+    object FDConsultaDescricao: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'Descricao'
+      Size = 100
+      Calculated = True
     end
   end
   object FDTipoReceita: TFDMemTable
@@ -151,7 +160,7 @@ inherited frmEntrada: TfrmEntrada
     object LinkListControlToField1: TLinkListControlToField
       Category = 'Quick Bindings'
       DataSource = BindSourceDB1
-      FieldName = 'IdTipoReceita'
+      FieldName = 'Descricao'
       Control = ListView1
       FillExpressions = <
         item

@@ -67,6 +67,7 @@ type
     LinkFillControlToField: TLinkFillControlToField;
     LinkControlToField1: TLinkControlToField;
     LinkControlToField2: TLinkControlToField;
+    FDConsultaDescricao: TStringField;
     procedure btnEditarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
@@ -75,6 +76,7 @@ type
     procedure edtValorTyping(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FDConsultaCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
     Controller : IController<TReceita>;
@@ -168,13 +170,14 @@ begin
       FDTipoReceita.EmptyDataSet;
     end;
 
+    FDTipoReceita.AppendData(Controller.Tela(ttTipoReceitas).Pesquisar(TipoReceita),False);
+    FDTipoReceita.IndexFieldNames := 'Descricao';
+    FDTipoReceita.First;
+
     FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(Receita),False);
 //    FDConsulta.IndexFieldNames := 'Descricao';
     FDConsulta.First;
 
-    FDTipoReceita.AppendData(Controller.Tela(ttTipoReceitas).Pesquisar(TipoReceita),False);
-    FDTipoReceita.IndexFieldNames := 'Descricao';
-    FDTipoReceita.First;
 
   finally
     FreeAndNil(TipoReceita);
@@ -185,6 +188,14 @@ procedure TfrmEntrada.edtValorTyping(Sender: TObject);
 begin
   inherited;
   Formatar(edtValor, TFormato.Valor);
+end;
+
+procedure TfrmEntrada.FDConsultaCalcFields(DataSet: TDataSet);
+begin
+  inherited;
+  FDTipoReceita.Locate('IdTipoReceita',FDConsulta.FieldByName('IdTipoReceita').AsString,[loPartialKey]);
+  FDConsulta.FieldByName('Descricao').AsString := FDTipoReceita.FieldByName('Descricao').AsString;
+
 end;
 
 procedure TfrmEntrada.FormCreate(Sender: TObject);

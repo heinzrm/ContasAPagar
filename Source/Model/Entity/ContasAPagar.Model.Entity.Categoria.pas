@@ -18,7 +18,7 @@ type
     [APK('IdCategoria')]
     [ACampo('IdCategoria',False,True) , ANotNull, AFormato(4)]
     property IdCategoria: string read FIDCategoria write FIDCategoria;
-    [ACampo('DESCRICAO'), AFormato(100)]
+    [ACampo('Descricao'), AFormato(100)]
     property Descricao: String read FDescricao write FDescricao;
   end;
 

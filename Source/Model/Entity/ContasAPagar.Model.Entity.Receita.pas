@@ -9,10 +9,11 @@ type
   [ATabela('Receita')]
   TReceita = class
   private
-    FIdReceita      : string;
-    FIdTipoReceita  : string;
-    FDataRecebimento: TDateTime;
-    FValor          : Currency;
+    FIdReceita       : string;
+    FIdTipoReceita   : string;
+    FDataRecebimento : TDateTime;
+    FValor           : Currency;
+    FDescricao       : string;
   public
     [APK('IdReceita')]
     [ACampo('IdReceita',False,True) , ANotNull, AFormato(4)]

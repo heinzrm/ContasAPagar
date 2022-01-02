@@ -129,6 +129,7 @@ end;
 procedure TfrmModelo.btnSalvarClick(Sender: TObject);
 begin
   PreviousTabAction1.ExecuteTarget(Sender);
+  ExibirMensagem('Registro Salvo com sucesso!');
 end;
 
 procedure TfrmModelo.btnVoltarClick(Sender: TObject);

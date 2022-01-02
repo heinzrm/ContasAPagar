@@ -16,6 +16,7 @@ type
     FDataPagamento  : TDateTime;
     FValor          : Currency;
     FIdCategoria    : string;
+    FIdCartoes      : string;
   public
     [APK('IdDespesa')]
     [ACampo('IdDespesa',False,True) , ANotNull, AFormato(4)]
@@ -24,6 +25,8 @@ type
     property Descricao: string read FDescricao write FDescricao;
     [ACampo('IdTipoDespesas',False,False) , ANotNull, AFormato(4)]
     property IdTipoDespesas: string read FIdTipoDespesas write FIdTipoDespesas;
+    [ACampo('IdCartoes',False,False) , ANotNull, AFormato(4)]
+    property IdCartoes: string read FIdCartoes write FIdCartoes;
     [ACampo('DataPagamento'), AFormato(100)]
     property DataPagamento: TDateTime  read FDataPagamento write FDataPagamento;
     [ACampo('DataVencimento'), AFormato(100)]

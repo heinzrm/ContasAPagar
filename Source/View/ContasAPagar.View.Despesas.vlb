@@ -15,7 +15,7 @@ Coordinates=694,267,59,33
 Visible=False
 
 [edtValor]
-Coordinates=376,286,55,51
+Coordinates=10,463,55,51
 
 [lblDataVencimento]
 Coordinates=214,416,107,33
@@ -26,13 +26,13 @@ Coordinates=164,570,79,33
 Visible=False
 
 [dtDataVencimento]
-Coordinates=346,175,115,51
+Coordinates=317,10,115,51
 
 [cbTipoDespesa]
-Coordinates=360,710,90,123
+Coordinates=329,568,90,123
 
 [ListView1]
-Coordinates=359,397,89,231
+Coordinates=330,286,89,231
 Visible=True
 
 [btnExcluir]
@@ -43,7 +43,7 @@ Visible=False
 Coordinates=612,1,70,33
 
 [edtDescricao]
-Coordinates=360,650,79,51
+Coordinates=335,742,79,51
 
 [Rectangle1]
 Coordinates=355,493,69,33
@@ -62,7 +62,7 @@ Coordinates=270,493,59,33
 Visible=False
 
 [cbCategoria]
-Coordinates=10,262,84,123
+Coordinates=332,112,84,123
 
 [btnEditar]
 Coordinates=522,267,59,33
@@ -80,7 +80,7 @@ Coordinates=91,493,52,33
 Visible=False
 
 [TabControl1]
-Coordinates=711,493,74,33
+Coordinates=623,930,74,33
 Visible=False
 
 [TabItem2]
@@ -99,7 +99,7 @@ Coordinates=529,493,71,33
 Visible=False
 
 [Layout1]
-Coordinates=10,570,53,33
+Coordinates=934,10,53,33
 Visible=False
 
 [lytMain]
@@ -163,14 +163,61 @@ Visible=False
 Coordinates=763,267,171,33
 
 [BindSourceDB1]
-Coordinates=180,250,92,249
+Coordinates=145,355,92,267
 
 [BindingsList1]
 Coordinates=118,1,82,33
 
 [BindSourceDB2]
-Coordinates=174,10,92,105
+Coordinates=496,121,92,105
 
 [BindSourceDB3]
-Coordinates=550,640,92,105
+Coordinates=499,577,92,105
+
+[lblCatoes]
+Coordinates=848,10,60,33
+Visible=False
+
+[FDCartoesIdCartoes]
+Coordinates=304,1,113,33
+
+[lytCategoria]
+Coordinates=524,930,73,33
+Visible=True
+
+[FDCartoes]
+Coordinates=756,10,66,33
+Visible=False
+
+[lytCatoes]
+Coordinates=438,930,60,33
+Visible=False
+
+[FDConsultaIdCartoes]
+Coordinates=219,134,119,33
+
+[lytDescricao]
+Coordinates=337,930,75,33
+Visible=False
+
+[FDCartoesDescricao]
+Coordinates=499,62,115,33
+
+[lytValor]
+Coordinates=259,930,52,33
+Visible=False
+
+[CBCartoes]
+Coordinates=332,844,84,123
+
+[lytTipoDespesa]
+Coordinates=143,930,90,33
+Visible=False
+
+[lytDataVencimento]
+Coordinates=10,930,107,33
+Visible=False
+
+[BindSourceDB4]
+Coordinates=496,853,92,105
 

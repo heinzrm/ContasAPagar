@@ -51,7 +51,11 @@ uses
   System.Variants,
   ContasAPagar.Model.Entity.Despesa,
   ContasAPagar.Interfaces.Controller,
-  Data.Bind.DBScope, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FMX.ListView.Adapters.Base;
+  Data.Bind.DBScope,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FMX.ListView.Adapters.Base,
+  FireDAC.Stan.StorageXML;
 
 type
   TfrmDespesas = class(TfrmModelo)
@@ -85,11 +89,25 @@ type
     LinkListControlToField1: TLinkListControlToField;
     BindSourceDB2: TBindSourceDB;
     BindSourceDB3: TBindSourceDB;
-    LinkFillControlToField1: TLinkFillControlToField;
     LinkFillControlToField: TLinkFillControlToField;
     LinkControlToField1: TLinkControlToField;
     LinkControlToField2: TLinkControlToField;
     LinkControlToField3: TLinkControlToField;
+    LinkFillControlToField2: TLinkFillControlToField;
+    FDConsultaIdCartoes: TStringField;
+    FDCartoes: TFDMemTable;
+    FDCartoesIdCartoes: TStringField;
+    FDCartoesDescricao: TStringField;
+    lytValor: TLayout;
+    lytDescricao: TLayout;
+    lytTipoDespesa: TLayout;
+    lytCatoes: TLayout;
+    lytCategoria: TLayout;
+    lytDataVencimento: TLayout;
+    lblCatoes: TLabel;
+    CBCartoes: TComboBox;
+    BindSourceDB4: TBindSourceDB;
+    LinkFillControlToField1: TLinkFillControlToField;
     procedure btnInserirClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -98,6 +116,7 @@ type
     procedure btnVoltarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure edtValorTyping(Sender: TObject);
+    procedure cbTipoDespesaChange(Sender: TObject);
   private
     { Private declarations }
     Controller : IController<TDespesa>;
@@ -121,13 +140,12 @@ uses
   ContasAPagar.Diversos.RTTI,
   ContasAPagar.Model.Entity.Categoria,
   ContasAPagar.Model.Entity.TipoDespesa,
-  ContasAPagar.Diversos.Formatar;
+  ContasAPagar.Diversos.Formatar, ContasAPagar.Model.Entity.Cartoes;
 
 {$R *.fmx}
 
 procedure TfrmDespesas.btnEditarClick(Sender: TObject);
 begin
-
   inherited;
   TProcedimentos.SetarFoco(edtValor);
 end;
@@ -169,7 +187,7 @@ begin
   Controller.Tela(ttDespesa).Salvar(FState,Despesas, FChave);
   BuscarDados;
   inherited;
-  dtDataVencimento.DateTime
+  dtDataVencimento.DateTime;
 end;
 
 procedure TfrmDespesas.btnVoltarClick(Sender: TObject);
@@ -182,13 +200,16 @@ procedure TfrmDespesas.BuscarDados;
 var
   Categoria   : TCategoria;
   TipoDespesas: TTipoDespesas;
+  Cartoes     : TCartoes;
 begin
   inherited;
   Categoria    := nil;
   TipoDespesas := nil;
+  Cartoes      := nil;
   try
     TipoDespesas := TTipoDespesas.Create;
     Categoria    := TCategoria.Create;
+    Cartoes      := TCartoes.Create;
 
     if FDConsulta.Active then
     begin
@@ -205,22 +226,37 @@ begin
       FDTipoDespesa.EmptyDataSet;
     end;
 
+    if FDCartoes.Active then
+    begin
+      FDCartoes.EmptyDataSet;
+    end;
+
     FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(Despesas),False);
     FDConsulta.IndexFieldNames := 'Descricao';
     FDConsulta.First;
 
     FDCategoria.AppendData(Controller.Tela(ttCategoria).Pesquisar(Categoria),False);
-    FDCategoria.IndexFieldNames := 'Descricao';
     FDCategoria.First;
 
     FDTipoDespesa.AppendData(Controller.Tela(ttTipoDespesas).Pesquisar(TipoDespesas),False);
     FDTipoDespesa.IndexFieldNames := 'Descricao';
     FDTipoDespesa.First;
 
+    FDCartoes.AppendData(Controller.Tela(ttCartoes).Pesquisar(Cartoes),False);
+    FDCartoes.IndexFieldNames := 'Descricao';
+    FDCartoes.First;
+
   finally
     FreeAndNil(Categoria);
     FreeAndNil(TipoDespesas);
+    FreeAndNil(Cartoes)
   end;
+end;
+
+procedure TfrmDespesas.cbTipoDespesaChange(Sender: TObject);
+begin
+  inherited;
+  lytCatoes.Visible := (cbTipoDespesa.ItemIndex = 0);
 end;
 
 procedure TfrmDespesas.edtValorTyping(Sender: TObject);
