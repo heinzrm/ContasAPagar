@@ -14,7 +14,6 @@ uses
   System.SysUtils,
   FMX.Edit,
   Classes,
-  System.MaskUtils,
   ContasAPagar.Diversos.Enumerados;
 
 procedure Formatar(Obj: TObject; Formato : TFormato; Extra : string = '');

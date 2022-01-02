@@ -12,9 +12,9 @@ inherited frmDespesas: TfrmDespesas
         TabIndex = 1
         Sizes = (
           656s
-          430s
+          380s
           656s
-          430s)
+          380s)
         inherited TabItem1: TTabItem
           IsSelected = False
           ExplicitSize.cx = 8.000000000000000000
@@ -39,7 +39,7 @@ inherited frmDespesas: TfrmDespesas
             FooterAppearanceClassName = 'TListHeaderObjects'
             Align = Client
             Size.Width = 656.000000000000000000
-            Size.Height = 380.000000000000000000
+            Size.Height = 330.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
             CanSwipeDelete = False
@@ -236,6 +236,13 @@ inherited frmDespesas: TfrmDespesas
           Size.Width = 646.000000000000000000
         end
       end
+      inherited lytTitulo: TLayout
+        Size.Width = 656.000000000000000000
+        inherited lblTitulo: TLabel
+          Size.Width = 636.000000000000000000
+          Text = 'Cadastro de Despesas'
+        end
+      end
     end
   end
   inherited FDConsulta: TFDMemTable
@@ -244,7 +251,9 @@ inherited frmDespesas: TfrmDespesas
       Size = 50
     end
     object FDConsultaDescricao: TStringField
+      DisplayWidth = 100
       FieldName = 'Descricao'
+      Size = 100
     end
     object FDConsultaIdTipoDespesas: TStringField
       FieldName = 'IdTipoDespesas'

@@ -31,9 +31,7 @@ uses
   System.Types,
   System.UITypes,
   System.Variants,
-  ContasAPagar.Interfaces.Controller,
-  FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf;
+  ContasAPagar.Interfaces.Controller, FireDAC.Phys.Intf, FireDAC.DApt.Intf;
 
 type
   TfrmModelo = class(TForm)
@@ -57,6 +55,8 @@ type
     lytMensagem: TLayout;
     Rectangle1: TRectangle;
     lblMensagem: TLabel;
+    lytTitulo: TLayout;
+    lblTitulo: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);

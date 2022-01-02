@@ -37,6 +37,14 @@ type
     property ChavePrimaria : string  read FChavePrimaria write FChavePrimaria;
   end;
 
+  AOrderBy = class(TCustomAttribute)
+  private
+    FOrderBy: string;
+  public
+    constructor Create(pOrderBy: string);
+    property Orderby: string read FOrderBy write FOrderBy;
+  end;
+
   ANotNull = class(TCustomAttribute)
   end;
 
@@ -100,6 +108,13 @@ end;
 constructor APK.Create(pChavePrimaria: string);
 begin
   FChavePrimaria := pChavePrimaria;
+end;
+
+{ AOrderBy }
+
+constructor AOrderBy.Create(pOrderBy: string);
+begin
+  FOrderBy := pOrderBy;
 end;
 
 end.

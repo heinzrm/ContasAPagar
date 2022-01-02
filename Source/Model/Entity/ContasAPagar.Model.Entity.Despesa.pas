@@ -21,6 +21,7 @@ type
     [APK('IdDespesa')]
     [ACampo('IdDespesa',False,True) , ANotNull, AFormato(4)]
     property IdDespesa: string read FIdDespesa write FIdDespesa;
+    [AOrderBy('Descricao')]
     [ACampo('Descricao'), AFormato(100)]
     property Descricao: string read FDescricao write FDescricao;
     [ACampo('IdTipoDespesas',False,False) , ANotNull, AFormato(4)]

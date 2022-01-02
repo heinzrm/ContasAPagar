@@ -148,7 +148,6 @@ begin
   end;
 
   FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(Categoria),False);
-  FDConsulta.IndexFieldNames := 'Descricao';
   FDConsulta.First;
 end;
 

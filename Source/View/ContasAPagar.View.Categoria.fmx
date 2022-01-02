@@ -8,9 +8,9 @@ inherited frmCategoria: TfrmCategoria
         TabIndex = 1
         Sizes = (
           640s
-          430s
+          380s
           640s
-          430s)
+          380s)
         inherited TabItem1: TTabItem
           IsSelected = False
           ExplicitSize.cx = 8.000000000000000000
@@ -27,7 +27,7 @@ inherited frmCategoria: TfrmCategoria
             FooterAppearanceClassName = 'TListHeaderObjects'
             Align = Client
             Size.Width = 640.000000000000000000
-            Size.Height = 380.000000000000000000
+            Size.Height = 330.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
             ItemAppearanceObjects.ItemObjects.Accessory.Visible = False
@@ -79,6 +79,11 @@ inherited frmCategoria: TfrmCategoria
               Visible = False
             end
           end
+        end
+      end
+      inherited lytTitulo: TLayout
+        inherited lblTitulo: TLabel
+          Text = 'Cadastro de Categorias'
         end
       end
     end

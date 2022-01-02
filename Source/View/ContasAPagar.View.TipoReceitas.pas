@@ -152,7 +152,6 @@ begin
     FDConsulta.EmptyDataSet;
   end;
   FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(TipoReceita),True);
-  FDConsulta.IndexFieldNames := 'Descricao';
   FDConsulta.First;
 end;
 

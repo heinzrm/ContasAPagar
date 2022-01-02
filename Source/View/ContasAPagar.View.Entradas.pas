@@ -6,6 +6,9 @@ uses
   ContasAPagar.Interfaces.Controller,
   ContasAPagar.Model.Entity.Receita,
   ContasAPagar.View.ModeloPrincipal,
+  Data.Bind.Components,
+  Data.Bind.DBScope,
+  Data.Bind.EngExt,
   Data.DB,
   FireDAC.Comp.Client,
   FireDAC.Comp.DataSet,
@@ -17,6 +20,8 @@ uses
   FireDAC.Stan.Option,
   FireDAC.Stan.Param,
   FMX.ActnList,
+  Fmx.Bind.DBEngExt,
+  Fmx.Bind.Editors,
   FMX.Controls,
   FMX.Controls.Presentation,
   FMX.DateTimeCtrls,
@@ -35,13 +40,16 @@ uses
   FMX.StdCtrls,
   FMX.TabControl,
   FMX.Types,
+  MultiDetailAppearanceU,
   System.Actions,
+  System.Bindings.Outputs,
   System.Classes,
   System.ImageList,
+  System.Rtti,
   System.SysUtils,
   System.Types,
   System.UITypes,
-  System.Variants, System.Rtti, System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope, MultiDetailAppearanceU;
+  System.Variants;
 
 type
   TfrmEntrada = class(TfrmModelo)
@@ -93,10 +101,13 @@ var
 implementation
 
 uses
-  FMX.DialogService, ContasAPagar.Diversos.Procedimentos,
-  ContasAPagar.Diversos.Enumerados, ContasAPagar.Diversos.RTTI,
+  FMX.DialogService,
+  ContasAPagar.Diversos.Procedimentos,
+  ContasAPagar.Diversos.Enumerados,
+  ContasAPagar.Diversos.RTTI,
   ContasAPagar.Model.Entity.TipoReceita,
-  ContasAPagar.Diversos.Formatar, ContasAPagar.Controller;
+  ContasAPagar.Diversos.Formatar,
+  ContasAPagar.Controller;
 
 {$R *.fmx}
 
@@ -171,13 +182,10 @@ begin
     end;
 
     FDTipoReceita.AppendData(Controller.Tela(ttTipoReceitas).Pesquisar(TipoReceita),False);
-    FDTipoReceita.IndexFieldNames := 'Descricao';
     FDTipoReceita.First;
 
     FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(Receita),False);
-//    FDConsulta.IndexFieldNames := 'Descricao';
     FDConsulta.First;
-
 
   finally
     FreeAndNil(TipoReceita);

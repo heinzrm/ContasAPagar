@@ -24,7 +24,7 @@ object frmModelo: TfrmModelo
       object TabControl1: TTabControl
         Align = Client
         Size.Width = 640.000000000000000000
-        Size.Height = 430.000000000000000000
+        Size.Height = 380.000000000000000000
         Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
         TabIndex = 0
@@ -32,9 +32,9 @@ object frmModelo: TfrmModelo
         TabPosition = None
         Sizes = (
           640s
-          430s
+          380s
           640s
-          430s)
+          380s)
         object TabItem1: TTabItem
           CustomIcon = <
             item
@@ -168,6 +168,28 @@ object frmModelo: TfrmModelo
           TextSettings.Font.Size = 20.000000000000000000
           TextSettings.HorzAlign = Center
           TabOrder = 1
+        end
+      end
+      object lytTitulo: TLayout
+        Align = Top
+        Size.Width = 640.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object lblTitulo: TLabel
+          Align = Client
+          AutoSize = True
+          StyledSettings = [Family, Style, FontColor]
+          Margins.Left = 10.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 10.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 620.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 20.000000000000000000
+          Text = 'lblTitulo'
+          TabOrder = 0
         end
       end
     end

@@ -151,7 +151,6 @@ begin
     FDConsulta.EmptyDataSet;
   end;
   FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(TipoDespesa),True);
-  FDConsulta.IndexFieldNames := 'Descricao';
   FDConsulta.First;
 end;
 

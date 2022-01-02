@@ -7,9 +7,9 @@ inherited frmCartoes: TfrmCartoes
       inherited TabControl1: TTabControl
         Sizes = (
           640s
-          430s
+          380s
           640s
-          430s)
+          380s)
         inherited TabItem1: TTabItem
           ExplicitSize.cx = 69.000000000000000000
           ExplicitSize.cy = 26.000000000000000000
@@ -25,7 +25,7 @@ inherited frmCartoes: TfrmCartoes
             FooterAppearanceClassName = 'TListHeaderObjects'
             Align = Client
             Size.Width = 640.000000000000000000
-            Size.Height = 380.000000000000000000
+            Size.Height = 330.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
             ItemAppearanceObjects.ItemObjects.Accessory.Visible = False
@@ -77,6 +77,11 @@ inherited frmCartoes: TfrmCartoes
               Visible = False
             end
           end
+        end
+      end
+      inherited lytTitulo: TLayout
+        inherited lblTitulo: TLabel
+          Text = 'Cadastro de Cart'#245'es'
         end
       end
     end

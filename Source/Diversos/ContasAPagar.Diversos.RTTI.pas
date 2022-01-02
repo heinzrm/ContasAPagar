@@ -22,6 +22,7 @@ type
     class function MontarColunas(pObjet: TObject): String;
     class function MontarColunasUpDate(pObjet: TObject): String;
     class function MontarValoresInsert(pObjet: TObject; pLstSql: TStringBuilder): string;
+    class function MontarOrderBy(pObjet: TObject):string;
     class function MontarWhere(pObjet: TObject): String;
   public
     class procedure getClassDoForm(Formulario: Tlayout; classe: TObject);
@@ -301,9 +302,35 @@ begin
           NomeCampo := (rtAtrib as ACampo).NomeDB;
           if not (rtAtrib as ACampo).SomenteLeitura and (NomeCampo <> sNomeChavePrimaria) then
           begin
-            pLista.AppendLine(IfThen((iContador = 0),
-                              Format('%s = %s',[NomeCampo, QuotedStr(rtProp.GetValue(pObjet).ToString)]),
-                              Format(',%s = %s',[NomeCampo,QuotedStr(rtProp.GetValue(pObjet).ToString)])));
+
+            case rtProp.GetValue(pObjet).Kind of
+              tkUString, tkInteger:
+              begin
+                pLista.AppendLine(IfThen((iContador = 0), Format('%s = %s',[NomeCampo, QuotedStr(rtProp.GetValue(pObjet).ToString)]),
+                                                          Format(',%s = %s',[NomeCampo,QuotedStr(rtProp.GetValue(pObjet).ToString)])));
+              end;
+              tkFloat  :
+              begin
+                if (rtProp.GetValue(pObjet).TypeInfo = TypeInfo(TDate)) or
+                   (rtProp.GetValue(pObjet).TypeInfo = TypeInfo(TTime)) or
+                   (rtProp.GetValue(pObjet).TypeInfo = TypeInfo(TDateTime)) then
+                begin
+                  var sData: string;
+                  if StrToDateTime(rtProp.GetValue(pObjet).ToString) = 0 then
+                    sData := 'NULL'
+                  else
+                    sData := QuotedStr(FormatDateTime('yyyymmdd',StrToDateTime(rtProp.GetValue(pObjet).ToString)));
+
+                  pLista.AppendLine(ifthen((iContador = 0),Format('%s = %s',[NomeCampo,sData]),Format(',%s = %s',[NomeCampo,sData])));
+                end
+                else
+                begin
+                  pLista.AppendLine(IfThen((iContador = 0), Format('%s = %s',[NomeCampo, QuotedStr(rtProp.GetValue(pObjet).ToString.Replace('.','').Replace(',','.'))]),
+                                                            Format(',%s = %s',[NomeCampo,QuotedStr(rtProp.GetValue(pObjet).ToString.Replace('.','').Replace(',','.'))])));
+                end;
+              end;
+            end;
+
             Inc(iContador);
           end;
         end;
@@ -337,6 +364,47 @@ begin
 end;
 
 
+class function TClassRtti<T>.MontarOrderBy(pObjet: TObject): string;
+var
+  rtCtx      : TRttiContext;
+  rtType     : TRttiType;
+  rtProp     : TRttiProperty;
+  rtAtrib    : TCustomAttribute;
+  NomeCampo  : string;
+  pLista     : TStringBuilder;
+  iContador : Integer;
+begin
+  iContador := 0;
+
+  rtCtx := TRttiContext.Create;
+  pLista:= nil;
+  try
+    pLista:= TStringBuilder.Create;
+
+    rtType := rtCtx.GetType(pObjet.ClassType);
+    for rtProp in rtType.GetProperties do
+    begin
+      for rtAtrib in rtProp.GetAttributes do
+      begin
+        if (rtAtrib is AOrderBy) then
+        begin
+          NomeCampo := (rtAtrib as AOrderBy).OrderBy;
+          pLista.AppendLine(ifthen((iContador = 0),NomeCampo,Format(',%s',[NomeCampo])));
+          Inc(iContador);
+        end;
+      end;
+
+    end;
+    if pLista.Length > 0 then
+    begin
+      Result := Format('Order By %s',[pLista.ToString]);
+    end;
+  finally
+    rtCtx.Free;
+    FreeAndNil(pLista)
+  end;
+end;
+
 class function TClassRtti<T>.MontarSelect(pObjet: TObject; pNomeTabela: string): string;
 var
   LstSql : TStringBuilder;
@@ -346,6 +414,8 @@ begin
     LstSql.AppendLine('Select');
     LstSql.AppendLine(MontarColunas(pObjet));
     LstSql.AppendLine(Format('from %s',[pNomeTabela]));
+    LstSql.AppendLine(MontarOrderBy(pObjet));
+
     Result := LstSql.ToString;
   finally
     FreeAndNil(LstSql);

@@ -3,21 +3,25 @@ unit ContasAPagar.View.Despesas;
 interface
 
 uses
+  ContasAPagar.Interfaces.Controller,
+  ContasAPagar.Model.Entity.Despesa,
   ContasAPagar.View.ModeloPrincipal,
   Data.Bind.Components,
+  Data.Bind.DBScope,
   Data.Bind.EngExt,
   Data.Bind.GenData,
   Data.Bind.ObjectScope,
   Data.DB,
   FireDAC.Comp.Client,
   FireDAC.Comp.DataSet,
-
+  FireDAC.DApt.Intf,
   FireDAC.DatS,
-
+  FireDAC.Phys.Intf,
   FireDAC.Stan.Error,
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
   FireDAC.Stan.Param,
+  FireDAC.Stan.StorageXML,
   FMX.ActnList,
   Fmx.Bind.DBEngExt,
   Fmx.Bind.Editors,
@@ -32,7 +36,7 @@ uses
   FMX.Layouts,
   FMX.ListBox,
   FMX.ListView, FMX.Edit,
-
+  FMX.ListView.Adapters.Base,
   FMX.ListView.Appearances,
   FMX.ListView.Types,
   FMX.Objects,
@@ -48,14 +52,7 @@ uses
   System.SysUtils,
   System.Types,
   System.UITypes,
-  System.Variants,
-  ContasAPagar.Model.Entity.Despesa,
-  ContasAPagar.Interfaces.Controller,
-  Data.Bind.DBScope,
-  FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf,
-  FMX.ListView.Adapters.Base,
-  FireDAC.Stan.StorageXML;
+  System.Variants;
 
 type
   TfrmDespesas = class(TfrmModelo)
@@ -140,7 +137,8 @@ uses
   ContasAPagar.Diversos.RTTI,
   ContasAPagar.Model.Entity.Categoria,
   ContasAPagar.Model.Entity.TipoDespesa,
-  ContasAPagar.Diversos.Formatar, ContasAPagar.Model.Entity.Cartoes;
+  ContasAPagar.Diversos.Formatar,
+  ContasAPagar.Model.Entity.Cartoes;
 
 {$R *.fmx}
 
@@ -232,18 +230,15 @@ begin
     end;
 
     FDConsulta.AppendData(Controller.Tela(Tela).Pesquisar(Despesas),False);
-    FDConsulta.IndexFieldNames := 'Descricao';
     FDConsulta.First;
 
     FDCategoria.AppendData(Controller.Tela(ttCategoria).Pesquisar(Categoria),False);
     FDCategoria.First;
 
     FDTipoDespesa.AppendData(Controller.Tela(ttTipoDespesas).Pesquisar(TipoDespesas),False);
-    FDTipoDespesa.IndexFieldNames := 'Descricao';
     FDTipoDespesa.First;
 
     FDCartoes.AppendData(Controller.Tela(ttCartoes).Pesquisar(Cartoes),False);
-    FDCartoes.IndexFieldNames := 'Descricao';
     FDCartoes.First;
 
   finally
